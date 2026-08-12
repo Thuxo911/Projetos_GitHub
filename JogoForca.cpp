@@ -1,6 +1,69 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <cstdlib>
+
+
+
+
+
+std::string sortear(int x) {
+
+
+    switch(x) {
+        case 4: {
+    std::string palavras4[391] = {
+            "amor", "casa", "vida", "flor", "gato", "vaca", "pato", "lobo", "urso", "alho",
+            "muro", "teto", "mesa", "lata", "fita", "nave", "pote", "faca", "cama", "selo",
+            "sopa", "doce", "bolo", "fogo", "neve", "frio", "hora", "jogo", "bola", "time",
+            "tatu", "onda", "pipa", "nuca", "mico", "hino", "gelo", "feno", "dedo",
+            "iodo", "cubo", "bico", "zelo", "vaso", "tapa", "sino", "rede", "piso", "moda",
+            "lado", "pino", 
+            "fato", "mito", "caos", "sapo", "puma", "rubi", "neto", "toco", "siri", "urro", "mate",
+            "jacu", "gomo", "lula", "luau", "faro", "juba", "paca", "urna", "fofo", "pano", "duna",
+            "lima", "cana", "nove", "sebo", "maio", "unha", "kiwi", "mola", "favo", "reta", "rolo", 
+            "bota", "gole", "ruga", "caco", "bule", "ralo", "furo", "sova", "isca", "duro", "guru", "menu",
+            "fumo", "gala", "lava", "tira", "foca", "luva", "saco", "muco", "saci", "anta", "vala", "peru",
+            "moto", "poro", "mofo", "bote", "siso", "fole", "loja", "cuia", "gajo", "fino", "galo", "czar", 
+            "fada", "zero", "seis", "ator", "feto", "erva", "arma", "cera", "arco", "oito", "tufo", "mina", "lago",
+            "gene", "mato", "mata", "veia", "fulo", "ocre", "naco", "bala", "cria", "sete", "roxo", "xixi",
+            "tara", "papo", "gaze", "beco", "doze", "toga", "agro", "bula", "cruz", "seda", "teia", "musa",
+            "colo", "luar", "oral", "veto", "data", "coxa", "caju", "vivo", "pomo", "diva", "urbe", "luso",
+            "mago", "mapa", "vago", "raio", "proa", "osso", "mana", "roca", "rosa", "acre", "rasa", "anjo",
+            "copa", "cura", "ceia", "novo", "ogro", "cima", "dono", "nora", "sono", "ouro", "seta", "cujo",
+            "cabo", "bofe", "cego", "cepo", "luxo", "dose", "meia", "tupi", "meio", "gafe", "gado", "ateu", "olho",
+            "vaga", "limo", "odor", "anel", "ramo", "tomo", "falo", "topo", "eixo", "peso", "coro", "sebe", 
+            "joio", "nego", "pneu", "cara", "asno", "cena", "sexy", "raro", "cume", "ledo", "aval", "trem", "taxa",
+            "grau", "rola", "puro", "leal", "mero", "nato", "real", "alfa", "dolo", "beta", "dote", "tipo", "luta", "hera",
+            "nome", "pena", "azul", "nexo", "orla", "nada", "tese", "pose", "face", "alvo", "foco", "cela", "rima", "cedo",
+            "arte", "ente", "alma", "deus", "cota", "apto", "mote", "auge", "sina", "brio", 
+            "alto", "atum", "azar", "azia", "base", "bela", "belo", "bile", "boca", "boda",
+            "bode", "boia", "boto", "breu", "cala", "capa", "coco", "copo", "dado", "dama",
+            "dano", "dias", "dica", "dito", "dona", "ecos", "elmo", "elos", "erro", "fala",
+            "fava", "feio", "figa", "figo", "fila", "fome", "gago", "gata", "gema", "gira",
+            "giro", "gola", "goma", "gota", "gozo", "guia", "gula", "iate", "ilha", "ioga",
+            "item", "jaca", "jato", "jeca", "jipe", "joia", "jota", "juiz", "jura", "juta",
+            "laje", "lama", "leoa", "leva", "leve", "lixo", "loba", "lona", "lota", "luto",
+            "mala", "medo", "mula", "nabo", "nado", "neta", "nojo", "nota", "nova", "nulo",
+            "obra", "pele", "pelo", "pera", "polo", "povo", "quiz", "rata", "rato", "reis",
+            "remo", "reza", "riso", "roda", "rodo", "rude", "sala", "sapa", "sede", "sela",
+            "soja", "sola", "solo", "soma", "tela", "toca", "tubo", "uivo", "unto", "vale",
+            "vaza", "veio", "vela", "viga", "vila", "voto", "xale", "xepa", "zaga", "zebu",
+            "zika", "zona" 
+        };
+
+        return 
+
+    }
+
+    }
+
+
+
+}
+
+
+
 
 
 
@@ -66,6 +129,101 @@ int main() {
         }
 
         if (escolha == 1) {
+
+            int escolhaTamanho;
+            int vidas;
+            std::string palavraSorteada;
+
+            std::cout << "Qual o tamanho da palavra? Min: 4, Max: 10\n."; 
+            std::cout << "Apenas substantivos e adjetivos sem acentos\n";
+            std::cout << "Regra: digite as letras em letra MINUSCULA\n";
+            std::cin >> escolhaTamanho;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        
+
+            switch (escolhaTamanho) {
+                case 4: {
+
+                    palavraSorteada = sortear(4);
+
+                    vidas = 7;
+
+                break;
+                }
+
+                case 5: {
+
+                    palavraSorteada = sortear(5);
+
+                    vidas = 7;
+
+
+                break;
+                }
+
+                case 6: {
+
+                    palavraSorteada = sortear(6);
+
+                    vidas = 6;
+
+                break;
+                }
+
+                case 7: {
+
+                    palavraSorteada = sortear(7);
+
+                    vidas = 6;
+
+                break;
+                }
+
+                case 8: {
+
+                    palavraSorteada = sortear(8);
+
+                    vidas = 6;
+
+                break;
+                }
+
+                case 9: {
+
+                    palavraSorteada = sortear(9);
+                    vidas = 5;
+
+                break;
+                }
+
+                case 10: {
+
+                    palavraSorteada = sortear(10);
+
+                    vidas = 5;
+
+                break;
+                }
+
+                default: { //numero maior que 10 e menor que 4
+
+                std::cout << std::endl;
+                std::cout << "Tamanho errado! O numero pode ir de 4 A 10!\n";
+                std::cout << std::endl;
+                    break;
+                }
+            
+            }   
+
+
+
+
+
+
+
+
+
 
         }
 
