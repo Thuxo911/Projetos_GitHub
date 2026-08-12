@@ -2,24 +2,15 @@
 #include <string>
 #include <limits>
 #include <cstdlib>
+#include <ctime>
 
-
-
-
-
-std::string sortear(int x) {
-
-
-    switch(x) {
-        case 4: {
-    std::string palavras4[391] = {
+    static std::string palavras4[391] = {
             "amor", "casa", "vida", "flor", "gato", "vaca", "pato", "lobo", "urso", "alho",
             "muro", "teto", "mesa", "lata", "fita", "nave", "pote", "faca", "cama", "selo",
             "sopa", "doce", "bolo", "fogo", "neve", "frio", "hora", "jogo", "bola", "time",
             "tatu", "onda", "pipa", "nuca", "mico", "hino", "gelo", "feno", "dedo",
             "iodo", "cubo", "bico", "zelo", "vaso", "tapa", "sino", "rede", "piso", "moda",
-            "lado", "pino", 
-            "fato", "mito", "caos", "sapo", "puma", "rubi", "neto", "toco", "siri", "urro", "mate",
+            "lado", "pino", "fato", "mito", "caos", "sapo", "puma", "rubi", "neto", "toco", "siri", "urro", "mate",
             "jacu", "gomo", "lula", "luau", "faro", "juba", "paca", "urna", "fofo", "pano", "duna",
             "lima", "cana", "nove", "sebo", "maio", "unha", "kiwi", "mola", "favo", "reta", "rolo", 
             "bota", "gole", "ruga", "caco", "bule", "ralo", "furo", "sova", "isca", "duro", "guru", "menu",
@@ -52,9 +43,65 @@ std::string sortear(int x) {
             "zika", "zona" 
         };
 
-        return 
+    static std::string palavras5[] = {
 
+    };
+
+    static std::string palavras6[] = {
+
+    };
+
+    static std::string palavras7[] = {
+
+    };
+
+    static std::string palavras8[] = {
+
+    };
+
+    static std::string palavras9[] = {
+
+    };
+
+    static std::string palavras10[] = {
+
+    };
+
+
+std::string sortear(int x) {
+
+
+    switch(x) {
+        case 4: {
+        return palavras4[rand() % 391]; 
+        //rand()% N = numero aleatorio entre 0 e N-1
     }
+
+        case 5: {
+
+        }
+
+        case 6: {
+
+        }
+
+        case 7: {
+
+        }
+        
+        case 8: {
+
+        }
+
+        case 9: {
+
+        }
+
+        case 10: {
+
+
+        }
+
 
     }
 
@@ -69,7 +116,8 @@ std::string sortear(int x) {
 
 int main() {
 
-
+    srand(time(0)); //para a escolha de uma palavra aleatoria nas listas 
+    int vidas;
     bool checagem = true;
 
 
@@ -131,7 +179,6 @@ int main() {
         if (escolha == 1) {
 
             int escolhaTamanho;
-            int vidas;
             std::string palavraSorteada;
 
             std::cout << "Qual o tamanho da palavra? Min: 4, Max: 10\n."; 
@@ -211,10 +258,11 @@ int main() {
                 std::cout << std::endl;
                 std::cout << "Tamanho errado! O numero pode ir de 4 A 10!\n";
                 std::cout << std::endl;
-                    break;
+                continue; // pula para o proximo iterador de while(checagem)
+
                 }
             
-            }   
+            }       
 
 
 
