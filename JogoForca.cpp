@@ -29,19 +29,28 @@ int main() {
         std::cout <<" 1 - Comecar a jogar\n";
         std::cout <<" 2 - Creditos\n";
         std::cout <<" 3 - Sair\n";
+        
+        std::cout << std::endl;
+        std::cout << "Minha escolha eh:\n";
+        std::cin >> escolha;
+        std::cout << std::endl;
 
         if (escolha != 1 && escolha != 2 && escolha != 3) {
                 std::cout << "Escolha errada! Mais atencao na proxima vez!\n";
                 std::cout << std::endl;
         }
 
-        if (escolha == 1)
+        if (escolha == 1) {
+
+        }
 
         if (escolha == 2) {
             std::cout << "Desenvolvido por Marco Thullyo Sao Severino. Obrigado por jogar! <3\n";
+            std::cout << std::endl;
         }
 
         if (escolha == 3) {
+            std::cout << "Tchauzinho!\n";
             return 0;
         }
 
