@@ -5,7 +5,6 @@
 #include <vector>
 
 
-
 struct Aluno { 
 
     std::string nome;
@@ -35,6 +34,12 @@ std::string Mensagem(std::vector<Aluno> listaAlunos, int i) {
 
         case Aluno::ReprovadoNota: {
             return "Aluno reprovado por nota!";
+            break;
+        }
+
+        default :
+        {
+            return "Situacao nao calculada";
             break;
         }
 
@@ -122,10 +127,13 @@ int main () {
 
             Aluno novoAluno;
 
+
             bool escolhaAcrescentarNovoAluno = true;
             bool checagemOpcao1 = true;
 
              while (checagemOpcao1) {
+
+            novoAluno.media = -1.0;
 
             for (int i = 0; i < 3; i++) {
                 novoAluno.arrayNotas[i] = -1.0;
@@ -242,21 +250,22 @@ int main () {
 
         if (escolhaMenu == 3) {
 
-            bool escolhaVerMais = true;
-            bool checagemOpcao3 = true;
-
-
-            while (checagemOpcao3) {
-
-            int matriculaDigitada3;
-            int variavelQueGuardaNumeroAluno;
-            int escolhaVolta3;
 
             if(listaAlunos.size() == 0) {
                 std::cout << "Nenhum aluno cadastrado ainda!\n";
                 std::cout << std::endl;
                 continue;
             }
+
+
+            bool escolhaVerMais = true;
+            bool checagemOpcao3 = true;
+
+             while (checagemOpcao3) {
+
+            int matriculaDigitada3;
+            int variavelQueGuardaNumeroAluno;
+            int escolhaVolta3;
 
 
             std::cout << "Digite a matricula do aluno para saber sua media e situacao atual\n";
@@ -279,7 +288,14 @@ int main () {
 
             if (!encontrou3) {
                 std::cout << "Matricula nao encontrada!\n";
-                std::cout << std::endl;
+                std::cout << "Gostaria de tentar outra matricula?\n";
+                std::cin >> escolhaOpcao3;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                if (escolhaOpcao3 == 'N' || escolhaOpcao3 == 'n') {
+                    break;
+                }
                 continue;
             }
 
@@ -323,14 +339,8 @@ int main () {
             
             if (escolhaOpcao3 != 'N' && escolhaOpcao3 != 'n' &&
             escolhaOpcao3 != 'S' && escolhaOpcao3 != 's') {
-                continue;
+                std::cout << "Opcao invalida!\n";
             }
-
-            if (escolhaOpcao3 == 'N' || escolhaOpcao3 == 'n') {
-                escolhaVerMais = false;
-                checagemOpcao3 = false;
-                break;
-            }    
 
             if(escolhaOpcao3 == 'S' || escolhaOpcao3 == 's') {
                 break;
@@ -363,14 +373,26 @@ int main () {
                 if (listaAlunos[i].arrayNotas[0] == -1.0 && listaAlunos[i].arrayNotas[1] == -1.0
                     && listaAlunos[i].arrayNotas[2] == -1.0)  {
 
-                        std::cout << "As notas ainda nao foram cadastradas!\n";
-                        break;
+                        std::cout << "As notas desse aluno ainda nao foram cadastradas!\n";
+                        continue;
 
                     }
 
+    
 
                 std::cout << "Notas das 3 provas, em ordem: " << listaAlunos[i].arrayNotas[0] << " " << listaAlunos[i].arrayNotas[1] << " " << listaAlunos[i].arrayNotas[2] << std::endl;
+                    
+                if (listaAlunos[i].media == -1.0) {
+                    std::cout << "Media ainda nao foi calculada!\n";
+                    continue;
+
+                }
+                
+                
                 std::cout << "Media: " << listaAlunos[i].media << std::endl;
+
+
+
                 std::cout << "Situacao: " << Mensagem(listaAlunos, i) << std::endl;
 
                 std::cout << std::endl;
