@@ -37,6 +37,7 @@ int main () {
     while (checagem) {
 
         char escolhaOpcao1 = true;
+        char escolhaOpcao3 = true;
 
         auto agora = std::chrono::system_clock::now();
         std::time_t tempoAtual = std::chrono::system_clock::to_time_t(agora);
@@ -205,10 +206,19 @@ int main () {
 
         }
 
+        std::cout << std::endl;
+
         if (escolhaMenu == 3) {
+
+            bool escolhaVerMais = true;
+            bool checagemOpcao3 = true;
+
+
+            while (checagemOpcao3) {
 
             int matriculaDigitada3;
             int variavelQueGuardaNumeroAluno;
+            int escolhaVolta3;
 
             if(listaAlunos.size() == 0) {
                 std::cout << "Nenhum aluno cadastrado ainda!\n";
@@ -241,7 +251,7 @@ int main () {
                 continue;
             }
 
-            
+
             std::cout << std::endl;
 
             listaAlunos[variavelQueGuardaNumeroAluno].media = (listaAlunos[variavelQueGuardaNumeroAluno].arrayNotas[0] +
@@ -290,6 +300,33 @@ int main () {
             }
 
 
+            std::cout << std::endl;
+
+            std::cout << "Professor, gostaria de voltar para o menu?\n";
+            std::cin >> escolhaOpcao3;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << std::endl;
+            std::cout << std::endl;
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            
+            if (escolhaOpcao3 != 'N' && escolhaOpcao3 != 'n' &&
+            escolhaOpcao3 != 'S' && escolhaOpcao3 != 's') {
+                continue;
+            }
+
+            if (escolhaOpcao3 == 'N' || escolhaOpcao3 == 'n') {
+                escolhaVerMais = false;
+                checagemOpcao3 = false;
+                break;
+            }    
+
+            if(escolhaOpcao3 == 'S' || escolhaOpcao3 == 's') {
+                break;
+            }
+
+        }
 
 
         }
