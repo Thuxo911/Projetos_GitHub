@@ -1,4 +1,4 @@
-Esse projeto ainda nao foi realizado
+Esse projeto foi realizado
 
 Sistema de terminal com menu interativo.
 AS opcoes na tela sao:
@@ -10,25 +10,28 @@ AS opcoes na tela sao:
 6. Sair
 
 Treinamentos:
-Criacao de menus interativos (usando switch case e um laço do... while)
-Criacao e uso de structs 
-Uso de vector 
+Criacao de menus interativos (usando switch case e while)
+Uso de enum
+Uso excessivo de cin.ignore e cin.clear, para que nao haja problemas quando o usuario for digitar uma resposta pela segunda vez no loop
+Criacao e uso de struct
+Uso e administracao de vector (push_back, vector no for para percorrer todos os elementos)
+O vector "listaAlunos" foi muito utilizado, pois o struct Aluno novoAluno foi utilizado apenas na opcao 1, para inserir o aluno.
+Nas outras opcoes, foi usado o vector que guardava dados do tipo "Aluno", e ele foi percorrido usando 
+listaAlunos[i].dado
+
+
+
 
 
 Perguntas que eu responderei:
-que tipo de dado armazena nome de aluno? E faltas? matricula?
-Quantas notas uma materia da UFV tem? Como armazenar as notas dentro de um aluno? 
-Qual variavel guarda a media final?
-Como representar a situacao final?
+que tipo de dado armazena nome de aluno? E faltas? matricula? INT
+Quantas notas uma materia da UFV tem? Como armazenar as notas dentro de um aluno? 3. array de notas arrayNotas[3]
+Qual variavel guarda a media final? float
+Como representar a situacao final? um for que passa por todos os elementos, garantindo sempre que o professor digitou previamente nas outras opcoes as notas e a situacao
 
 
-
-
-Como o programa recebe o nome e matrícula e adiciona esse novo aluno na "lista geral" da turma?
-Como o programa busca um aluno específico? pela matricula?
-
-
-
+Como o programa recebe o nome e matrícula e adiciona esse novo aluno na "lista geral" da turma? Ele recebe pelo vector. listaAluno[i].matricula e listaAluno[i].nome
+Como o programa busca um aluno específico? pela matricula? Sim!
 
 
 
