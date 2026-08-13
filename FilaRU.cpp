@@ -39,6 +39,7 @@ int main () {
         int ultimaSenha = 0;
         int proximaSenha = 0;
         int opcaoMenu = 0;
+        
 
         char respostaPCD;
 
@@ -67,12 +68,7 @@ int main () {
         std::cout << std::endl;
 
 
-        std::cout << "Digite a sua opcao: ";
-        std::cin >> opcaoMenu;
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-        std::cout << "[1] Cadastar aluno da fila\n";
+        std::cout << "[1] Chegar aluno na fila\n";
         std::cout << "[2] Atender aluno da fila\n";
         std::cout << "[3] Ver quem eh o proximo da fila\n";
         std::cout << "[4] Tamanho total da fila\n";
@@ -82,6 +78,13 @@ int main () {
 
         std::cout << "[8] Creditos\n";
         std::cout << "[9] Sair\n";
+        std::cout << std::endl;
+
+        std::cout << "Digite a sua opcao: ";
+        std::cin >> opcaoMenu;
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
         
 
         if (opcaoMenu < 1 || opcaoMenu > 9) {
@@ -95,7 +98,7 @@ int main () {
             Aluno novoAluno;
 
             std::cout << std::endl;
-            std::cout << "Hora de cadastar um novo aluno!\n";
+            std::cout << "Um aluno chegou! Hora de cadastrá-lo!\n";
 
             std::cout << "Nome do aluno: ";
             std::cin >> novoAluno.nome;
@@ -126,7 +129,7 @@ int main () {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 
-            if (novoAluno.numeroPedidos <= 0) {
+            if (novoAluno.saldo <= 0) {
                 std::cout << std::endl;
                 std::cout << "Um aluno nao pode entrar no RU sem ter saldo! Voce disse isso e ele foi embora.\n";
                 std::cout << std::endl;
@@ -160,12 +163,81 @@ int main () {
 
         }
 
+
+        //o pcd tem prioridade. no entanto, um pcd que chega primeiro tem prioridade
+        //ex: uma fila (as letras p sao alunos pcd)
+        //a b c p1 e p3 f p2. entao vai
+        //p1 a b c e p3 f p2
+        //p1 p3 a b c e f p2 //entao tem que procurar O PRIMEIRO ALUNO QUE NAO SEJA PCD PARA COLOCAR O PCD DPS DELE
+        //p1 p3 p2 a b c e f
+
+
+
+        if(novoAluno.pcd) {
+            
+        bool inserido = false;
+
+        std::cout << std::endl;
+        std::cout << "Ops! Parece que encontramos aluno(s) PCD pela fila. Movendo eles para frente...\n";
+        std::cout << std::endl;
+
+          for (int i = 0; i < filaRU.size(); i++) {
+                if(filaRU[i].pcd == false) {
+                    filaRU.insert(filaRU.begin() + i, novoAluno);
+                    inserido = true;
+                    break;
+                }
+
+            }
+
+
+            if (!inserido) {
+                filaRU.push_back(novoAluno);
+
+            }
+
         }
 
 
+            else filaRU.push_back(novoAluno);
+
+
+
+        }
+    
+
         if (opcaoMenu == 2) {
 
+            int contagem = filaRU.size();
+
+
+            if (filaRU.size() == 0) {
+
+                std::cout << std::endl;
+                std::cout << "A fila ainda esta vazia! Nao ha ninguem para entender!\n";
+                std::cout << std::endl;
+                continue;
+
+            }
+
             
+    
+            std::cout << "Voce esta atendendo o primeiro aluno da fila!\n";
+            std::cout << "Bem-vindo(a), " << filaRU[0].nome << " e tenha um bom almoco!" << std::endl;
+
+            std::cout << filaRU[0].nome << " entra restaurante adentro.";
+
+
+            filaRU.erase(filaRU.begin());  
+            contagem--;
+
+            if (contagem == 0) {
+                std::cout << std::endl;
+                std::cout << "A fila ficou vazia!\n";
+                std::cout << std::endl;
+                continue;
+
+            }
 
 
 
@@ -204,8 +276,6 @@ int main () {
 
 
 }
-
-
 
 
 

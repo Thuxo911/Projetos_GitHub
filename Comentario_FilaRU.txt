@@ -29,6 +29,8 @@ Horario e data XXXXXXXXX
 Pausar e retomar a fila xxxxxxxxxxxx
 Senha atual, proxima e ultima chamada
 Tempo medio de espera: calcula numero de pedidos vezes x (faz uma conta ai) XXXXXXXXXXXXXXXX
+MANDAR TODA A FILA EMBORA
+APAGAR UM ALUNO ESPECIFICO
 
 SE O ATENDENTE SAIR SEM TER FEITO NENHUM PEDIDO NA HORA DELE SAIR manda uma mensagem engraçada
 
