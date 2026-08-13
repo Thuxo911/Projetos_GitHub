@@ -496,7 +496,7 @@ int main() {
                     for (int i = 0; i < escolhaTamanho; i++)
                     palavraOculta[i] = '_';
 
-                    vidas = 5;
+                    vidas = 90;
 
                 break;
                 }
@@ -535,9 +535,12 @@ int main() {
 
             std::cout << "Vidas: " << vidas << std::endl;
 
+            std::cout << "Letras usadas: ";
+            for (int i = 0; i < numeroTentativas; i++) {
+            std::cout << letrasUsadas[i] << " ";
+            }
 
-            for (int i = 0; i < numeroTentativas; i++)
-            std::cout << "Letras usadas: " << letrasUsadas[i] << " " << std::endl;
+            std::cout << std::endl;
 
 
             std::cout << "Ultima letra digitada: " << ultimaLetra << std::endl;
@@ -555,12 +558,14 @@ int main() {
             letrasUsadas[numeroTentativas] = letraJogador;
 
             vidas--;
+            numeroTentativas++;
 
             if (vidas <= 0) {
                 std::cout << std::endl;
                 std::cout << "Puxa! Infelizmente, voce perdeu! Tente novamente\n";
                 std::cout << "A palavra sorteada era: " << palavraSorteada << std::endl;
                 std::cout << std::endl;
+                checagem = false;
                 continue;
             }
 
