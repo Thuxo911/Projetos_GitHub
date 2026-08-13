@@ -22,6 +22,9 @@ struct Aluno {
 int main () {
 
     bool checagem = true;
+    bool checagemOpcao1 = true;
+    bool escolhaAcrescentarNovoAluno = true;
+    char escolhaOpcao1;
     std::vector<Aluno> listaAlunos{};
 
     //dentro do <> esta o TIPO DE DADO que eu quero guardar dentro do vector
@@ -31,7 +34,6 @@ int main () {
     
         int notasLancadas;
         int notasPendentes;
-        int escolhaMenu;
 
 
 
@@ -48,6 +50,7 @@ int main () {
         int minuto = tempo_local->tm_min;
         int segundo = tempo_local->tm_sec;
 
+        int escolhaMenu;
 
 
         std::cout << "============================================\n";
@@ -84,19 +87,53 @@ int main () {
             continue;
         }
 
-
+        while (checagemOpcao1) {
         if (escolhaMenu == 1) {
 
             Aluno novoAluno;
 
+            for (int i = 0; i < 3; i++) {
+                novoAluno.arrayNotas[i] = 0.0;
+            }
+
             std::cout <<"Professor, digite as informacoes do seu aluno\n";
+            std::cout << std::endl;
+            std::cout << "Nome do aluno: ";
+            std::getline(std::cin, novoAluno.nome);
+
+            std::cout << "Matricula: ";
+            std::cin >> novoAluno.matricula;
+
+            std::cout << "Numero de faltas: ";
+            std::cin >> novoAluno.faltas;
+
+            listaAlunos.push_back(novoAluno);
+            //para funcoes de estruturas de dados, primeiro se coloca O NOME DO SEU VETOR, depois a FUNCAO DELE,
+            //depois, O QUE VOCE QUER COLOCAR.
+
+            while (escolhaAcrescentarNovoAluno) {
+
+            std::cout << std::endl;
+            std::cout << "Professor, voce gostaria de adicionar mais um aluno? S/N\n";
+            std::cin >> escolhaOpcao1;
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             
+            if (escolhaOpcao1 != 'N' || escolhaOpcao1 != 'n' ||
+            escolhaOpcao1 != 'S' || escolhaOpcao1 != 's') {
+                continue;
+            }
+        }
 
-
+            if (escolhaOpcao1 == 'N' || escolhaOpcao1 == 'n') {
+                continue;
+            }            
+    
 
         }
 
-
+    }
 
 
 
