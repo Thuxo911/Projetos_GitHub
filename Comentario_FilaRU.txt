@@ -1,0 +1,65 @@
+Esse projeto ainda nao foi realizado
+
+RU = restaurante universitario
+
+Simulando a catraca do RU.
+Os alunos chegam e entram na fila. O operador da catraca vai atendendo os alunos UM POR UM, retirando-os da fila.
+Quem chega primeiro é atendido primeiro!
+
+Uma struct representa Aluno/Pessoa
+Quais dados sao necessarios? Nome, senha, numero de pedidos, saldo (só entra se o saldo for >=0) e indicativo se é PCD
+
+
+Os sistema deve ter opcoes para:
+
+1. Chegou aluno na fila. (le os dados e coloca o aluno no final da fila)
+2. Atender aluno. (chama o PRIMEIRO aluno da fila, ou seja, o que chegou ha mais tempo)
+Exibe na tela quem esta sendo atendido. (ex: "Bom almoço, [Nome do Aluno]!").
+Remove da fila
+3. Ver quem é o proximo
+Mostra os dados do aluno que está na frente da fila, sem removê-lo de lá
+4. Mostrar tamanho da fila.
+Quantos alunos estao aguardando?
+5. Creditos
+6 Sair.
+
+
+Mais funcionalidades:
+Horario e data XXXXXXXXX
+Pausar e retomar a fila xxxxxxxxxxxx
+Senha atual, proxima e ultima chamada
+Tempo medio de espera: calcula numero de pedidos vezes x (faz uma conta ai) XXXXXXXXXXXXXXXX
+
+SE O ATENDENTE SAIR SEM TER FEITO NENHUM PEDIDO NA HORA DELE SAIR manda uma mensagem engraçada
+
+Relatorio de tudo ate hoje.. quantos pedidos no total, quantas pessoas no total, quantos PCD, etc
+salario do atendente (por aluno atendido, se atender PCD ganha bonus)
+
+
+
+
+Nao pode usar a fila pronta do c++. (std::queue). Pode tentar usar a logica manipulando um std::vector na mao 
+(inserindo no final e removendo do comeco) OU usando ponteiros se quiser desafiar.
+Onde o aluno entra no vetor? Onde o aluno sai do vetor?
+
+Logica de fluxo e validacao (como impedir o operador de "atender" alguém se a fila estiver vazia).
+
+DESAFIO EXTRA: fila de prioridade. Pessoas com necessidades especiais podem furar a fila e ficar em primeiro.
+Ele não vai para o fim da fila comum; ele deve ser inserido à FRENTE de todos os alunos comuns, 
+mas ATRÁS de outros alunos preferenciais que já estavam lá antes dele.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
