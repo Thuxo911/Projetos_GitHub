@@ -292,6 +292,7 @@
 };
 
 
+
 std::string sortear(int x) {
 
 
@@ -328,7 +329,7 @@ std::string sortear(int x) {
 
     }
 
-
+    return 0;
 
 }
 
@@ -403,6 +404,7 @@ int main() {
 
             int escolhaTamanho;
             std::string palavraSorteada;
+            char palavraOculta[10];
 
             std::cout << "Qual o tamanho da palavra? Min: 4, Max: 10\n."; 
             std::cout << "Apenas substantivos e adjetivos. A maioria das palavras nao tem acento\n";
@@ -418,6 +420,9 @@ int main() {
 
                     palavraSorteada = sortear(4);
 
+                    for (int i = 0; i < escolhaTamanho; i++)
+                    palavraOculta[i] = '_';
+
                     vidas = 7;
 
                 break;
@@ -426,6 +431,9 @@ int main() {
                 case 5: {
 
                     palavraSorteada = sortear(5);
+
+                    for (int i = 0; i < escolhaTamanho; i++)
+                    palavraOculta[i] = '_';
 
                     vidas = 7;
 
@@ -437,6 +445,9 @@ int main() {
 
                     palavraSorteada = sortear(6);
 
+                    for (int i = 0; i < escolhaTamanho; i++)
+                    palavraOculta[i] = '_';
+
                     vidas = 6;
 
                 break;
@@ -445,6 +456,9 @@ int main() {
                 case 7: {
 
                     palavraSorteada = sortear(7);
+
+                    for (int i = 0; i < escolhaTamanho; i++)
+                    palavraOculta[i] = '_';
 
                     vidas = 6;
 
@@ -455,6 +469,9 @@ int main() {
 
                     palavraSorteada = sortear(8);
 
+                    for (int i = 0; i < escolhaTamanho; i++)
+                    palavraOculta[i] = '_';
+
                     vidas = 6;
 
                 break;
@@ -463,6 +480,10 @@ int main() {
                 case 9: {
 
                     palavraSorteada = sortear(9);
+
+                    for (int i = 0; i < escolhaTamanho; i++)
+                    palavraOculta[i] = '_';
+
                     vidas = 5;
 
                 break;
@@ -471,6 +492,9 @@ int main() {
                 case 10: {
 
                     palavraSorteada = sortear(10);
+
+                    for (int i = 0; i < escolhaTamanho; i++)
+                    palavraOculta[i] = '_';
 
                     vidas = 5;
 
@@ -487,8 +511,78 @@ int main() {
                 }
             
             }
+        
+
+        std::cout << std::endl;
+
+
+
+
+            int numeroTentativas = 0;
+            char letraJogador;
+            char letrasUsadas[26];
+            char ultimaLetra = '-';
+
+        while (checagem) {
+
             
+
+            for (int i = 0; i < escolhaTamanho; i++) {
+            std::cout << palavraOculta[i] << " ";
+            }
+
+            std::cout << std::endl;
+
+            std::cout << "Vidas: " << vidas << std::endl;
+
+
+            for (int i = 0; i < numeroTentativas; i++)
+            std::cout << "Letras usadas: " << letrasUsadas[i] << " " << std::endl;
+
+
+            std::cout << "Ultima letra digitada: " << ultimaLetra << std::endl;
             
+            std::cout << std::endl;
+
+            std::cout << "Digite a letra!\n";
+            std::cin >> letraJogador;
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            ultimaLetra = letraJogador;
+
+            letrasUsadas[numeroTentativas] = letraJogador;
+
+            vidas--;
+
+            if (vidas <= 0) {
+                std::cout << std::endl;
+                std::cout << "Puxa! Infelizmente, voce perdeu! Tente novamente\n";
+                std::cout << "A palavra sorteada era: " << palavraSorteada << std::endl;
+                std::cout << std::endl;
+                continue;
+            }
+
+
+        for (int i = 0; i < escolhaTamanho; i++)
+            if (letraJogador == palavraSorteada[i]) {
+                palavraOculta[i] = letraJogador;
+            }
+        
+        for (int i = 0; i < escolhaTamanho; i++) {
+            if (palavraSorteada[i] != palavraOculta[i]) {
+                checagem = true;
+                break;
+            }
+
+            checagem = false;
+
+        }
+
+
+
+        }
 
 
 
@@ -497,7 +591,6 @@ int main() {
 
 
 
-            
 
 
 
