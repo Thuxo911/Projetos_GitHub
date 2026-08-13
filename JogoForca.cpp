@@ -578,17 +578,22 @@ int main() {
         for (int i = 0; i < escolhaTamanho; i++) {
             if (palavraSorteada[i] != palavraOculta[i]) {
                 checagem = true;
-                break;
+                continue;
             }
 
+            
+
+
+        }
+
+
+        }
+
+            std::cout << std::endl;
+            std::cout << "Meus parabens! Voce acertou!\n";
             checagem = false;
-
-        }
-
-
-
-        }
-
+            std::cout << "A palavra era: " << palavraSorteada << std::endl;
+            break;
 
 
 
