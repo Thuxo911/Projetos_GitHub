@@ -221,15 +221,27 @@ int main () {
             std::cin >> matriculaDigitada3;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            
+            bool encontrou3 = false;
 
             for (int i = 0; i < listaAlunos.size(); i++) {
-                if(matriculaDigitada3 == listaAlunos[i].matricula)
+                if(matriculaDigitada3 == listaAlunos[i].matricula) {
                 std::cout << "Matricula encontrada!\n";
                 variavelQueGuardaNumeroAluno = i;
+                encontrou3 = true;
                 break;
+                }
 
             }
 
+
+            if (!encontrou3) {
+                std::cout << "Matricula nao encontrada!\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+            
             std::cout << std::endl;
 
             listaAlunos[variavelQueGuardaNumeroAluno].media = (listaAlunos[variavelQueGuardaNumeroAluno].arrayNotas[0] +
@@ -242,39 +254,35 @@ int main () {
                 }
 
             else if (listaAlunos[variavelQueGuardaNumeroAluno].faltas >= 15) { 
-                listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal = Aluno::ReprovadoNota;
-            }
-
-            else {
                 listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal = Aluno::ReprovadoFalta;
             }
 
-        
-
-
-
-
-
-            switch (listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal)
-
+            else {
+                listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal = Aluno::ReprovadoNota;
+            }
 
             std::cout << "A media do aluno eh: ";
             std::cout << listaAlunos[variavelQueGuardaNumeroAluno].media;
             std::cout << std::endl;
 
+
+            std::cout << "A situacao do aluno eh: ";
             switch (listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal) {
 
-                case 1: {
-                    
+                case Aluno::Aprovado: {
+                    std::cout << "Aluno aprovado!" << std::endl;
+                break;
                 }
 
-                case 2: {
-
+                case Aluno::ReprovadoNota: {
+                    std::cout << "Aluno reprovado por nota!" << std::endl;
+                break;
 
                 }
 
-                case 3: {
-
+                case Aluno::ReprovadoFalta: {
+                    std::cout << "Aluno reprovado por falta!" << std::endl;
+                break;
 
                 }
 
@@ -282,8 +290,6 @@ int main () {
             }
 
 
-            std::cout << "A situacao do aluno eh: ";
-            std::cout << listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal;
 
 
         }
