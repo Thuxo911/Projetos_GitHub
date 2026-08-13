@@ -22,9 +22,6 @@ struct Aluno {
 int main () {
 
     bool checagem = true;
-    bool checagemOpcao1 = true;
-    bool escolhaAcrescentarNovoAluno = true;
-    char escolhaOpcao1;
     std::vector<Aluno> listaAlunos{};
 
     //dentro do <> esta o TIPO DE DADO que eu quero guardar dentro do vector
@@ -38,6 +35,9 @@ int main () {
 
 
     while (checagem) {
+
+        bool checagemOpcao1 = true;
+        char escolhaOpcao1 = true;
 
         auto agora = std::chrono::system_clock::now();
         std::time_t tempoAtual = std::chrono::system_clock::to_time_t(agora);
@@ -76,7 +76,6 @@ int main () {
         std::cout << std::endl;
         std::cout << "Digite a opcao desejada: ";
         std::cin >> escolhaMenu;
-
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -87,8 +86,11 @@ int main () {
             continue;
         }
 
-        while (checagemOpcao1) {
         if (escolhaMenu == 1) {
+
+            bool escolhaAcrescentarNovoAluno = true;
+
+             while (checagemOpcao1) {
 
             Aluno novoAluno;
 
@@ -100,12 +102,19 @@ int main () {
             std::cout << std::endl;
             std::cout << "Nome do aluno: ";
             std::getline(std::cin, novoAluno.nome);
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 
             std::cout << "Matricula: ";
             std::cin >> novoAluno.matricula;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
             std::cout << "Numero de faltas: ";
             std::cin >> novoAluno.faltas;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
             listaAlunos.push_back(novoAluno);
             //para funcoes de estruturas de dados, primeiro se coloca O NOME DO SEU VETOR, depois a FUNCAO DELE,
@@ -116,26 +125,35 @@ int main () {
             std::cout << std::endl;
             std::cout << "Professor, voce gostaria de adicionar mais um aluno? S/N\n";
             std::cin >> escolhaOpcao1;
+            std::cout << std::endl;
 
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             
-            if (escolhaOpcao1 != 'N' || escolhaOpcao1 != 'n' ||
-            escolhaOpcao1 != 'S' || escolhaOpcao1 != 's') {
+            if (escolhaOpcao1 != 'N' && escolhaOpcao1 != 'n' &&
+            escolhaOpcao1 != 'S' && escolhaOpcao1 != 's') {
                 continue;
             }
-        }
 
             if (escolhaOpcao1 == 'N' || escolhaOpcao1 == 'n') {
-                continue;
-            }            
-    
+                escolhaAcrescentarNovoAluno = false;
+                checagemOpcao1 = false;
+                break;
+            }    
+
+            if(escolhaOpcao1 == 'S' || escolhaOpcao1 == 's') {
+                break;
+            }
+
 
         }
+
+            
+
 
     }
 
-
+        }
 
 
 
