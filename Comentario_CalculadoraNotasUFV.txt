@@ -15,7 +15,7 @@ Criacao e uso de structs
 Uso de vector 
 
 
-Perguntas:
+Perguntas que eu responderei:
 que tipo de dado armazena nome de aluno? E faltas? matricula?
 Quantas notas uma materia da UFV tem? Como armazenar as notas dentro de um aluno? 
 Qual variavel guarda a media final?
