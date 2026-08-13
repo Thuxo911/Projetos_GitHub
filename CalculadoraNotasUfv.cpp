@@ -19,6 +19,38 @@ struct Aluno {
 };
 
 
+std::string Mensagem(std::vector<Aluno> listaAlunos, int i) {
+
+    switch (listaAlunos[i].StatusFinal)  {
+
+        case Aluno::Aprovado: {
+            return "Aluno aprovado!";
+            break;
+        }
+
+        case Aluno::ReprovadoFalta: {
+            return "Aluno reprovado por falta!";
+            break;
+        }
+
+        case Aluno::ReprovadoNota: {
+            return "Aluno reprovado por nota!";
+            break;
+        }
+
+
+
+    }
+
+
+
+
+
+}
+
+
+
+
 int main () {
 
     bool checagem = true;
@@ -276,29 +308,7 @@ int main () {
             std::cout << std::endl;
 
 
-            std::cout << "A situacao do aluno eh: ";
-            switch (listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal) {
-
-                case Aluno::Aprovado: {
-                    std::cout << "Aluno aprovado!" << std::endl;
-                break;
-                }
-
-                case Aluno::ReprovadoNota: {
-                    std::cout << "Aluno reprovado por nota!" << std::endl;
-                break;
-
-                }
-
-                case Aluno::ReprovadoFalta: {
-                    std::cout << "Aluno reprovado por falta!" << std::endl;
-                break;
-
-                }
-
-
-            }
-
+            std::cout << "A situacao do aluno eh: " << Mensagem(listaAlunos, variavelQueGuardaNumeroAluno) << std::endl;
 
             std::cout << std::endl;
 
@@ -339,14 +349,7 @@ int main () {
                 continue;
             }
 
-            for (int i = 0; i < listaAlunos.size(); i++) {
-                if (listaAlunos[i].arrayNotas[0] == -1.0
-                && listaAlunos[i].arrayNotas[1] == -1.0
-            && listaAlunos[i].arrayNotas[2] == -1.0)
-                std::cout << "As notas ainda nao foram cadastradas!\n";
-                continue;
-            }
-
+    
 
             for (int i = 0; i < listaAlunos.size(); i++) {
 
@@ -356,9 +359,19 @@ int main () {
                 std::cout << "Nome: " << listaAlunos[i].nome << std::endl;
                 std::cout << "Matricula: " << listaAlunos[i].matricula << std::endl;
                 std::cout << "Faltas: " << listaAlunos[i].faltas << std::endl;
+
+                if (listaAlunos[i].arrayNotas[0] == -1.0 && listaAlunos[i].arrayNotas[1] == -1.0
+                    && listaAlunos[i].arrayNotas[2] == -1.0)  {
+
+                        std::cout << "As notas ainda nao foram cadastradas!\n";
+                        break;
+
+                    }
+
+
                 std::cout << "Notas das 3 provas, em ordem: " << listaAlunos[i].arrayNotas[0] << " " << listaAlunos[i].arrayNotas[1] << " " << listaAlunos[i].arrayNotas[2] << std::endl;
                 std::cout << "Media: " << listaAlunos[i].media << std::endl;
-                std::cout << "Situacao: " << listaAlunos[i].StatusFinal << std::endl;
+                std::cout << "Situacao: " << Mensagem(listaAlunos, i) << std::endl;
 
                 std::cout << std::endl;
 
