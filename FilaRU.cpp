@@ -20,6 +20,7 @@
 int main () {
 
     bool checagem = true;
+    bool filaPausada = false;
 
         auto agora = std::chrono::system_clock::now();
         std::time_t tempoAtual = std::chrono::system_clock::to_time_t(agora);
@@ -75,9 +76,11 @@ int main () {
         std::cout << "[5] Pausar fila\n";
         std::cout << "[6] Retomar fila\n";
         std::cout << "[7] Relatorio do dia\n";
+        std::cout << "[8] Mandar toda fila embora\n";
+        std::cout << "[9] Expulsar um aluno especifico\n";
 
-        std::cout << "[8] Creditos\n";
-        std::cout << "[9] Sair\n";
+        std::cout << "[10] Creditos\n";
+        std::cout << "[11] Sair\n";
         std::cout << std::endl;
 
         std::cout << "Digite a sua opcao: ";
@@ -87,13 +90,21 @@ int main () {
 
         
 
-        if (opcaoMenu < 1 || opcaoMenu > 9) {
+        if (opcaoMenu < 1 || opcaoMenu > 11) {
             std::cout << std::endl;
             std::cout << "Opcao errada! Tente novamente!";
             std::cout << std::endl;
         }
 
         if (opcaoMenu == 1) {
+
+            if(filaPausada) {
+                std::cout << std::endl;
+                std::cout << "Voce esta descansando. Nao pode trabalhar.";
+                std::cout << std::endl;
+            }
+
+
 
             Aluno novoAluno;
 
@@ -208,18 +219,23 @@ int main () {
 
         if (opcaoMenu == 2) {
 
+            if(filaPausada) {
+                std::cout << std::endl;
+                std::cout << "Voce esta descansando. Nao pode trabalhar.";
+                std::cout << std::endl;
+            }
+
             int contagem = filaRU.size();
 
 
             if (filaRU.size() == 0) {
 
                 std::cout << std::endl;
-                std::cout << "A fila ainda esta vazia! Nao ha ninguem para entender!\n";
+                std::cout << "A fila esta vazia! Nao ha ninguem para atender!\n";
                 std::cout << std::endl;
                 continue;
 
             }
-
             
     
             std::cout << "Voce esta atendendo o primeiro aluno da fila!\n";
@@ -235,17 +251,138 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "A fila ficou vazia!\n";
                 std::cout << std::endl;
-                continue;
+                break;
 
-            }
+        }
+
+        std::cout << "Ainda ha mais pessoas para atender!\n";
 
 
 
         }
 
+        
 
+        if (opcaoMenu == 3) {
+
+            if(filaPausada) {
+                std::cout << std::endl;
+                std::cout << "Voce esta descansando. Nao pode trabalhar.";
+                std::cout << std::endl;
+            }
+
+
+            if(filaRU.size() == 0) {
+                std::cout << std::endl;
+                std::cout << "A fila esta vazia! Nao ha ninguem para atender!\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+            std::cout << std::endl;
+            std::cout << "Dados do proximo da fila\n";
+            std::cout << "Nome: " << filaRU[0].nome << std::endl;
+            std::cout << "Senha: " << filaRU[0].senha << std::endl;
+            std::cout << "Numero de pedidos: " << filaRU[0].numeroPedidos << std::endl;
+            std::cout << "Saldo: " << filaRU[0].saldo << std::endl;
+            std::cout << "PCD?: ";
+
+            if (filaRU[0].pcd) {
+                std::cout << "Sim\n";
+            }
+            else std::cout << "Nao\n";
+
+        }
+
+
+        if (opcaoMenu == 4) {
+
+            if(filaPausada) {
+                std::cout << std::endl;
+                std::cout << "Voce esta descansando. Nao pode trabalhar.";
+                std::cout << std::endl;
+            }
+
+            std::cout << std::endl;
+            std::cout << "Atualmente, a fila tem " << filaRU.size() << " alunos.\n";
+            std::cout << std::endl;
+
+        }
+
+
+        if (opcaoMenu == 5) {
+
+            filaPausada = true;
+
+            std::cout << std::endl;
+            std::cout << "Voce decide fazer uma pausa do seu servico. A fila esta pausada. Para retomar seu trabalho, selecione a opcao 6.\n";
+            std::cout << std::endl;
+
+        }
+
+        if (opcaoMenu == 6) {
+
+            filaPausada = false;
+
+            std::cout << std::endl;
+            std::cout << "O descanso acabou. A fila esta pronta para funcionar normalmente.\n";
+            std::cout << std::endl;
+
+        }
+
+        if (opcaoMenu == 7) {
+
+            if(filaPausada) {
+                std::cout << std::endl;
+                std::cout << "Voce esta descansando. Nao pode trabalhar.";
+                std::cout << std::endl;
+            }
+
+        std::cout << "=======================\n";
+        std::cout << "RELATORIO DE TRABALHO\n";
+        std::cout << "Universidade Federal de Vicosa\n";
+        std::cout <<"========================\n";
+        std::cout << std::endl;
+
+        std::cout << 
+
+
+
+
+
+
+
+        }
 
         if (opcaoMenu == 8) {
+
+
+            if(filaPausada) {
+                std::cout << std::endl;
+                std::cout << "Voce esta descansando. Nao pode trabalhar.";
+                std::cout << std::endl;
+            }
+
+
+        }
+
+        if (opcaoMenu == 9) {
+
+
+            if(filaPausada) {
+                std::cout << std::endl;
+                std::cout << "Voce esta descansando. Nao pode trabalhar.";
+                std::cout << std::endl;
+            }
+
+            
+
+            
+        }
+
+
+
+        if (opcaoMenu == 10) {
 
             std::cout << std::endl;
             std::cout << "Feito por Marco Thullyo Sao Severino. Obrigado por logar <3 \n";
@@ -254,7 +391,7 @@ int main () {
         }
 
 
-        if (opcaoMenu == 9) {
+        if (opcaoMenu == 11) {
             std::cout << std::endl;
             std::cout << "Adeus! Que bom servico voce nos prestou hoje!\n";
             return 0;
