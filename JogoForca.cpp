@@ -560,8 +560,18 @@ int main() {
 
             letrasUsadas[numeroTentativas] = letraJogador;
 
-            vidas--;
+            bool acertou = false;
+
             numeroTentativas++;
+
+
+        for (int i = 0; i < escolhaTamanho; i++)
+            if (letraJogador == palavraSorteada[i]) {
+                palavraOculta[i] = letraJogador;
+                acertou = true;
+            }
+
+            if (!acertou) vidas--;
 
             if (vidas <= 0) {
                 std::cout << std::endl;
@@ -572,11 +582,6 @@ int main() {
                 continue;
             }
 
-
-        for (int i = 0; i < escolhaTamanho; i++)
-            if (letraJogador == palavraSorteada[i]) {
-                palavraOculta[i] = letraJogador;
-            }
         
 
 
