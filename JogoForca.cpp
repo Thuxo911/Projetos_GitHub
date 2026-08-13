@@ -342,10 +342,11 @@ int main() {
 
     srand(time(0)); //para a escolha de uma palavra aleatoria nas listas 
     int vidas;
-    bool checagem = true;
+    bool checagem1 = true;
+    bool checagem2 = true;
 
 
-        while (checagem) {
+        while (checagem1) {
 
         int escolha;
 
@@ -401,6 +402,8 @@ int main() {
         }
 
         if (escolha == 1) {
+
+            checagem2 = true;
 
             int escolhaTamanho;
             std::string palavraSorteada;
@@ -523,7 +526,7 @@ int main() {
             char letrasUsadas[26];
             char ultimaLetra = '-';
 
-        while (checagem) {
+        while (checagem2) {
 
             
 
@@ -565,7 +568,7 @@ int main() {
                 std::cout << "Puxa! Infelizmente, voce perdeu! Tente novamente\n";
                 std::cout << "A palavra sorteada era: " << palavraSorteada << std::endl;
                 std::cout << std::endl;
-                checagem = false;
+                checagem2 = false;
                 continue;
             }
 
@@ -585,7 +588,7 @@ int main() {
                 numeroLetrasQueCombinam++;
 
                 if(numeroLetrasQueCombinam == escolhaTamanho) {
-                checagem = false;
+                checagem2 = false;
                 break;
                 }
 
@@ -593,6 +596,11 @@ int main() {
 
 
         }
+
+
+
+
+
 
         for (int i = 0; i < escolhaTamanho; i++) {
             std::cout << palavraOculta[i] << " ";
@@ -602,10 +610,8 @@ int main() {
  
             std::cout << std::endl;
             std::cout << "Meus parabens! Voce acertou!\n";
-            checagem = false;
             std::cout << "A palavra era: " << palavraSorteada << std::endl;
             std::cout << std::endl;
-            break;
 
             }
 
