@@ -29,14 +29,13 @@ int main () {
 
 
     
-        int notasLancadas;
-        int notasPendentes;
+        int notasLancadas = 0;
+        int notasPendentes = 0;
 
 
 
     while (checagem) {
 
-        bool checagemOpcao1 = true;
         char escolhaOpcao1 = true;
 
         auto agora = std::chrono::system_clock::now();
@@ -88,11 +87,12 @@ int main () {
 
         if (escolhaMenu == 1) {
 
+            Aluno novoAluno;
+
             bool escolhaAcrescentarNovoAluno = true;
+            bool checagemOpcao1 = true;
 
              while (checagemOpcao1) {
-
-            Aluno novoAluno;
 
             for (int i = 0; i < 3; i++) {
                 novoAluno.arrayNotas[i] = 0.0;
@@ -102,9 +102,6 @@ int main () {
             std::cout << std::endl;
             std::cout << "Nome do aluno: ";
             std::getline(std::cin, novoAluno.nome);
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
 
             std::cout << "Matricula: ";
             std::cin >> novoAluno.matricula;
@@ -148,10 +145,52 @@ int main () {
 
         }
 
-            
-
-
     }
+        }
+
+
+        if (escolhaMenu == 2) {
+
+            int matriculaDigitada = 0;
+
+            std::cout << std::endl;
+            std::cout << "Professor, lance as notas das 3 provas que cada aluno realizou\n" << std::endl;
+            std::cout << std::endl;
+            std::cout << "Digite a matricula do aluno: \n";
+            std::cin >> matriculaDigitada;
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << std::endl;
+
+            for (int i = 0; i < listaAlunos.size(); i++) {
+                if(matriculaDigitada == listaAlunos[i].matricula) {
+                    std::cout << "Matricula encontrada!\n";
+                    std::cout << "Digite as notas das provas!\n";
+
+                    std::cout << "P1: ";
+                    std::cin >> listaAlunos[i].arrayNotas[1];
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                    std::cout << "P2: ";
+                    std::cin >> listaAlunos[i].arrayNotas[1];
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                    std::cout << "P3: ";
+                    std::cin >> listaAlunos[i].arrayNotas[1];
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                    break;
+                }
+                
+                std::cout << "Matricula nao encontrada!\n";
+
+
+            }
+
 
         }
 
