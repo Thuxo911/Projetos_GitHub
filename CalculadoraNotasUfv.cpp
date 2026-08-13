@@ -2,20 +2,40 @@
 #include <string>
 #include <ctime>
 #include <chrono>
+#include <vector>
+
+
+
+struct Aluno { 
+
+    std::string nome;
+    int matricula;
+    int faltas;
+    float arrayNotas[3];
+    double media;
+    enum Situacao {Aprovado, ReprovadoNota, ReprovadoFalta};
+    Situacao StatusFinal;
+
+};
 
 
 int main () {
 
     bool checagem = true;
+    std::vector<Aluno> listaAlunos{};
+
+    //dentro do <> esta o TIPO DE DADO que eu quero guardar dentro do vector
+    // se fosse um vector de notas, seria std::vector<int>
 
 
-    while (checagem) {
-
-
-        int alunosMatriculados;
+    
         int notasLancadas;
         int notasPendentes;
         int escolhaMenu;
+
+
+
+    while (checagem) {
 
         auto agora = std::chrono::system_clock::now();
         std::time_t tempoAtual = std::chrono::system_clock::to_time_t(agora);
@@ -30,17 +50,16 @@ int main () {
 
 
 
-
         std::cout << "============================================\n";
         std::cout << "     SISTEMA DE CALCULO DE NOTAS - UFV     \n";
         std::cout << "============================================\n";
         std::cout << std::endl;
 
-        std::cout << "Acesso em: " << "Data: " << dia << "/" << mes << "/" << ano << std::endl;
+        std::cout << "Acesso em: " << dia << "/" << mes << "/" << ano << std::endl;
         std::cout << "Hora: " << hora << ":" << minuto << ":" << segundo << std::endl;
         std::cout << std::endl;
 
-        std::cout << "Alunos matriculados: " << alunosMatriculados << std::endl;
+        std::cout << "Alunos matriculados: " << listaAlunos.size() << std::endl;
         std::cout << "Notas lancadas: " << notasLancadas << std::endl;
         std::cout << "Notas pendentes: " << notasPendentes << std::endl;
         std::cout << std::endl;
@@ -64,6 +83,25 @@ int main () {
             std::cout << std:: endl;
             continue;
         }
+
+
+        if (escolhaMenu == 1) {
+
+            Aluno novoAluno;
+
+            std::cout <<"Professor, digite as informacoes do seu aluno\n";
+            
+
+
+
+        }
+
+
+
+
+
+
+
 
         if (escolhaMenu == 5) {
             std::cout << std::endl; 
