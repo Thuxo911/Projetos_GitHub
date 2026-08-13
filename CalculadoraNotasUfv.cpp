@@ -3,6 +3,7 @@
 #include <ctime>
 #include <chrono>
 #include <vector>
+#include <limits>
 
 
 struct Aluno { 
@@ -18,9 +19,9 @@ struct Aluno {
 };
 
 
-std::string Mensagem(std::vector<Aluno> listaAlunos, int i) {
+std::string Mensagem(const Aluno& alunoAnalisado) {
 
-    switch (listaAlunos[i].StatusFinal)  {
+    switch (alunoAnalisado.StatusFinal)  {
 
         case Aluno::Aprovado: {
             return "Aluno aprovado!";
@@ -73,8 +74,8 @@ int main () {
 
     while (checagem) {
 
-        char escolhaOpcao1 = true;
-        char escolhaOpcao3 = true;
+        char escolhaOpcao1;
+        char escolhaOpcao3;
 
         auto agora = std::chrono::system_clock::now();
         std::time_t tempoAtual = std::chrono::system_clock::to_time_t(agora);
@@ -100,8 +101,8 @@ int main () {
         std::cout << std::endl;
 
         std::cout << "Alunos matriculados: " << listaAlunos.size() << std::endl;
-        std::cout << "Notas lancadas: " << notasLancadas << std::endl;
-        std::cout << "Notas pendentes: " << notasPendentes << std::endl;
+        std::cout << "Alunos que tiveram as notas lancadas: " << notasLancadas << std::endl;
+        std::cout << "Alunos que tem as notas pendentes: " << notasPendentes << std::endl;
         std::cout << std::endl;
 
         std::cout << "[1] Adicionar aluno\n";
@@ -153,6 +154,8 @@ int main () {
             std::cin >> novoAluno.faltas;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            notasPendentes++;
 
             listaAlunos.push_back(novoAluno);
             //para funcoes de estruturas de dados, primeiro se coloca O NOME DO SEU VETOR, depois a FUNCAO DELE,
@@ -232,6 +235,9 @@ int main () {
                     std::cin >> listaAlunos[i].arrayNotas[2];
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                    notasLancadas++;
+                    notasPendentes--;
 
                     encontrou = true;
                     break;
@@ -324,29 +330,52 @@ int main () {
             std::cout << std::endl;
 
 
-            std::cout << "A situacao do aluno eh: " << Mensagem(listaAlunos, variavelQueGuardaNumeroAluno) << std::endl;
+            std::cout << "A situacao do aluno eh: " << Mensagem(listaAlunos[variavelQueGuardaNumeroAluno]) << std::endl;
 
             std::cout << std::endl;
 
             std::cout << "Professor, gostaria de voltar para o menu?\n";
             std::cin >> escolhaOpcao3;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << std::endl;
-            std::cout << std::endl;
-
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << std::endl;
+
+            bool checandoVoltarMenu = true;
+
+            while (checandoVoltarMenu) {
+
+                std::cout << "Professor, gostaria de voltar para o menu?\n";
+                std::cin >> escolhaOpcao3;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << std::endl;
+
             
             if (escolhaOpcao3 != 'N' && escolhaOpcao3 != 'n' &&
             escolhaOpcao3 != 'S' && escolhaOpcao3 != 's') {
                 std::cout << "Opcao invalida!\n";
+                continue;
             }
 
             if(escolhaOpcao3 == 'S' || escolhaOpcao3 == 's') {
-                break;
+            checagemOpcao3 = false;
+            break;
             }
 
+            if(escolhaOpcao3 == 'N' || escolhaOpcao3 == 'n') {
+                checandoVoltarMenu = false;
+            }
+
+
         }
+
+
+
+        }
+
+
+
+
 
 
         }
@@ -365,7 +394,7 @@ int main () {
 
                 std::cout << std::endl;
 
-                std::cout << "Aluno nº " << i << std::endl;
+                std::cout << "Aluno " << i << std::endl;
                 std::cout << "Nome: " << listaAlunos[i].nome << std::endl;
                 std::cout << "Matricula: " << listaAlunos[i].matricula << std::endl;
                 std::cout << "Faltas: " << listaAlunos[i].faltas << std::endl;
@@ -393,7 +422,7 @@ int main () {
 
 
 
-                std::cout << "Situacao: " << Mensagem(listaAlunos, i) << std::endl;
+                std::cout << "Situacao: " << Mensagem(listaAlunos[i]) << std::endl;
 
                 std::cout << std::endl;
 
