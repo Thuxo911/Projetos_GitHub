@@ -1,0 +1,29 @@
+Esse projeto foi realizado.
+
+O programa tem uma palavra secreta escondida. Ele mostra a palavra com underscores Ex: (_ _ _ _ _)
+O jogador digita uma letra no terminal. Se acertar, o underscore é substituido pela letra. Caso contrario, perde uma vida. 
+O jogo acaba quando ele acerta a palavra ou as vidas acabarem.
+Ha 7 modos de jogo para ele escolher. A escolha influencia o numero de letras da palavra (4,5,6,7,8,9 ou 10 letras)
+Atualmente, ha 2766 palavras espalhadas entre os 7 modos.
+
+Opcoes disponiveis no menu
+1. Comecar o jogo
+2. Creditos
+3. Sair
+
+
+Usos importantes e habilidades treinadas:
+
+std::string e char (manipulação e comparação de strings e de char)
+laços de repetição (while, for)
+lógica de estado (para saber se o jogador ganhou, perdeu, se ele digitou uma palavra repetida; pode envolver booleanos diretamente ou nao (ex: vidas <= 0))
+
+
+
+
+
+
+
+
+
+

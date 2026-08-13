@@ -641,13 +641,7 @@ int main() {
 
             }
 
-            
-
-
-
-
-
-
+    
         }
 
         if (escolha == 2) {
@@ -677,9 +671,6 @@ int main() {
     return 0;
 
 }
-
-
-
 
 
 

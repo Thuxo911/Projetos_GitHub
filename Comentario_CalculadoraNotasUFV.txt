@@ -1,0 +1,45 @@
+Esse projeto ainda nao foi realizado
+
+Sistema de terminal com menu interativo.
+AS opcoes na tela sao:
+1. Adicionar aluno
+2. Inserir notas  de um aluno (p1, p2, p3)
+3. Calcular media e situacao (aprovado, reprovado por nota ou reprovado por falta)
+4. Listar todos os alunos (situacao geral de todos)
+5. Creditos
+6. Sair
+
+Treinamentos:
+Criacao de menus interativos (usando switch case e um laço do... while)
+Criacao e uso de structs 
+Uso de vector 
+
+
+Perguntas:
+que tipo de dado armazena nome de aluno? E faltas? matricula?
+Quantas notas uma materia da UFV tem? Como armazenar as notas dentro de um aluno? 
+Qual variavel guarda a media final?
+Como representar a situacao final?
+
+
+
+
+Como o programa recebe o nome e matrícula e adiciona esse novo aluno na "lista geral" da turma?
+Como o programa busca um aluno específico? pela matricula?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
