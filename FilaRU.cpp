@@ -47,6 +47,7 @@ int main () {
         int pedidosFeitosPCD = 0;
 
         int maiorPedido = 0;
+        int senhaAlunoExpulsar = 0;
         
 
         char respostaPCD;
@@ -69,9 +70,8 @@ int main () {
 
         std::cout <<"============================================\n";
         std::cout << "Tempo medio de espera da fila: " << tempoMedio << std::endl;
-        std::cout << "Senha atual: " << senhaAtual << std::endl;
-        std::cout << "Proxima senha: " << ultimaSenha << std::endl;
-        std::cout << "Ultima senha: " << proximaSenha << std::endl;
+        std::cout << "Proxima senha: " << proximaSenha << std::endl;
+        std::cout << "Ultima senha: " << ultimaSenha << std::endl;
         std::cout <<"============================================\n";
         std::cout << std::endl;
 
@@ -233,6 +233,9 @@ int main () {
             }
 
 
+            ultimaSenha = novoAluno.senha;
+
+
 
         }
 
@@ -280,6 +283,7 @@ int main () {
         }
 
         std::cout << "Ainda ha mais pessoas para atender!\n";
+        proximaSenha = filaRU[1].senha;
 
 
 
@@ -393,7 +397,6 @@ int main () {
 
         if (opcaoMenu == 8) {
 
-
             if(filaPausada) {
                 std::cout << std::endl;
                 std::cout << "Voce esta descansando. Nao pode trabalhar.";
@@ -401,9 +404,19 @@ int main () {
                 continue;
             }
 
+
+            if(filaRU.size() == 0) {
                 std::cout << std::endl;
-                std::cout << "";
+                std::cout << "A fila esta vazia! Nao ha ninguem para dispensar\n";
                 std::cout << std::endl;
+                continue;
+            }
+
+                std::cout << std::endl;
+                std::cout << "Voce dispensa todos os alunos da fila. Agora ela esta vazia.";
+                std::cout << std::endl;
+
+                filaRU.clear();
 
 
         }
@@ -418,6 +431,28 @@ int main () {
                 continue;
             }
 
+            if(filaRU.size() == 0) {
+                std::cout << std::endl;
+                std::cout << "A fila esta vazia! Nao ha ninguem para atender!\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+            std::cout << "Qual aluno voce gostaria de mandar embora? Digite sua senha: ";
+            std::cin >> senhaAlunoExpulsar; 
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            for (int i = 0; i < filaRU.size(); i++) {
+                if (senhaAlunoExpulsar == filaRU[i].senha) {
+                    std::cout << filaRU[i].nome << " esta sendo expulso.\n";
+                    filaRU.erase(filaRU.begin() + i);
+                    break;
+                }
+                
+                std::cout << "O aluno nao foi encontrado ou a senha esta errada.\n";
+
+            }
 
 
             
@@ -448,26 +483,12 @@ int main () {
         }
 
 
-
-
-
     }
-
-
-
-
-
-
 
     return 0;
 
 
 }
-
-
-
-
-
 
 
 
