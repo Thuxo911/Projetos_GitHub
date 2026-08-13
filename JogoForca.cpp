@@ -435,7 +435,7 @@ int main() {
                     for (int i = 0; i < escolhaTamanho; i++)
                     palavraOculta[i] = '_';
 
-                    vidas = 7;
+                    vidas = 8;
 
 
                 break;
@@ -448,7 +448,7 @@ int main() {
                     for (int i = 0; i < escolhaTamanho; i++)
                     palavraOculta[i] = '_';
 
-                    vidas = 6;
+                    vidas = 8;
 
                 break;
                 }
@@ -460,7 +460,7 @@ int main() {
                     for (int i = 0; i < escolhaTamanho; i++)
                     palavraOculta[i] = '_';
 
-                    vidas = 6;
+                    vidas = 9;
 
                 break;
                 }
@@ -472,7 +472,7 @@ int main() {
                     for (int i = 0; i < escolhaTamanho; i++)
                     palavraOculta[i] = '_';
 
-                    vidas = 6;
+                    vidas = 10;
 
                 break;
                 }
@@ -484,7 +484,7 @@ int main() {
                     for (int i = 0; i < escolhaTamanho; i++)
                     palavraOculta[i] = '_';
 
-                    vidas = 5;
+                    vidas = 19;
 
                 break;
                 }
@@ -496,7 +496,7 @@ int main() {
                     for (int i = 0; i < escolhaTamanho; i++)
                     palavraOculta[i] = '_';
 
-                    vidas = 90;
+                    vidas = 100;
 
                 break;
                 }
@@ -575,11 +575,7 @@ int main() {
                 palavraOculta[i] = letraJogador;
             }
         
-        for (int i = 0; i < escolhaTamanho; i++) {
-            if (palavraSorteada[i] != palavraOculta[i]) {
-                checagem = true;
-                continue;
-            }
+
 
             int numeroLetrasQueCombinam = 0;
             
@@ -590,22 +586,30 @@ int main() {
 
                 if(numeroLetrasQueCombinam == escolhaTamanho) {
                 checagem = false;
-                
                 break;
                 }
+
+        }
+
+
+        }
+
+        for (int i = 0; i < escolhaTamanho; i++) {
+            std::cout << palavraOculta[i] << " ";
             }
 
-
-        }
-
-
-        }
-
+            if (vidas > 0) {
+ 
             std::cout << std::endl;
             std::cout << "Meus parabens! Voce acertou!\n";
             checagem = false;
             std::cout << "A palavra era: " << palavraSorteada << std::endl;
+            std::cout << std::endl;
             break;
+
+            }
+
+            
 
 
 
