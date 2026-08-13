@@ -96,7 +96,7 @@ int main () {
              while (checagemOpcao1) {
 
             for (int i = 0; i < 3; i++) {
-                novoAluno.arrayNotas[i] = 0.0;
+                novoAluno.arrayNotas[i] = -1.0;
             }
 
             std::cout <<"Professor, digite as informacoes do seu aluno\n";
@@ -339,6 +339,30 @@ int main () {
                 continue;
             }
 
+            for (int i = 0; i < listaAlunos.size(); i++) {
+                if (listaAlunos[i].arrayNotas[0] == -1.0
+                && listaAlunos[i].arrayNotas[1] == -1.0
+            && listaAlunos[i].arrayNotas[2] == -1.0)
+                std::cout << "As notas ainda nao foram cadastradas!\n";
+                continue;
+            }
+
+
+            for (int i = 0; i < listaAlunos.size(); i++) {
+
+                std::cout << std::endl;
+
+                std::cout << "Aluno nº " << i << std::endl;
+                std::cout << "Nome: " << listaAlunos[i].nome << std::endl;
+                std::cout << "Matricula: " << listaAlunos[i].matricula << std::endl;
+                std::cout << "Faltas: " << listaAlunos[i].faltas << std::endl;
+                std::cout << "Notas das 3 provas, em ordem: " << listaAlunos[i].arrayNotas[0] << " " << listaAlunos[i].arrayNotas[1] << " " << listaAlunos[i].arrayNotas[2] << std::endl;
+                std::cout << "Media: " << listaAlunos[i].media << std::endl;
+                std::cout << "Situacao: " << listaAlunos[i].StatusFinal << std::endl;
+
+                std::cout << std::endl;
+
+            }
 
 
 
