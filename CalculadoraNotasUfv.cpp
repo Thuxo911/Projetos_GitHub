@@ -146,30 +146,39 @@ int main () {
         }
 
     }
-        }
+}
 
 
         if (escolhaMenu == 2) {
 
-            int matriculaDigitada = 0;
+            if(listaAlunos.size() == 0) {
+                std::cout << "Nenhum aluno cadastrado ainda!\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+            int matriculaDigitada;
+
 
             std::cout << std::endl;
             std::cout << "Professor, lance as notas das 3 provas que cada aluno realizou\n" << std::endl;
             std::cout << std::endl;
             std::cout << "Digite a matricula do aluno: \n";
             std::cin >> matriculaDigitada;
-
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << std::endl;
 
+            bool encontrou = false;
+
             for (int i = 0; i < listaAlunos.size(); i++) {
-                if(matriculaDigitada == listaAlunos[i].matricula) {
+            
+                if (matriculaDigitada == listaAlunos[i].matricula) {
                     std::cout << "Matricula encontrada!\n";
                     std::cout << "Digite as notas das provas!\n";
 
                     std::cout << "P1: ";
-                    std::cin >> listaAlunos[i].arrayNotas[1];
+                    std::cin >> listaAlunos[i].arrayNotas[0];
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -179,19 +188,118 @@ int main () {
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
                     std::cout << "P3: ";
-                    std::cin >> listaAlunos[i].arrayNotas[1];
+                    std::cin >> listaAlunos[i].arrayNotas[2];
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+                    encontrou = true;
                     break;
                 }
                 
-                std::cout << "Matricula nao encontrada!\n";
+
+            }
+
+            if(!encontrou) {
+                std::cout << "Matricula nao cadastrada no sistema!\n";
+            }
+
+        }
+
+        if (escolhaMenu == 3) {
+
+            int matriculaDigitada3;
+            int variavelQueGuardaNumeroAluno;
+
+            if(listaAlunos.size() == 0) {
+                std::cout << "Nenhum aluno cadastrado ainda!\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+
+            std::cout << "Digite a matricula do aluno para saber sua media e situacao atual\n";
+            std::cin >> matriculaDigitada3;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            for (int i = 0; i < listaAlunos.size(); i++) {
+                if(matriculaDigitada3 == listaAlunos[i].matricula)
+                std::cout << "Matricula encontrada!\n";
+                variavelQueGuardaNumeroAluno = i;
+                break;
+
+            }
+
+            std::cout << std::endl;
+
+            listaAlunos[variavelQueGuardaNumeroAluno].media = (listaAlunos[variavelQueGuardaNumeroAluno].arrayNotas[0] +
+            listaAlunos[variavelQueGuardaNumeroAluno].arrayNotas[1] + listaAlunos[variavelQueGuardaNumeroAluno].arrayNotas[2]) / 3.0;
+
+            
+            if(listaAlunos[variavelQueGuardaNumeroAluno].faltas < 15 && 
+                listaAlunos[variavelQueGuardaNumeroAluno].media >=60 ) {
+                    listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal = Aluno::Aprovado;
+                }
+
+            else if (listaAlunos[variavelQueGuardaNumeroAluno].faltas >= 15) { 
+                listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal = Aluno::ReprovadoNota;
+            }
+
+            else {
+                listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal = Aluno::ReprovadoFalta;
+            }
+
+        
+
+
+
+
+
+            switch (listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal)
+
+
+            std::cout << "A media do aluno eh: ";
+            std::cout << listaAlunos[variavelQueGuardaNumeroAluno].media;
+            std::cout << std::endl;
+
+            switch (listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal) {
+
+                case 1: {
+                    
+                }
+
+                case 2: {
+
+
+                }
+
+                case 3: {
+
+
+                }
 
 
             }
 
 
+            std::cout << "A situacao do aluno eh: ";
+            std::cout << listaAlunos[variavelQueGuardaNumeroAluno].StatusFinal;
+
+
+        }
+
+        if (escolhaMenu == 4) {
+
+            if(listaAlunos.size() == 0) {
+                std::cout << "Nenhum aluno cadastrado ainda!\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+
+
+
+            
         }
 
 
