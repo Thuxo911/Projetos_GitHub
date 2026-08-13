@@ -1,0 +1,48 @@
+Esse projeto ainda nao foi finalizado
+
+Um programa simples que salva nomes e telefones, 
+mas com um detalhe crucial: os dados não podem sumir quando o programa fecha. 
+É necessária a biblioteca <fstream> para ler e escrever dados em arquivos de texto direto do HD. 
+
+Salvar em formato .txt 
+
+Struct. Quantos dados precisam ter (nome, telefone)
+Quantos contatos a agenda vai suportar?
+Como fica o vetor estático e a variável de controle de quantidade? 
+
+Ao abrir o programa: O que deve acontecer antes de mostrar o menu na tela? 
+Se já existir um arquivo .txt salvo de uma execução passada, como o programa recupera esses dados para o vetor? 
+
+Durante a execução: Quando o usuário cadastra um novo contato, 
+ele vai apenas para o vetor na memória RAM ou já deve ser gravado no arquivo? 
+
+Ao fechar o programa: O que precisa acontecer com os dados 
+que estão na memória quando o usuário escolhe a opção "Sair"? 
+
+
+Memória RAM (Vetor) E Disco (Arquivo contatos.txt)
+
+Em qual formato o programa vai escrever os dados no texto? 
+(Exemplo: Nome e telefone na mesma linha? Ou uma linha para o nome e outra para o telefone?). 
+
+
+Se salvou de um jeito, como o programa vai saber onde termina o nome e 
+onde começa o telefone na hora de ler linha por linha do arquivo de volta para o vetor? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

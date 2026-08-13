@@ -20,15 +20,20 @@ Remove da fila
 Mostra os dados do aluno que está na frente da fila, sem removê-lo de lá
 4. Mostrar tamanho da fila.
 Quantos alunos estao aguardando?
-5. Creditos
-6 Sair.
+5. Pausa a fila. Nenhuma acao envolvendo o trabalho é possivel.
+6. Despausa a fila. Acoes sao permitidas
+7. Gera um relatorio-historico
+8. Manda toda a fila embora com filaRU.clear()
+9. Manda embora um ALUNO ESPECIFICO usando seu indice e a sua senha
+10. Creditos
+11. Sair.
 
 
 Mais funcionalidades:
-Horario e data XXXXXXXXX
-Pausar e retomar a fila xxxxxxxxxxxx
+Horario e data 
+Pausar e retomar a fila
 Senha atual, proxima e ultima chamada
-Tempo medio de espera: calcula numero de pedidos vezes x (faz uma conta ai) XXXXXXXXXXXXXXXX
+Tempo medio de espera: calcula numero de pedidos vezes x (faz uma conta ai) 
 MANDAR TODA A FILA EMBORA
 APAGAR UM ALUNO ESPECIFICO
 

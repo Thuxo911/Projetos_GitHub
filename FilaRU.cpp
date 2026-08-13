@@ -371,11 +371,23 @@ int main () {
 
         if (opcaoMenu == 6) {
 
+            if(filaPausada) {
+
             filaPausada = false;
 
             std::cout << std::endl;
             std::cout << "O descanso acabou. A fila esta pronta para funcionar normalmente.\n";
             std::cout << std::endl;
+
+            }
+
+            else { 
+            
+            std::cout << std::endl;
+            std::cout << "A fila nao esta pausada.\n";
+            std::cout << std::endl;
+
+            }
 
         }
 
