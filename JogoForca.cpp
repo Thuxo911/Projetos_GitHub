@@ -556,6 +556,28 @@ int main() {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+        
+
+
+
+            bool letraRepetida = false;
+
+            for (int i = 0; i < numeroTentativas; i++) {
+                if (letraJogador == letrasUsadas[i])
+                letraRepetida = true;
+                break;
+            }
+
+            if(letraRepetida) {
+            std::cout << "\nOpa! Voce ja tentou a letra '" << letraJogador << "'. Escolha outra!\n\n";                
+            std::cout << std::endl;
+                continue;
+            }
+
+
+
+
+
             ultimaLetra = letraJogador;
 
             letrasUsadas[numeroTentativas] = letraJogador;
@@ -563,7 +585,6 @@ int main() {
             bool acertou = false;
 
             numeroTentativas++;
-
 
         for (int i = 0; i < escolhaTamanho; i++)
             if (letraJogador == palavraSorteada[i]) {
