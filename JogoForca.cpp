@@ -581,7 +581,19 @@ int main() {
                 continue;
             }
 
+            int numeroLetrasQueCombinam = 0;
             
+            for (int i = 0; i < escolhaTamanho; i++) {
+
+                if (palavraSorteada[i] == palavraOculta[i])
+                numeroLetrasQueCombinam++;
+
+                if(numeroLetrasQueCombinam == escolhaTamanho) {
+                checagem = false;
+                
+                break;
+                }
+            }
 
 
         }
@@ -594,17 +606,6 @@ int main() {
             checagem = false;
             std::cout << "A palavra era: " << palavraSorteada << std::endl;
             break;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
