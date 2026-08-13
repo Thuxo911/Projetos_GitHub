@@ -34,11 +34,13 @@ int main () {
 
 
 
-        int tempoMedio;
-        int senhaAtual;
-        int ultimaSenha;
-        int proximaSenha;
-        int opcaoMenu;
+        int tempoMedio = 0;
+        int senhaAtual = 0;
+        int ultimaSenha = 0;
+        int proximaSenha = 0;
+        int opcaoMenu = 0;
+
+        char respostaPCD;
 
         std::vector<Aluno> filaRU{};
 
@@ -57,7 +59,7 @@ int main () {
         std::cout << std::endl;
 
         std::cout <<"============================================\n";
-        std::cout << "Tempo media de espera da fila: " << tempoMedio << std::endl;
+        std::cout << "Tempo medio de espera da fila: " << tempoMedio << std::endl;
         std::cout << "Senha atual: " << senhaAtual << std::endl;
         std::cout << "Proxima senha: " << ultimaSenha << std::endl;
         std::cout << "Ultima senha: " << proximaSenha << std::endl;
@@ -65,7 +67,8 @@ int main () {
         std::cout << std::endl;
 
 
-        std::cout << "Digite a sua opcao: " << opcaoMenu;
+        std::cout << "Digite a sua opcao: ";
+        std::cin >> opcaoMenu;
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -89,6 +92,80 @@ int main () {
 
         if (opcaoMenu == 1) {
 
+            Aluno novoAluno;
+
+            std::cout << std::endl;
+            std::cout << "Hora de cadastar um novo aluno!\n";
+
+            std::cout << "Nome do aluno: ";
+            std::cin >> novoAluno.nome;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            std::cout << "Senha do aluno: ";
+            std::cin >> novoAluno.senha;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            std::cout << "Numero de pedidos: ";
+            std::cin >> novoAluno.numeroPedidos;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (novoAluno.numeroPedidos <= 0) {
+                std::cout << std::endl;
+                std::cout << "Um aluno nao pode entrar no RU sem ter pedidos! Voce disse isso e ele foi embora.\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+
+            std::cout << "Saldo: ";
+            std::cin >> novoAluno.saldo;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+            if (novoAluno.numeroPedidos <= 0) {
+                std::cout << std::endl;
+                std::cout << "Um aluno nao pode entrar no RU sem ter saldo! Voce disse isso e ele foi embora.\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+
+            bool checagemVoltarRespostaPCD = true;
+
+            while (checagemVoltarRespostaPCD) {
+
+            std::cout << "O aluno eh PCD? (S ou N): ";
+            std::cin >> respostaPCD;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (respostaPCD != 'n' && respostaPCD != 'N' && respostaPCD != 'S' && respostaPCD != 's') {
+                std::cout << "Voce digitou errado! Tente novamente.\n";
+                continue;
+            }
+            
+            else if (respostaPCD == 'N' || respostaPCD == 'n') {
+                novoAluno.pcd = false;
+                checagemVoltarRespostaPCD = false;
+            }
+
+            else { 
+                novoAluno.pcd = true;
+                checagemVoltarRespostaPCD = false;
+            }
+
+        }
+
+        }
+
+
+        if (opcaoMenu == 2) {
+
+            
 
 
 
