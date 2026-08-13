@@ -22,17 +22,6 @@ int main () {
     bool checagem = true;
     bool filaPausada = false;
 
-        auto agora = std::chrono::system_clock::now();
-        std::time_t tempoAtual = std::chrono::system_clock::to_time_t(agora);
-        std::tm* tempo_local = std::localtime(&tempoAtual);
-
-        int dia = tempo_local->tm_mday;
-        int mes = tempo_local->tm_mon + 1;
-        int ano = tempo_local->tm_year + 1900;
-        int hora = tempo_local->tm_hour;
-        int minuto = tempo_local->tm_min;
-        int segundo = tempo_local->tm_sec;
-
 
 
         int tempoMedio = 0;
@@ -48,6 +37,9 @@ int main () {
 
         int maiorPedido = 0;
         int senhaAlunoExpulsar = 0;
+
+        int pessoasnaoPCDAtendidas = 0;
+        int pedidosnaoPCDfeitos = 0;
         
 
         char respostaPCD;
@@ -56,6 +48,20 @@ int main () {
 
 
     while (checagem) {
+
+
+        
+        auto agora = std::chrono::system_clock::now();
+        std::time_t tempoAtual = std::chrono::system_clock::to_time_t(agora);
+        std::tm* tempo_local = std::localtime(&tempoAtual);
+
+        int dia = tempo_local->tm_mday;
+        int mes = tempo_local->tm_mon + 1;
+        int ano = tempo_local->tm_year + 1900;
+        int hora = tempo_local->tm_hour;
+        int minuto = tempo_local->tm_min;
+        int segundo = tempo_local->tm_sec;
+
 
         std::cout << "===========================================\n";
         std::cout << "SISTEMA DE FILA - RESTAURANTE UNIVERSITARIO\n";
@@ -207,10 +213,6 @@ int main () {
           for (int i = 0; i < filaRU.size(); i++) {
                 if(filaRU[i].pcd == false) {
                     filaRU.insert(filaRU.begin() + i, novoAluno);
-                    pessoasTotaisAtendidas++;
-                    PCDsatendidos++;
-                    pedidosFeitos += filaRU[i].numeroPedidos;
-                    pedidosFeitosPCD += filaRU[i].numeroPedidos;
                     inserido = true;
                     break;
                 }
@@ -228,8 +230,6 @@ int main () {
 
             else {
                 filaRU.push_back(novoAluno);
-                pessoasTotaisAtendidas++;
-                pedidosFeitos += novoAluno.numeroPedidos;
             }
 
 
@@ -270,6 +270,21 @@ int main () {
 
             std::cout << filaRU[0].nome << " entra restaurante adentro.";
 
+                pessoasTotaisAtendidas++;
+                pedidosFeitos += filaRU[0].numeroPedidos;
+
+            if(filaRU[0].pcd) {
+                PCDsatendidos++;
+                pedidosFeitosPCD += filaRU[0].numeroPedidos;
+
+
+            } else {
+                pessoasnaoPCDAtendidas++;
+                pedidosnaoPCDfeitos += filaRU[0].numeroPedidos;
+
+            }
+
+
 
             filaRU.erase(filaRU.begin());  
             contagem--;
@@ -278,12 +293,14 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "A fila ficou vazia!\n";
                 std::cout << std::endl;
-                break;
+                continue;
 
         }
 
         std::cout << "Ainda ha mais pessoas para atender!\n";
-        proximaSenha = filaRU[1].senha;
+
+        if(filaRU.size() > 0) proximaSenha = filaRU[0].senha;
+        else proximaSenha = 0;
 
 
 
@@ -319,7 +336,9 @@ int main () {
             if (filaRU[0].pcd) {
                 std::cout << "Sim\n";
             }
+
             else std::cout << "Nao\n";
+
 
         }
 
@@ -377,13 +396,17 @@ int main () {
 
         std::cout << "Numero total de atendimentos: " << pessoasTotaisAtendidas << std::endl;
         std::cout << "Numero total de pedidos: " << pedidosFeitos << std::endl;
+        std::cout << std::endl; 
+        std::cout << "Numero total de pessoas nao PCDs atendidas: " << pessoasnaoPCDAtendidas << std::endl;
+        std::cout << "Numero total de pedidos de pessoas nao PCDs: " << pedidosnaoPCDfeitos << std::endl;
         std::cout << std::endl;
         std::cout << "Numero total de PCDs atendidas: " << PCDsatendidos << std::endl;
         std::cout << "Numero total de pedidos de PCD: " << pedidosFeitosPCD << std::endl;
+        std::cout << std::endl;
         std::cout << "Maior pedido ja feito: " << maiorPedido << std::endl;
         std::cout << std::endl;
 
-        double dinheiro = pedidosFeitos * 6.50 + pedidosFeitosPCD * 2.50;
+        double dinheiro = (pedidosnaoPCDfeitos * 6.50) + (pedidosFeitosPCD * 2.50);
 
         std::cout << "Dinheiro total arrecadado: " << dinheiro << std::endl;
         std::cout << "Nota: o dinheiro arrecadado eh calculado numero de pedidos totais vezes 6.50. PCDs pagam 2.50\n";
@@ -443,15 +466,21 @@ int main () {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+            bool encontrado = false;
+
             for (int i = 0; i < filaRU.size(); i++) {
                 if (senhaAlunoExpulsar == filaRU[i].senha) {
                     std::cout << filaRU[i].nome << " esta sendo expulso.\n";
+                    encontrado = true;
                     filaRU.erase(filaRU.begin() + i);
                     break;
                 }
                 
-                std::cout << "O aluno nao foi encontrado ou a senha esta errada.\n";
 
+            }
+
+            if (!encontrado) {
+                std::cout << "O aluno nao foi encontrado ou a senha esta errada.\n";
             }
 
 
