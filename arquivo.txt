@@ -1,0 +1,1 @@
+Oi! Estou escrevendo no meu arquivo usando ofstream!

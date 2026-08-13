@@ -1,0 +1,2 @@
+ano
+Esse eh o ano atual. Le-se DOIS MIL E VINTE E SEIS
