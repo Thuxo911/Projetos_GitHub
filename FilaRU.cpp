@@ -40,6 +40,11 @@ int main () {
         int ultimaSenha = 0;
         int proximaSenha = 0;
         int opcaoMenu = 0;
+
+        int pessoasTotaisAtendidas = 0;
+        int pedidosFeitos = 0;
+        int PCDsatendidos = 0;
+        int pedidosFeitosPCD = 0;
         
 
         char respostaPCD;
@@ -195,6 +200,10 @@ int main () {
           for (int i = 0; i < filaRU.size(); i++) {
                 if(filaRU[i].pcd == false) {
                     filaRU.insert(filaRU.begin() + i, novoAluno);
+                    pessoasTotaisAtendidas++;
+                    PCDsatendidos++;
+                    pedidosFeitos += filaRU[i].numeroPedidos;
+                    pedidosFeitosPCD += filaRU[i].numeroPedidos;
                     inserido = true;
                     break;
                 }
@@ -210,7 +219,11 @@ int main () {
         }
 
 
-            else filaRU.push_back(novoAluno);
+            else {
+                filaRU.push_back(novoAluno);
+                pessoasTotaisAtendidas++;
+                pedidosFeitos += novoAluno.numeroPedidos;
+            }
 
 
 
@@ -344,7 +357,18 @@ int main () {
         std::cout <<"========================\n";
         std::cout << std::endl;
 
-        std::cout << 
+        std::cout << "Numero de pessoas atendidas: " << pessoasTotaisAtendidas << std::endl;
+        std::cout << "Numero de pedidos totais: " << pedidosFeitos << std::endl;
+        std::cout << "Numero de PCDs atendidas: " << PCDsatendidos << std::endl;
+        std::cout << "Maior pedido: " << pessoasTotaisAtendidas << std::endl;
+        std::cout << std::endl;
+
+        double dinheiro = pedidosFeitos * 6.50 + pedidosFeitosPCD * 2.50;
+
+        std::cout << "Dinheiro total arrecadado: " << dinheiro << std::endl;
+        std::cout << "Nota: o dinheiro arrecadado eh calculado numero de pedidos totais vezes 6.50. PCDs pagam 2.50\n";
+        std::cout << "Tempo atual de espera: " << pessoasTotaisAtendidas << std::endl;
+        std::cout << "Nota: o tempo atual de espera eh calculado numero de pessoais atuais na fila vezes numero medio de atendimento (10s)\n";
 
 
 
@@ -375,7 +399,7 @@ int main () {
                 std::cout << std::endl;
             }
 
-            
+
 
             
         }
