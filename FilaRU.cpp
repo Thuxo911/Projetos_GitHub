@@ -45,6 +45,8 @@ int main () {
         int pedidosFeitos = 0;
         int PCDsatendidos = 0;
         int pedidosFeitosPCD = 0;
+
+        int maiorPedido = 0;
         
 
         char respostaPCD;
@@ -107,6 +109,7 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "Voce esta descansando. Nao pode trabalhar.";
                 std::cout << std::endl;
+                continue;
             }
 
 
@@ -150,6 +153,10 @@ int main () {
                 std::cout << "Um aluno nao pode entrar no RU sem ter saldo! Voce disse isso e ele foi embora.\n";
                 std::cout << std::endl;
                 continue;
+            }
+
+            if(novoAluno.numeroPedidos > maiorPedido) {
+                maiorPedido = novoAluno.numeroPedidos;
             }
 
 
@@ -228,7 +235,10 @@ int main () {
 
 
         }
+
     
+
+
 
         if (opcaoMenu == 2) {
 
@@ -236,6 +246,7 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "Voce esta descansando. Nao pode trabalhar.";
                 std::cout << std::endl;
+                continue;
             }
 
             int contagem = filaRU.size();
@@ -282,6 +293,7 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "Voce esta descansando. Nao pode trabalhar.";
                 std::cout << std::endl;
+                continue;
             }
 
 
@@ -314,6 +326,7 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "Voce esta descansando. Nao pode trabalhar.";
                 std::cout << std::endl;
+                continue;
             }
 
             std::cout << std::endl;
@@ -349,6 +362,7 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "Voce esta descansando. Nao pode trabalhar.";
                 std::cout << std::endl;
+                continue;
             }
 
         std::cout << "=======================\n";
@@ -357,21 +371,20 @@ int main () {
         std::cout <<"========================\n";
         std::cout << std::endl;
 
-        std::cout << "Numero de pessoas atendidas: " << pessoasTotaisAtendidas << std::endl;
-        std::cout << "Numero de pedidos totais: " << pedidosFeitos << std::endl;
-        std::cout << "Numero de PCDs atendidas: " << PCDsatendidos << std::endl;
-        std::cout << "Maior pedido: " << pessoasTotaisAtendidas << std::endl;
+        std::cout << "Numero total de atendimentos: " << pessoasTotaisAtendidas << std::endl;
+        std::cout << "Numero total de pedidos: " << pedidosFeitos << std::endl;
+        std::cout << std::endl;
+        std::cout << "Numero total de PCDs atendidas: " << PCDsatendidos << std::endl;
+        std::cout << "Numero total de pedidos de PCD: " << pedidosFeitosPCD << std::endl;
+        std::cout << "Maior pedido ja feito: " << maiorPedido << std::endl;
         std::cout << std::endl;
 
         double dinheiro = pedidosFeitos * 6.50 + pedidosFeitosPCD * 2.50;
 
         std::cout << "Dinheiro total arrecadado: " << dinheiro << std::endl;
         std::cout << "Nota: o dinheiro arrecadado eh calculado numero de pedidos totais vezes 6.50. PCDs pagam 2.50\n";
-        std::cout << "Tempo atual de espera: " << pessoasTotaisAtendidas << std::endl;
+        std::cout << "Tempo atual de espera: " << 10 * filaRU.size() << std::endl;
         std::cout << "Nota: o tempo atual de espera eh calculado numero de pessoais atuais na fila vezes numero medio de atendimento (10s)\n";
-
-
-
 
 
 
@@ -385,7 +398,12 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "Voce esta descansando. Nao pode trabalhar.";
                 std::cout << std::endl;
+                continue;
             }
+
+                std::cout << std::endl;
+                std::cout << "";
+                std::cout << std::endl;
 
 
         }
@@ -397,6 +415,7 @@ int main () {
                 std::cout << std::endl;
                 std::cout << "Voce esta descansando. Nao pode trabalhar.";
                 std::cout << std::endl;
+                continue;
             }
 
 
@@ -416,6 +435,13 @@ int main () {
 
 
         if (opcaoMenu == 11) {
+
+            if(pessoasTotaisAtendidas == 0) {
+            std::cout << std::endl;
+            std::cout << "EI! ESPERE AI, CALOTEIRO(A)! Voce nem trabalhou!!!\n";
+            return 0;
+            }
+
             std::cout << std::endl;
             std::cout << "Adeus! Que bom servico voce nos prestou hoje!\n";
             return 0;
