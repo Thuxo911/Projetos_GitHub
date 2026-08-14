@@ -27,9 +27,17 @@ int main () {
     //logo, usamos ofstream na saida e ifstream na entrada
 
     bool checagem = true;
+    bool checagem1 = true;
+    bool checagem2 = true;
     int opcaoMenu;
+    char escolha1;
+    char escolha2;
+    std::string nomeProcurado;
+    int idProcurado;
     
     std::vector<Contato> listaContatos{};
+
+    /*
 
     std::ifstream ArquivoContatoLeitura("contatos.txt");
 
@@ -62,7 +70,7 @@ int main () {
 
     std::ofstream ArquivoContato("contatos.txt");
 
-
+    */
 
 
     while (checagem) {
@@ -113,6 +121,8 @@ int main () {
 
         if (opcaoMenu == 1) {
 
+            while (checagem1) {
+
             Contato novoContato;
             
             std::cout << std::endl;
@@ -150,13 +160,75 @@ int main () {
             listaContatos.push_back(novoContato);
 
 
+            std::cout << std::endl;
+            std::cout << "Deseja adicionar mais contatos? Y/N\n";
+            std::cin >> escolha1;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (escolha1 == 'Y' || escolha1 == 'y') {
+                continue;
+            }
+
+            else break;
+
+            }
+
+
+
         }
 
         if (opcaoMenu == 2) {
-            
+
+            while(checagem2) {
+
+            std::cout << std::endl;
+
+            for (int i = 0; i < listaContatos.size(); i++) {
+
+                std::cout << "Contato " << i+1 << std::endl;
+                std::cout << "Nome: " << listaContatos[i].nome << std::endl;
+                std::cout << "Telefone: " << listaContatos[i].telefone << std::endl;
+                std::cout << "Email: " << listaContatos[i].email << std::endl;
+                std::cout << "Cidade: " << listaContatos[i].cidade << std::endl;
+                std::cout << "ID: " << listaContatos[i].id << std::endl;
+                std::cout << std::endl;
+
+            }
+
+            std::cout << std::endl;
+            std::cout << std::endl;
+            std::cout << "Digite M para voltar ao menu\n";
+            std::cin >> escolha2;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (escolha1 == 'M' || escolha1 == 'm') {
+                break;
+            }
+
+            else continue;
+
+            }
+
         }
 
+
+        
+
         if (opcaoMenu == 3) {
+
+
+            std::cout << std::endl;
+            std::cout << "Digite o nome do contato: \n";
+            std::cin >> nomeProcurado;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            for(int i = 0; i < lista)
+
+
+
             
         }
 
