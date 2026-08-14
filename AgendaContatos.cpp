@@ -34,6 +34,9 @@ int main () {
     char escolha2;
     std::string nomeProcurado;
     int idProcurado;
+
+    std::string aSerEditado;
+
     
     std::vector<Contato> listaContatos{};
 
@@ -224,23 +227,154 @@ int main () {
             std::cin >> nomeProcurado;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << std::endl;
 
-            for(int i = 0; i < lista)
+            bool achou = false;
+            //essa flag eh super importante e aparece em varios trabalhos meus
+            //explicacao: fazemos um for para procurar a pessoa. depois que procuramos, damos um break
+            //para sair desse for, pois nao eh mais necessario procurar
+            //mas e se nao achou?? entao DEPOIS do for, precisaria ter uma mensagem alertando que nao achou
+            //o problema eh que o break sai do for e a mensagem de que nao foi achado seria impressa sempre
+            //com essa flag, garantimos que a mensagem sera impressa apenas se ela continuar false, ou seja, se nao achar
 
+            for(int i = 0; i < listaContatos.size(); i++) {
+                if (nomeProcurado == listaContatos[i].nome) {
 
+                    std::cout << "Achamos o seu contato! Seu perfil completo esta exibido abaixo:\n";
+                    std::cout << std::endl;
+                    std::cout << "Contato " << i+1 << std::endl;
+                    std::cout << "Nome: " << listaContatos[i].nome << std::endl;
+                    std::cout << "Telefone: " << listaContatos[i].telefone << std::endl;
+                    std::cout << "Email: " << listaContatos[i].email << std::endl;
+                    std::cout << "Cidade: " << listaContatos[i].cidade << std::endl;
+                    std::cout << "ID: " << listaContatos[i].id << std::endl;
+                    achou = true;
+                    break;
+                }
+            }
 
-            
+                if(!achou) {
+                    std::cout << std::endl;
+                    std::cout << "Infelizmente, seu contato nao foi encontrado\n";
+                    std::cout << std::endl;
+                    continue;
+                }
         }
 
         if (opcaoMenu == 4) {
+
+
+            std::cout << std::endl;
+            std::cout << "Digite o ID do contato: \n";
+            std::cin >> idProcurado;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << std::endl;
+
+            bool achou = false;
+            //essa flag eh super importante e aparece em varios trabalhos meus
+            //explicacao: fazemos um for para procurar a pessoa. depois que procuramos, damos um break
+            //para sair desse for, pois nao eh mais necessario procurar
+            //mas e se nao achou?? entao DEPOIS do for, precisaria ter uma mensagem alertando que nao achou
+            //o problema eh que o break sai do for e a mensagem de que nao foi achado seria impressa sempre
+            //com essa flag, garantimos que a mensagem sera impressa apenas se ela continuar false, ou seja, se nao achar
+
+            for(int i = 0; i < listaContatos.size(); i++) {
+                if (idProcurado == listaContatos[i].id) {
+
+                    std::cout << "Achamos o seu ID! Seu perfil completo esta exibido abaixo:\n";
+                    std::cout << std::endl;
+                    std::cout << "Contato " << i+1 << std::endl;
+                    std::cout << "Nome: " << listaContatos[i].nome << std::endl;
+                    std::cout << "Telefone: " << listaContatos[i].telefone << std::endl;
+                    std::cout << "Email: " << listaContatos[i].email << std::endl;
+                    std::cout << "Cidade: " << listaContatos[i].cidade << std::endl;
+                    std::cout << "ID: " << listaContatos[i].id << std::endl;
+                    achou = true;
+                    break;
+                }
+            }
+
+                if(!achou) {
+                    std::cout << std::endl;
+                    std::cout << "Infelizmente, seu ID nao foi encontrado\n";
+                    std::cout << std::endl;
+                    continue;
+                }
+
+
             
         }
 
-        if (opcaoMenu == 5) {
+        if (opcaoMenu == 5) { //editar contato
+
+
+            std::cout << std::endl;
+            std::cout << "Informe qual contato voce quer editar digitando o nome OU id\n";
+            std::cin >> aSerEditado;
+
+            for(int i = 0; i < listaContatos.size(); i++) {
+                
+                //std::to_string CONVERTE O INT EM STRING. MAS APENAS TEMPORARIAMENTE
+                //se o usuario digitou INT, ele tem que converter em ID EM STRING PARA COMPARAR COM A RESPOSTA DO USUARIO.
+                //"Converter" entre aspas, pois nao precisamos reconverter - aqui esta sendo usado para comparacao
+                //e portanto eh so uma copia
+
+                if(aSerEditado == listaContatos[i].nome || aSerEditado == std::to_string(listaContatos[i].id)) {
+                    
+                    std::cout << std::endl;
+                    std::cout << "Por favor, insira os dados dos seu contato\n";
+                    std::cout << std::endl;
+                    std::cout << "Contato: " << i + 1 << std::endl;
+                    std::cout << "Nome: ";
+                    std::cin >> listaContatos[i].nome;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+                    std::cout << "Telefone: ";
+                    std::cin >> listaContatos[i].telefone;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+                    std::cout << "E-mail: ";
+                    std::cin >> listaContatos[i].email;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+                    std::cout << "Cidade: ";
+                    std::cin >> listaContatos[i].cidade;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+                    std::cout << "ID: ";
+                    std::cin >> listaContatos[i].id;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    
+                    std::cout << std::endl;
+                    std::cout << "Contato " << i + 1 << " editado com sucesso!!!\n";
+                    std::cout << std::endl;
+    
+
+                }
+
+
+            }
             
         }
 
         if (opcaoMenu == 6) {
+
+            
+
+
+
+
+
             
         }
 
