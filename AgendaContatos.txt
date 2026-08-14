@@ -13,7 +13,7 @@ Como fica o vetor estático e a variável de controle de quantidade?
 Ao abrir o programa: O que deve acontecer antes de mostrar o menu na tela? 
 Se já existir um arquivo .txt salvo de uma execução passada, como o programa recupera esses dados para o vetor? 
 
-Durante a execução: Quando o usuário cadastra um novo contato, 
+Durante a execução: Quando o usuário cadastra um novo contato, g
 ele vai apenas para o vetor na memória RAM ou já deve ser gravado no arquivo? 
 
 Ao fechar o programa: O que precisa acontecer com os dados 

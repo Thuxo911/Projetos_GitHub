@@ -5,6 +5,9 @@
 int main () {
 
 
+    //OFSTREAM
+
+
     std::ofstream MeuArquivo("arquivo.txt");
     //cria o arquivo chamado "arquivo.txt" no disco, abrindo uma conexao entre esse arquivo e o programa
 
@@ -205,35 +208,291 @@ int main () {
 
 
     //PONTEIROS
-    //Cursor invisivel
+    //Cursor invisivel que indica onde a leitura/escrita vai acontecer
+    //na escrita/leitura esse ponteiro se move para frente automaticamente
+
+
+    //rdbuf()
+    //retorna um ponteiro para o BUFFER INTERNO do arquivo
+    //o BUFFER eh uma area de memoria temporaria que armazena dados antes de serem gravados no disco
+
+    std::ofstream MeuarquivoRdbuf("arquivoRdbuf.txt");
+    std::filebuf *buf = MeuarquivoRdbuf.rdbuf();
+
+    MeuarquivoRdbuf << "Hello, World!\n";
+    MeuarquivoRdbuf.close();
+
+    //raramente usado
 
 
 
 
 
+    //seekp()
+    //seekp(position) move o ponteiro do arquivo para uma posicao especifica
+    
+    std::ofstream MeuarquivoSeekp("arquivoSeekp.txt");
+    MeuArquivo.seekp(6);
+    //sozinho, nao faz nada. Mais para frente, ha uma utilidade mt interessante
 
+    MeuarquivoSeekp.close();
+
+
+
+
+
+    std::ofstream MeuArquivoAlfabeto("arquivoAlfabeto.txt");
+
+    MeuArquivoAlfabeto << "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n";
+
+    MeuArquivoAlfabeto.seekp(3); //mover ponteiro para posicao 3 (comecando de 0)
+
+    MeuArquivoAlfabeto << "X";
+
+    MeuArquivoAlfabeto.seekp(10);
+
+    MeuArquivoAlfabeto << "X";
+
+    MeuArquivoAlfabeto.seekp(20);
+
+    MeuArquivoAlfabeto << "X";
+
+    //resultado
+    //ABCXEFGHIJXLMNOPQRSTXVWXYZ
+    //x substitui a terceira, a decima e a vigesima letras
+
+    //seekp(position, origin)
+    //seekp pode mover o ponteiro comecando de origens diferentes
+    //std::ofstream::beg - inicio
+    //std::ofstream::cur - posicao ATUAL
+    //std::ofstream::end - fim
+
+    MeuArquivoAlfabeto.close();
 
 
     std::cout << std::endl;
 
+    std::ofstream MeuArquivoFrase("arquivoFrase.txt");
+
+    MeuArquivoFrase << "Felizes sao os caes, que pelo faro descobrem os amigos\n";
 
 
+    MeuArquivoFrase.seekp(4, std::ofstream::beg);
+    MeuArquivoFrase << "j";
+
+    std::cout << "Contagem comecando do meio\n";
+    std::cout << "Palavra 'z' substituida por 'j. O ponteiro estava na posicao 0 e foi movido ate a 4.\n";
+    std::cout << "Atualmente o ponteiro esta na posicao 4\n";
+
+    MeuArquivoFrase.seekp(0, std::ofstream::beg);
+    MeuArquivoFrase << "B";
+
+    std::cout << "Contagem comecando do inicio\n";
+    std::cout << "Palavra 'F' substituida por 'B'. O ponteiro estava na posicao 4 e foi movido ate a 0.\n";
+    std::cout << "Atualmente o ponteiro esta na posicao 0\n";
+
+    MeuArquivoFrase.seekp(-3, std::ofstream::end);
+    MeuArquivoFrase << "a";
+
+    std::cout << "Contagem comecando do fim\n";
+    std::cout << "Palavra 's' substituida por 'a'. O ponteiro estava na posicao 56 e foi movido ate a 53.\n";
+    std::cout << "Atualmente o ponteiro esta na posicao 53\n";
+
+    MeuArquivoFrase.seekp(-13, std::ofstream::cur);
+    MeuArquivoFrase << "i";
+
+    std::cout << "Contagem comecando de onde o ponteiro estava pela ultima vez. Ou seja, 53\n";
+    std::cout << "Palavra 'r' substituida por 'i'. O ponteiro estava na posicao 53 e foi movido ate a 40.\n";
+    std::cout << "Atualmente o ponteiro esta na posicao 40\n";
+
+    MeuArquivoFrase.close();
+
+    //Belijes sao os caes, que pelo faro descobiem os amigoa
+
+    std::cout << std::endl;
 
 
+    //tellp
+    //em que posicao esta o ponteiro
 
+    std::ofstream MeuArquivoTell("arquivoTell.txt");
+    
+    std::cout << "Posicao inicial: " << MeuArquivoTell.tellp() << std::endl;  // 0
+    
+    MeuArquivoTell << "ABC";
+    std::cout << "Depois de escrever ABC: " << MeuArquivoTell.tellp() << std::endl;  // 3
+    
+    MeuArquivoTell << "DEF";
+    std::cout << "Depois de escrever DEF: " << MeuArquivoTell.tellp() << std::endl;  // 6
 
+    MeuArquivoTell.seekp(1, std::ofstream::beg);
 
+    MeuArquivoTell << "X";
+    std::cout << "Depois de fazer a substitucao: " << MeuArquivoTell.tellp() << std::endl; //1
 
-
-
-
-
+    //AXCDEF
+    //o ponteiro substitui o 1, que eh B
+    
+    MeuArquivoTell.close();
     MeuArquivoLouco.close();
 
 
 
+    //===============================================================================================
+    //===============================================================================================
+    //===============================================================================================
+    //===============================================================================================
+    //===============================================================================================
+    //===============================================================================================
+    //===============================================================================================
+    //===============================================================================================
+    //===============================================================================================
 
 
+
+    //IFSTREAM  
+    //LER AS LINHAS DE UM ARQUIVO
+    //o ifstream NAO modifica nada, ele apenas LE
+    //ele le o conteudo, traz para a memoria RAM e ai eu decido o que fazer com esses dados
+
+    std::string textinho = "Oi! Tudo bem??\n";
+
+    //criando e inserindo 
+    std::ofstream ArquivoTextinho("arquivoTextinho.txt");
+    ArquivoTextinho << textinho;
+    ArquivoTextinho.close();
+
+    //lendo - tem que usar OUTRO, nao pode usar ArquivoTextinho dnv
+    std::ifstream ArquivoLeitura("arquivoTextinho.txt");
+
+    std::cout << std::endl;
+
+    while (std::getline (ArquivoLeitura, textinho)) { //LE TODAS AS LINHAS DO ARQUIVO
+        std::cout << textinho << std::endl; //imprime no terminal
+    }
+
+
+    //le todos os caracteres ate a proxima quebra de linha e escreve-os em uma string
+    std::string textoEx;
+    std::getline(ArquivoLeitura, textoEx);
+    std::cout << textoEx;
+
+    
+    ArquivoLeitura.close();
+
+    std::cout << std::endl;
+
+
+    //FUNCOES DE LEITURA
+    //extraem caracteres de um arquivo e movem o ponteiro
+
+    //get()
+    //LE um UNICO caractere e retorna seu valor ASCII. Converta-o para char para ver qual eh o caractere
+    //o ponteiro eh movido para o proximo caractere do arquivo
+
+    std::ofstream ArquivoGet("arquivoGet.txt");
+    ArquivoGet << "ABC";
+    ArquivoGet.close();
+    //PRECISA FECHAR O OFSTREAM PARA ABRIR O IFSTREAM!!!
+
+    std::ifstream ArquivoGetLer("arquivoGet.txt");
+
+    char myChar = ArquivoGetLer.get();
+    std::cout << (int)myChar << std::endl; //ASCII (65)
+    std::cout << myChar << std::endl;    //decimal (A)
+
+
+    ArquivoGetLer.close();
+
+
+    //get(destination, size, delimiter)
+    //le uma sequencia de caracteres(string)
+    //destination - array dos caracteres. ex: char v[100];
+    //size - numero maximo de caracteres a ler (incluindo o \0) ex: 100
+    //delimiter - caractere que faz a leitura parar 
+    //nao precisa ter delimiter. o delimiter padrao eh '\n', mas se quiser colocar outro: 'a' '.' ' ', pode tambem
+
+
+    std::ofstream ArquivoBom("arquivobom.txt");
+    ArquivoBom << "Joao;25;8.5;Aprovado";
+    ArquivoBom.close();
+
+    std::ifstream ArquivoBomLer("arquivobom.txt");
+
+    char nome[50];
+    char idade[20];
+    char nota[20];
+    char status[10];
+
+    ArquivoBomLer.get(nome, 50, ';');
+    ArquivoBomLer.ignore(); //ignora o ;, ou seja, nao o imprime
+
+     ArquivoBomLer.get(idade, 10, ';');
+     ArquivoBomLer.ignore();
+    
+     ArquivoBomLer.get(nota, 10, ';');
+     ArquivoBomLer.ignore();
+    
+     ArquivoBomLer.get(status, 20, '\n');
+
+    std::cout << "Nome: " << nome << std::endl;
+    std::cout << "Idade: " << idade << std::endl;
+    std::cout << "Nota: " << nota << std::endl;
+    std::cout << "Status: " << status << std::endl;
+    
+    ArquivoBomLer.close();
+
+
+    //getiline(destination, size, delimiter) eh quase igual ao get.
+    //no getline, a quebra de linha/delimitador eh descartado e o ponteiro eh movido para o caractere seguinte
+    //get remove do stream mas nao adiciona ao buffer
+    //getline remove do stream e descarta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
 
 
 }
