@@ -17,6 +17,27 @@ struct Contato {
 
 };
 
+//eu posso dar esse nome generico "lista" se eu tivesse varias listas
+//ex: EstaVazio(listaContatos) e EstaVazio(listaBackup)
+//ai nos parametros da funcao eu chamaria apenas de lista e funcionaria sempre para qualquer lista que eu colocasse
+//aqui eu so tenho uma lista mas coloquei isso apenas para testar
+
+//o & usa DIRETAMENTE o vetor original listaContatos
+
+bool EstaVazio(const std::vector<Contato>& lista) {
+    
+    if(lista.size() == 0) {
+        std::cout << std::endl;
+        std::cout << "A lista de contatos esta vazia!\n";
+        std::cout << std::endl;
+        return true;
+    } 
+
+    else return false;
+
+
+}
+
 
 int main () {
 
@@ -29,13 +50,19 @@ int main () {
     bool checagem = true;
     bool checagem1 = true;
     bool checagem2 = true;
+    bool checagem7 = true;
+    bool checagem9 = true;
     int opcaoMenu;
     char escolha1;
     char escolha2;
+    char escolha9;
     std::string nomeProcurado;
     int idProcurado;
+    int resposta10;
 
     std::string aSerEditado;
+    std::string aSerApagado;
+    std::string respostaQualOrdenar;
 
     
     std::vector<Contato> listaContatos{};
@@ -101,7 +128,7 @@ int main () {
         std::cout << "  [5] - Editar um contato\n";
         std::cout << "  [6] - Remover um contato\n";
         std::cout << "  [7] - Ordenar contatos\n";
-        std::cout << " [8] - Mostrar total de contatos\n";
+        std::cout << " [8] - Numero total de contatos\n";
         std::cout << " [9] - Limpar toda a agenda\n";
         std::cout << " [10] - Marcar/desmarcar favoritos\n";
         std::cout << " [11] - Mostrar contatos favoritos\n";
@@ -183,6 +210,8 @@ int main () {
 
         if (opcaoMenu == 2) {
 
+            if(EstaVazio(listaContatos)) continue;
+            
             while(checagem2) {
 
             std::cout << std::endl;
@@ -220,6 +249,8 @@ int main () {
         
 
         if (opcaoMenu == 3) {
+
+            if(EstaVazio(listaContatos)) continue;
 
 
             std::cout << std::endl;
@@ -262,6 +293,8 @@ int main () {
         }
 
         if (opcaoMenu == 4) {
+
+            if(EstaVazio(listaContatos)) continue;
 
 
             std::cout << std::endl;
@@ -308,6 +341,7 @@ int main () {
 
         if (opcaoMenu == 5) { //editar contato
 
+            if(EstaVazio(listaContatos)) continue;
 
             std::cout << std::endl;
             std::cout << "Informe qual contato voce quer editar digitando o nome OU id\n";
@@ -369,9 +403,37 @@ int main () {
 
         if (opcaoMenu == 6) {
 
+            if(EstaVazio(listaContatos)) continue;
             
+            std::cout << std::endl;
+            std::cout << "Qual contato voce gostaria de apagar? Digite o nome ou o ID\n";
+            std::cin >> aSerApagado;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << std::endl;
+
+            bool apagado = false;
+
+            for (int i = 0; i < listaContatos.size(); i++) {
+
+                if(aSerApagado == listaContatos[i].nome || aSerApagado == std::to_string(listaContatos[i].id)) {
+                    listaContatos.erase(listaContatos.begin() + i);
+                    std::cout << "O contato " << i + 1 << " foi apagado\n";
+                    std::cout << std::endl;
+                    apagado = true;
+                    break;
+
+                }
 
 
+            }
+
+            if(!apagado) {
+                std::cout << std::endl;
+                std::cout << "O contato nao existe. Provavelmente voce digitou errado ou ele ja foi apagado.\n";
+                std::cout << std::endl;
+                continue;
+            }
 
 
 
@@ -379,22 +441,155 @@ int main () {
         }
 
         if (opcaoMenu == 7) {
+
+            if(EstaVazio(listaContatos)) continue;
+
+            while (checagem7) {
+
+            std::cout << std::endl;
+            std::cout << "Voce gostaria de ordenar os contatos seguindo qual criterio? Nome ou id?\n";
+            std::cout << "Resposta: ";
+            std::cin >> respostaQualOrdenar;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (respostaQualOrdenar == "nome" || respostaQualOrdenar == "Nome"
+            || respostaQualOrdenar == "Nomes" || respostaQualOrdenar == "nomes") {
+
+
+                //o for vai ate listaContatos.size() - 1 SEMPRE PARA NAO TER RISCO DE CRASHAR
+                //pq se a lista tiver so um contato ela ja esta ordenada
+                //se tem dois contatos ela so ordena uma vez e para ou nem ordena  
+
+                //detalhe: nao pode ser apenas um for pq se nao ele so vai dar uma passada. faremos dois for
+               for (int i = 0; i < listaContatos.size() - 1; i++) {
+                    for(int j = 0; j < listaContatos.size() - i - 1; j++) {
+
+                if(listaContatos[j].nome > listaContatos[j+1].nome) {
+
+                    Contato contatotemp;
+                    
+                    //contatotemp eh um STRUCT
+                    //listaContatos eh um VETOR
+                    //listaContatos[i] eh um STRUCT
+                    //podemos apenas igualar dois tipos de dados iguais
+                    //aqui estamos igualando dois structs
+                    contatotemp = listaContatos[j];
+                    listaContatos[j] = listaContatos[j+1];
+                    listaContatos[j+1] = contatotemp;
+
+                }
+
+
+               }
+            }
+
+
+            }
+
+
+            else if (respostaQualOrdenar == "id" || respostaQualOrdenar == "ID" || 
+            respostaQualOrdenar == "Id" || respostaQualOrdenar == "iD") {
+
+
+                for (int i = 0; i < listaContatos.size() - 1; i++) {
+                    for(int j = 0; j < listaContatos.size() - i - 1; j++) {
+                        if(listaContatos[j].id > listaContatos[j+1].id) {
+                        
+                        Contato contato2temp;
+
+                        contato2temp = listaContatos[j];
+                        listaContatos[j] = listaContatos[j+1];
+                        listaContatos[j+1] = contato2temp;
+
+                        }
+
+
+                    }
+
+                }
+
+
+            }
+
+
+            else {
+
+                std::cout << std::endl;
+                std::cout << "Parece que voce digitou errado. Tente novamente\n";
+                std::cout << std::endl;
+                continue;
+
+            }
+
+        }
+
             
         }
 
         if (opcaoMenu == 8) {
+
+            std::cout << std::endl;
+            std::cout << "Ha um total de " << listaContatos.size() << " contatos na sua lista.\n";
+            std::cout << std::endl;
             
         }
 
         if (opcaoMenu == 9) {
+
+            if(EstaVazio(listaContatos)) continue;
+
+            while (checagem9) {
+
+            std::cout << "Essa decisao nao pode ser revertida. Voce tem certeza que quer fazer isso?\n";
+            std::cout << "Digite Y ou N: \n";
+            std::cin >> escolha9;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (escolha9 == 'Y' || escolha9 == 'y') {
+
+                listaContatos.clear();
+
+                std::cout << std::endl;
+                std::cout << "A lista foi toda apagada!\n";
+                std::cout << std::endl;
+                break;
+            }
+
+            else break;
+
+        }
+
             
         }
 
         if (opcaoMenu == 10) {
+
+            if(EstaVazio(listaContatos)) continue;
+
+            std::cout << std::endl;
+            std::cout << "Voce gostaria de marcar ou desmarcar favoritos?\n";
+            std::cout << "[1] Marcar\n";
+            std::cout << "[2] Desmarcar\n";
+            std::cin >> resposta10;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << std::endl;
+
+
+
+
             
         }
 
         if (opcaoMenu == 11) {
+
+            if(EstaVazio(listaContatos)) continue;
+
+
+
+
             
         }
 
@@ -410,8 +605,11 @@ int main () {
 
         if (opcaoMenu == 13) {
 
+
+
+
             std::cout << std::endl;
-            std::cout << "Adeus!\n";
+            std::cout << "Adeus! Sua lista foi salva!\n";
             std::cout << std::endl;
             return 0;
 
