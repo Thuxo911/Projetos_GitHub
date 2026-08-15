@@ -181,7 +181,6 @@ int main () {
                 
                 std::cout << std::endl;
                 std::cout << "Posicao do tiro: ";
-                std::cin >> coordenadaDigitada;
                 std::getline(std::cin, coordenadaDigitada);
 
                 char coordenadaLetra = coordenadaDigitada[0];
@@ -195,6 +194,11 @@ int main () {
 
                 int coordenadaNumero = std::stoi(coordenadaNum);
 
+                std::cout << coordenadaLetra << std::endl;
+                std::cout << coordenadaNumero << std::endl;
+
+              
+
 
                 //supondo que o jogador digitou B2
                 //olhando para o meu caderno, B equivale a linha 1, e 2 equivale a coluna 1
@@ -203,9 +207,10 @@ int main () {
                 //no caso de "B" converter para ASCII. B em ascii eh 66
                 //entao coordenadaReal = ascii de B - 65
                 //como ASCII esta em ordem crescente entao A B C D E = 65 66 67 68 69
-
+ 
                 int coordenadaRealLetra = (char)coordenadaLetra - 65;
                 int coordenadaRealNumero = coordenadaNumero - 1;
+
 
                 if (coordenadaRealLetra > 5 || coordenadaRealLetra < 0
                     || coordenadaRealNumero > 5 || coordenadaRealNumero < 0) {
@@ -326,15 +331,11 @@ int main () {
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         checagemJogadorColocouCoordenadaCerta = false;
                         checagemSeAQuantidadeNaviosEhSuficiente = false;
-
-                checagemJogadorColocouCoordenadaCerta = false;
-                checagemSeAQuantidadeNaviosEhSuficiente = false;
-                break;
-
-
                         
                     }
 
+
+                    
 
 
             }
