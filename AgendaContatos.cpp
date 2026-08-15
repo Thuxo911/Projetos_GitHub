@@ -67,40 +67,49 @@ int main () {
     
     std::vector<Contato> listaContatos{};
 
-    /*
-
     std::ifstream ArquivoContatoLeitura("contatos.txt");
 
     if (ArquivoContatoLeitura.is_open()) {
 
-            
+         Contato contatoTemp;
 
-        for(int i = 0; i < listaContatos.size(); i++) {
-            listaContatos[i].push_back(contatoTemp);
+        while(std::getline(ArquivoContatoLeitura, contatoTemp.nome, ';')) {
+        
+        std::getline(ArquivoContatoLeitura, contatoTemp.telefone, ';');
+
+        std::getline(ArquivoContatoLeitura, contatoTemp.email, ';');
+
+        std::getline(ArquivoContatoLeitura, contatoTemp.cidade, ';');
+
+        //getline so ta lendo string, mas ID e favorito estao em int e bool respectivamente. vamos converter
+        //converter string para int e string para bool
+
+        std::string stringTempId;
+        std::getline(ArquivoContatoLeitura, stringTempId, ';');
+        contatoTemp.id = std::stoi(stringTempId);
+
+
+        std::string stringTempFavorito;
+        std::getline(ArquivoContatoLeitura, stringTempFavorito);
+        //essa eh a ultima informacao da linha, onde nao ha mais ';', entao ele deve procurar apenas pelo fim da linha
+
+
+         if (stringTempFavorito == "1" || stringTempFavorito == "true") {
+            contatoTemp.favorito = true;
         }
+
+        else contatoTemp.favorito = false;
+
+        listaContatos.push_back(contatoTemp);
+
+    }
+
+        
+    
     }
 
     ArquivoContatoLeitura.close();
-    //sEMPRE FECHA O ARQUIVO DE LEITURA ANTES DE ABRIR O DE ESCRITA!! E TEM QUE TER NOMES DIFERENTES
 
-     ArquivoContato << "Contato numero: " << listaContatos.size() << std::endl;
-            ArquivoContato << novoContato.nome;
-            ArquivoContato << std::endl;
-            ArquivoContato << novoContato.telefone;
-            ArquivoContato << std::endl;
-            ArquivoContato << novoContato.email;
-            ArquivoContato << std::endl;
-            ArquivoContato << novoContato.cidade;
-            ArquivoContato << std::endl;
-            ArquivoContato << novoContato.id;
-            ArquivoContato << std::endl;
-
-            ArquivoContato.close();
-
-
-    std::ofstream ArquivoContato("contatos.txt");
-
-    */
 
 
     while (checagem) {
@@ -235,7 +244,7 @@ int main () {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-            if (escolha1 == 'M' || escolha1 == 'm') {
+            if (escolha2 == 'M' || escolha2 == 'm') {
                 break;
             }
 
@@ -484,7 +493,7 @@ int main () {
                }
             }
 
-
+            break;
             }
 
 
@@ -509,7 +518,7 @@ int main () {
 
                 }
 
-
+                break;
             }
 
 
@@ -577,6 +586,31 @@ int main () {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << std::endl;
 
+            if(resposta10 != 1 || resposta10 != 2) {
+                std::cout << std::endl;
+                std::cout << "Opcao errada\n";
+                std::cout << std::endl;
+                continue;
+            }
+
+            else if(resposta10 == 1) {
+
+                for(int i = 0; i < listaContatos.size(); i++) {
+
+
+                }
+
+
+
+            }
+            
+
+            else if(resposta10 == 1) {
+
+
+                
+            }
+
 
 
 
@@ -602,9 +636,33 @@ int main () {
 
         }
 
+        //logica de EMPACOTAR E DESEMPACOTAR
+        //Voce salva o seu vetor, que esta repleto de Contatos, antes de sair
+        //voce "empacota" tudo em linhas, tipo nome;telefone;email;cidade;id;favorito
+        //ai ele salva assim. na hora de desempacotar, ele vai retirando os pontos e virgulas e colocando
+        //cada dado em sua linha
+        //nome
+        //telefone
+        //...
 
         if (opcaoMenu == 13) {
 
+
+            std::ofstream ArquivoContatos("Lista_de_contatos.txt");
+
+            for(int i = 0; i < listaContatos.size(); i++) {
+            ArquivoContatos << listaContatos[i].nome << ";" <<
+            listaContatos[i].telefone << ";" << listaContatos[i].email <<
+            ";" << listaContatos[i].cidade << ";" << listaContatos[i].id << ";" 
+            << listaContatos[i].favorito << std::endl;
+
+            }
+
+            //booleano salva como 0 ou 1
+            //o ofstream NAO SABE O QUE EH INT OU BOOL. Para ele, tudo eh string
+
+
+            ArquivoContatos.close();
 
 
 

@@ -405,8 +405,9 @@ int main () {
     ArquivoGetLer.close();
 
 
-    //get(destination, size, delimiter)
+    //get(destination, size, delimiter) 
     //le uma sequencia de caracteres(string)
+
     //destination - array dos caracteres. ex: char v[100];
     //size - numero maximo de caracteres a ler (incluindo o \0) ex: 100
     //delimiter - caractere que faz a leitura parar 
@@ -447,6 +448,13 @@ int main () {
     //no getline, a quebra de linha/delimitador eh descartado e o ponteiro eh movido para o caractere seguinte
     //get remove do stream mas nao adiciona ao buffer
     //getline remove do stream e descarta
+
+    //getline(para string)
+    //getline(ArquivoLeitura, nome, ';')
+    //getline nao tem Arquivo acoplado
+    //ex: ArquivoLeitura.get()
+    //ex:   std::getline()
+    //GETLINE NAO PRECISA DE IGNORE
 
 
     return 0;
