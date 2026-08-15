@@ -52,6 +52,8 @@ int main () {
     bool checagem2 = true;
     bool checagem7 = true;
     bool checagem9 = true;
+    bool checagemFavorita = true;
+    bool checagemDesfavorita = true;
     int opcaoMenu;
     char escolha1;
     char escolha2;
@@ -59,10 +61,15 @@ int main () {
     std::string nomeProcurado;
     int idProcurado;
     int resposta10;
+    int numeroFavoritos;
+    char respostaFavorito;
+    char respostaDesfavorito;
 
     std::string aSerEditado;
     std::string aSerApagado;
     std::string respostaQualOrdenar;
+    std::string aSerFavoritado;
+    std::string aSerDesfavoritado;
 
     
     std::vector<Contato> listaContatos{};
@@ -73,7 +80,10 @@ int main () {
 
          Contato contatoTemp;
 
+         //o arquivo tenta ler o nome. se falhar, quer dizer que o nome acabou, e consequentemente, nao ha mais nada a ler
         while(std::getline(ArquivoContatoLeitura, contatoTemp.nome, ';')) {
+
+            //getline tem 3 parametros: o arquivo a ser lido, os dados, e o ponto de parada
         
         std::getline(ArquivoContatoLeitura, contatoTemp.telefone, ';');
 
@@ -93,7 +103,6 @@ int main () {
         std::getline(ArquivoContatoLeitura, stringTempFavorito);
         //essa eh a ultima informacao da linha, onde nao ha mais ';', entao ele deve procurar apenas pelo fim da linha
 
-
          if (stringTempFavorito == "1" || stringTempFavorito == "true") {
             contatoTemp.favorito = true;
         }
@@ -111,10 +120,7 @@ int main () {
     ArquivoContatoLeitura.close();
 
 
-
     while (checagem) {
-
-
 
         //DETALHE SUPER IMPORTANTE QUE EU DESCOBRI
         //DURANTE TODO O MOMENTO EM QUE O USUARIO ESTIVER NO MENU, DIGITANDO, FAZENDO ACOES,
@@ -254,9 +260,6 @@ int main () {
 
         }
 
-
-        
-
         if (opcaoMenu == 3) {
 
             if(EstaVazio(listaContatos)) continue;
@@ -343,9 +346,6 @@ int main () {
                     std::cout << std::endl;
                     continue;
                 }
-
-
-            
         }
 
         if (opcaoMenu == 5) { //editar contato
@@ -595,18 +595,90 @@ int main () {
 
             else if(resposta10 == 1) {
 
+                while(checagemFavorita) {
+
                 for(int i = 0; i < listaContatos.size(); i++) {
 
+                    if(listaContatos[i].favorito) {
+                        numeroFavoritos++;
+                    }  
 
                 }
 
 
+                 if(numeroFavoritos == listaContatos.size()) {
+                        std::cout <<std::endl;
+                        std::cout << "Todos os contatos ja estao favoritados\n";
+                        std::cout << std::endl;
+                        continue;
+                    }
 
+                    std::cout <<std::endl;
+                        std::cout << "Qual contato voce gostaria de favoritar? Escolha pelo nome ou id: \n";
+                        std::cin >> aSerFavoritado;
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << std::endl;
+
+                        for(int i = 0; i < listaContatos.size(); i++) {
+
+                            if(aSerFavoritado == listaContatos[i].nome ||
+                            aSerFavoritado == std::to_string(listaContatos[i].id)) 
+                                listaContatos[i].favorito = true;
+                        }
+                        std::cout << std::endl;
+                        std::cout << "Gostaria de favoritar mais contatos?? Y/N: \n";
+                        std::cin >> respostaFavorito;
+
+                        if (respostaFavorito == 'Y' || respostaFavorito == 'y') {
+                            continue;
+                        }
+
+
+                        else break;
+
+                    }
             }
             
 
-            else if(resposta10 == 1) {
+            else if(resposta10 == 2) {
 
+
+                   while(checagemDesfavorita) {
+
+
+                 if(numeroFavoritos == 0) {
+                        std::cout <<std::endl;
+                        std::cout << "Nao ha nenhum contato favorito a ser desmarcado\n";
+                        std::cout << std::endl;
+                        continue;
+                    }
+
+                        std::cout <<std::endl;
+                        std::cout << "Qual contato voce gostaria de desmarcar? Escolha pelo nome ou id: \n";
+                        std::cin >> aSerDesfavoritado;
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << std::endl;
+
+                        for(int i = 0; i < listaContatos.size(); i++) {
+
+                            if(aSerDesfavoritado == listaContatos[i].nome ||
+                            aSerDesfavoritado == std::to_string(listaContatos[i].id)) 
+                                listaContatos[i].favorito = false;
+                        }
+                        std::cout << std::endl;
+                        std::cout << "Gostaria de desfavoritar mais contatos?? Y/N: \n";
+                        std::cin >> respostaDesfavorito;
+
+                        if (respostaDesfavorito == 'Y' || respostaDesfavorito == 'y') {
+                            continue;
+                        }
+
+
+                        else break;
+
+                    }
 
                 
             }
@@ -622,7 +694,34 @@ int main () {
             if(EstaVazio(listaContatos)) continue;
 
 
+            if(numeroFavoritos == 0) {
+                        std::cout <<std::endl;
+                        std::cout << "Nao ha nenhum contato favorito a ser mostrado\n";
+                        std::cout << std::endl;
+                        continue;
+                    }
 
+                std::cout << std::endl;
+                std::cout << "Mostrando todos os contatos favoritos...\n";
+                std::cout << std::endl;
+
+                for(int i = 0; i < listaContatos.size(); i++) {
+
+                    if(listaContatos[i].favorito) {
+
+                        std::cout << "Contato " << i+1 << std::endl;
+                        std::cout << "Nome: " << listaContatos[i].nome << std::endl;
+                        std::cout << "Telefone: " << listaContatos[i].telefone << std::endl;
+                        std::cout << "Email: " << listaContatos[i].email << std::endl;
+                        std::cout << "Cidade: " << listaContatos[i].cidade << std::endl;
+                        std::cout << "ID: " << listaContatos[i].id << std::endl;
+                        std::cout << std::endl;
+
+                    }
+
+                }
+
+                std::cout << std::endl;
 
             
         }
@@ -664,45 +763,13 @@ int main () {
 
             ArquivoContatos.close();
 
-
-
             std::cout << std::endl;
             std::cout << "Adeus! Sua lista foi salva!\n";
             std::cout << std::endl;
             return 0;
 
         }
-    
-
-
-
-
-
-
-
-
     }
-
-
-
     return 0;
 
-
-
 }
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

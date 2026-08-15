@@ -456,6 +456,10 @@ int main () {
     //ex:   std::getline()
     //GETLINE NAO PRECISA DE IGNORE
 
+    //tem que criar um struct temporario para desempacotar!!!
+    //getline so aceita strings como parametros, entao qualquer coisa,
+    //CRIE uma string temporaria, coloque-a e SO DEPOIS, converta-a para int/bool/qualquer coisa
+
 
     return 0;
 
