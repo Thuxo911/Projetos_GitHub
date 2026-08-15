@@ -12,6 +12,9 @@ int main () {
     char opcaoComoJogar;
     int opcaoModoJogo;
 
+    char teclaVoltarMenuVitoria;
+    char teclaVoltarMenuDerrota;
+
 
 
 
@@ -131,6 +134,8 @@ int main () {
             int numeroBalas = 16;
 
             bool checagemJogadorColocouCoordenadaCerta = true;
+
+
             while (checagemJogadorColocouCoordenadaCerta) {
 
 
@@ -214,7 +219,11 @@ int main () {
 
                     if(MatrizBack[coordenadaRealLetra][coordenadaRealNumero] == 2
                     || MatrizBack[coordenadaRealLetra][coordenadaRealNumero] == 3) {
-                        
+
+                        std::cout << std::endl;
+                        std::cout << "Marinheiro(a)! Voce ja atirou ai!\n";
+                        continue;
+
                     }
 
                     
@@ -257,10 +266,73 @@ int main () {
 
                     if(numeroNavios == 0) {
 
+                        std::cout << std::endl;
+                        std::cout << "Voce venceu! Parabens!!!!!\n";
+                        std::cout << std::endl;
+
+                        std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                        std::cin >> teclaVoltarMenuVitoria;
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        checagemJogadorColocouCoordenadaCerta = false;
+                        checagemSeAQuantidadeNaviosEhSuficiente = false;
+
                     }
 
                     if(numeroBalas == 0) {
 
+
+                        std::cout << std::endl;
+                        std::cout << "Sua municao acabou! Game over!\n";
+                        std::cout << "Localizacao dos navios restantes: \n";
+                        std::cout << std::endl;
+
+                char caractere = 'A';
+                int valorASCII = (int)caractere;
+
+                std::cout << "  ";
+                for(int i = 0; i < 5; i ++) {
+                    std::cout << i + 1 << " ";
+                }
+
+                std::cout << std::endl;
+
+                for(int i = 0; i < 5; i++) {
+
+                    std::cout << (char)valorASCII << " "; //linha
+
+                    
+                    for (int j = 0; j < 5; j++) {
+
+                        if(MatrizBack[i][j] == 0 ||
+                        MatrizBack[i][j] == 2 || MatrizBack[i][j] == 3) {
+                            std::cout << MatrizFront[i][j] << " ";
+                        }
+
+                        else if (MatrizBack[i][j] == 1)  {
+                            std::cout << "N ";
+                        }
+                }
+
+
+                    std::cout << std::endl;
+                    valorASCII++;
+
+                }   
+                    std::cout << std::endl;
+                    std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                        std::cin >> teclaVoltarMenuDerrota;
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        checagemJogadorColocouCoordenadaCerta = false;
+                        checagemSeAQuantidadeNaviosEhSuficiente = false;
+
+                checagemJogadorColocouCoordenadaCerta = false;
+                checagemSeAQuantidadeNaviosEhSuficiente = false;
+                break;
+
+
+                        
                     }
 
 
