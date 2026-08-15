@@ -544,7 +544,8 @@ int main () {
                         checagemModoJogo = false;
                         
                     }
-           
+                }
+            }
 
                 if(opcaoModoJogo == 2) {
                     
@@ -583,7 +584,6 @@ int main () {
 
                         posicionarNaviosAleatoriamente(MatrizBackPC, 5, numeroNaviosPC);
 
-
                 while (enquantoJogadorColocaNavios) {
 
                 std::string coordenadaDigitada;
@@ -621,6 +621,7 @@ int main () {
                 }   
 
                 
+
                 std::cout << std::endl;
                 std::cout << "Posicao do navio: ";
                 std::getline(std::cin, coordenadaDigitada);
@@ -800,18 +801,7 @@ int main () {
 
 
                         }
-
-
-
-
-
-
-
-
                     }
-
-
-
                 }
 
 
@@ -901,7 +891,6 @@ int main () {
                     std::cout << MatrizFront1[i][j] << " ";
 
                 }
-
                     std::cout << std::endl;
                     valorASCII++;
 
@@ -913,7 +902,6 @@ int main () {
 
                 char coordenadaLetra = coordenadaDigitada[0];
                 std::string coordenadaNum = coordenadaDigitada.substr(1);
-
                 int coordenadaNumero = std::stoi(coordenadaNum);
  
                 int coordenadaRealLetra = (char)coordenadaLetra - 65;
@@ -950,20 +938,18 @@ int main () {
                 }
 
             }
-                    }
+        }
 
 
 
-                    if(escolhaJogadorColocarNaviosManualOuRandom == 2) {
+                    else if(escolhaJogadorColocarNaviosManualOuRandom == 2) {
 
                         posicionarNaviosAleatoriamente(MatrizBack1, 5, NaviosJogador1);
                         
                     }
+
+                            checagemJogador1ColocarNaviosManualOuRandom = false;
                 }
-
-
-
-
 
                 while (checagemJogador2ColocarNaviosManualOuRandom) {
 
@@ -1075,40 +1061,23 @@ int main () {
                 }
 
             }
-                    }
-
-
-
-                    if(escolhaJogadorColocarNaviosManualOuRandom == 2) {
-
-                        posicionarNaviosAleatoriamente(MatrizBack2, 5, NaviosJogador2);
-                        
-                    }
+        }
+                    
+                else if (escolhaJogadorColocarNaviosManualOuRandom == 2) {
+                    posicionarNaviosAleatoriamente(MatrizBack2, 5, NaviosJogador2);
                 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                checagemJogador2ColocarNaviosManualOuRandom = false;  
+                        
+            }
+        
                     int numeroBalas1 = 15;
                     int numeroBalas2  = 15;
                     int NaviosJogador1 = 10;
                     int NaviosJogador2 = 10;
                     bool vezJogador1 = true;
+
+                    loopJogoJogadorVsJogador = true;
 
                     while(loopJogoJogadorVsJogador) {
 
@@ -1188,40 +1157,6 @@ int main () {
 
                         }
 
-            
-                        if(NaviosJogador1 == 0) {
-
-                            std::cout << std::endl;
-                            std::cout << "Que pena, " << nome1 << ", o inimigo afundous seus navios! Game over\n";
-                            mostrarMapaAdversarioAposDerrota(MatrizBack2, 5, MatrizFront2);
-                            std::cout << std::endl;
-                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
-                            std::cin >> teclaVoltarMenuDerrota;
-                            std::cin.clear();
-                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                            loopJogoJogadorVsComputador = false;
-                            enquantoJogadorColocaNavios = false; 
-                            checagemJogadorColocarNaviosManualOuRandom = false;
-                            
-                        }
-
-                        if(numeroBalas2 == 0) {
-
-                            std::cout << std::endl;
-                            std::cout << "Parabens," << nome1 << ", a municao do seu inimigo acabou! Voce venceu\n";
-                            std::cout << std::endl;
-                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
-                            std::cin >> teclaVoltarMenuVitoria;
-                            std::cin.clear();
-                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                            loopJogoJogadorVsJogador = false;
-                            enquantoJogadorColocaNavios = false; 
-                            checagemJogador1ColocarNaviosManualOuRandom = false;
-
-
-
-                        }
-
                         vezJogador1 = false;
 
 
@@ -1268,38 +1203,6 @@ int main () {
                             continue;
                         }
 
-
-                        if(NaviosJogador2 == 0) {
-
-                            std::cout << std::endl;
-                            std::cout << "Parabens," << nome1 << ", voce afundou todos os navios inimigos!\n";
-                            std::cout << std::endl;
-                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
-                            std::cin >> teclaVoltarMenuVitoria;
-                            std::cin.clear();
-                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                            loopJogoJogadorVsJogador = false;
-                            enquantoJogadorColocaNavios = false; 
-                            checagemJogador1ColocarNaviosManualOuRandom = false;
-
-                        }
-
-                        if(numeroBalas1 == 0) {
-
-                            std::cout << std::endl;
-                            std::cout << "Que pena, " << nome1 << ", sua municao acabou! Game over\n";
-                            mostrarMapaAdversarioAposDerrota(MatrizBack2, 5, MatrizFront2);
-                            std::cout << std::endl;
-                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
-                            std::cin >> teclaVoltarMenuDerrota;
-                            std::cin.clear();
-                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                            loopJogoJogadorVsComputador = false;
-                            enquantoJogadorColocaNavios = false; 
-                            checagemJogadorColocarNaviosManualOuRandom = false;
-
-                        }
-
             
                         if(NaviosJogador1 == 0) {
 
@@ -1330,17 +1233,15 @@ int main () {
                             enquantoJogadorColocaNavios = false; 
                             checagemJogador1ColocarNaviosManualOuRandom = false;
 
-
-
                         } 
 
                         vezJogador1 = true;
                     } 
                 } 
+} //fecha modo de jogo
+
             }
-        }
-    }
-}
+            }
 
 
         
@@ -1392,7 +1293,7 @@ int main () {
             std::cout << std::endl;
             std::cout <<"Adeus, marinheiro(a)!\n";
             std::cout << std::endl;
-            return 0;
+            break;
 
         }
 
@@ -1401,3 +1302,6 @@ int main () {
 
     return 0;
 }
+
+
+
