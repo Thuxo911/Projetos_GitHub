@@ -94,11 +94,58 @@
 
     }
 
-    bool processarTiro(int matrizBack[][5], char matrizFront[][5], int numero, int coordenadaLetra, int coordenadaNumero) {
+    bool processarTiro(int matrizBack[][5], char matrizFront[][5], int numero, int coordenadaLetra, int coordenadaNumero,
+    int &numeroBala, int &numeroNavio) {
+
+
+          if (coordenadaLetra > 4 || coordenadaLetra < 0
+                    || coordenadaNumero > 4 || coordenadaNumero < 0) {
+
+                        std::cout << std::endl;
+                        std::cout << "Marinheiro(a)! Essa coordenada nao existe! Digite outra!\n";
+                        return false;
+                    }
+                    
+
+                    if(matrizBack[coordenadaLetra][coordenadaNumero] == 2
+                    || matrizBack[coordenadaLetra][coordenadaNumero] == 3) {
+
+                        std::cout << std::endl;
+                        std::cout << "Marinheiro(a)! Voce ja atirou ai!\n";
+                        return false;
+                    }
+
+
+                       if(matrizBack[coordenadaLetra][coordenadaNumero] == 1) {
+
+                        matrizBack[coordenadaLetra][coordenadaNumero] = 2;
+                        matrizFront[coordenadaLetra][coordenadaNumero] = 'X';
+                        
+                        std::cout << std::endl;
+                        std::cout << "Voce acertou o navio inimigo!\n";
+                        std::cout << std::endl;
+
+                        numeroBala--;
+                        numeroNavio--;
+                        
+
+                    }
+
+                    else {
+
+                        matrizBack[coordenadaLetra][coordenadaNumero] = 3;
+                        matrizFront[coordenadaLetra][coordenadaNumero] = '0';
+
+                        std::cout << std::endl;
+                        std::cout << "Voce errou! Nao ha navio ai!\n";
+
+                        numeroBala--;
+
+                    }
 
 
 
-
+                    return true;
 
      }
 
@@ -612,13 +659,31 @@ int main () {
                 int coordenadaRealNumero = coordenadaNumero - 1;
 
                         //o jogador DIGITA as coordenadas
-                        processarTiro(MatrizBackJogador, MatrizFrontJogador, 5, coordenadaRealLetra, coordenadaRealNumero);
+                        //os parametros sao a funcao do inimigo, afinal, ele esta atirando no inimigo.
+                        if(!processarTiro(MatrizBackPC, MatrizFrontPC, 5, coordenadaRealLetra, coordenadaRealNumero, 
+                            numeroBalasJogador, numeroNaviosPC)) {
+                            continue;
+                        }
 
-                        //as coordenadas do pc tem que ser escolhidas aleatoriamente
+                        //as coordenadas do pc tem que ser escolhidas aleatoriamente   
+                        
+                        
                         int coordenadaLetraPC = rand()% 5;
                         int coordenadaNumeroPC = rand()% 5;
 
-                        processarTiro(MatrizBackPC, MatrizFrontPC, 5, coordenadaLetraPC, coordenadaNumeroPC);
+                        while(!processarTiro(MatrizBackJogador, MatrizFrontJogador, 5, coordenadaLetraPC, coordenadaNumeroPC,
+                        numeroBalasPC, numeroNaviosJogador)) {
+                                coordenadaLetraPC = rand()% 5;
+                                coordenadaNumeroPC = rand()% 5;
+                        }
+
+                    
+
+
+
+
+
+
 
 
                     }
