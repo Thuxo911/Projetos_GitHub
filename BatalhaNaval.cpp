@@ -223,6 +223,7 @@ int main () {
     bool checagemJogadorColocarNaviosManualOuRandom = true;
     bool enquantoJogadorColocaNavios = true;
     bool loopJogoJogadorVsComputador = true;
+    bool loopJogoJogadorVsJogador = true;
 
     int opcaoMenu;
     char opcaoComoJogar;
@@ -234,6 +235,7 @@ int main () {
 
     char teclaVoltarMenuVitoria;
     char teclaVoltarMenuDerrota;
+
 
     while (checagem) {
 
@@ -542,11 +544,7 @@ int main () {
                         checagemModoJogo = false;
                         
                     }
-            }
-            }
-
-
-
+           
 
                 if(opcaoModoJogo == 2) {
                     
@@ -677,6 +675,8 @@ int main () {
                         
                     }
                 }
+
+
 
 
 
@@ -1096,20 +1096,251 @@ int main () {
 
 
 
-                }
 
 
 
 
 
+
+
+
+                    int numeroBalas1 = 15;
+                    int numeroBalas2  = 15;
+                    int NaviosJogador1 = 10;
+                    int NaviosJogador2 = 10;
+                    bool vezJogador1 = true;
+
+                    while(loopJogoJogadorVsJogador) {
+
+                        if(vezJogador1) {
+                            
+
+                    //aqui eh o jogo
+                    std::cout << std::endl;
+                    std::cout << "Tabuleiro de " << nome1 << std::endl;
+                    imprimirTabuleiros(MatrizFront1, 5, numeroBalas1);
+
+                    std::cout << std::endl;
+                    std::cout << "Tabuleiro de " << nome2 << std::endl;
+                    imprimirTabuleiros(MatrizFront2, 5, numeroBalas2);
+
+                
+                std::string coordenadaDigitada;
+
+                std::cout << std::endl;
+                std::cout << std::endl;
+                std::cout << nome1 << ", afunde todos os navios!!!\n";
+                std::cout << "Digite as coordenadas para atirar com seu canhao!\n";
+                std::cout << "Uma letra MAISCULA para o eixo X e uma letra para o eixo Y! Sem espaco\n";
+                std::cout << "Seu numero de balas: " << numeroBalas1 << std::endl;
+                std::cout << "Seu numero de navios restante: " << NaviosJogador1 << std::endl;
+                std::cout << "Numero de balas de " << nome2 << ": " << numeroBalas2 << std::endl;
+                std::cout << "Numero de navios de " << nome2 << ": " << NaviosJogador2 << std::endl;
+                std::cout << std::endl;
+                std::cout << "Posicao do tiro: ";
+                std::getline(std::cin, coordenadaDigitada);
+
+                char coordenadaLetra = coordenadaDigitada[0];
+
+                std::string coordenadaNum = coordenadaDigitada.substr(1);
+
+                int coordenadaNumero = std::stoi(coordenadaNum);
+
+                int coordenadaRealLetra = (char)coordenadaLetra - 65;
+                int coordenadaRealNumero = coordenadaNumero - 1;
+
+                        //o jogador DIGITA as coordenadas
+                        //os parametros sao a funcao do inimigo, afinal, ele esta atirando no inimigo.
+                        if(!processarTiro(MatrizBack2, MatrizFront2, 5, coordenadaRealLetra, coordenadaRealNumero, 
+                            numeroBalas1, NaviosJogador2, true)) {
+                            continue;
+                        }
+
+
+                        if(NaviosJogador2 == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Parabens," << nome1 << ", voce afundou todos os navios inimigos!\n";
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuVitoria;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsJogador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogador1ColocarNaviosManualOuRandom = false;
+
+                        }
+
+                        if(numeroBalas1 == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Que pena, " << nome1 << ", sua municao acabou! Game over\n";
+                            mostrarMapaAdversarioAposDerrota(MatrizBack2, 5, MatrizFront2);
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuDerrota;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsComputador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogadorColocarNaviosManualOuRandom = false;
+
+                        }
+
+            
+                        if(NaviosJogador1 == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Que pena, " << nome1 << ", o inimigo afundous seus navios! Game over\n";
+                            mostrarMapaAdversarioAposDerrota(MatrizBack2, 5, MatrizFront2);
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuDerrota;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsComputador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogadorColocarNaviosManualOuRandom = false;
+                            
+                        }
+
+                        if(numeroBalas2 == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Parabens," << nome1 << ", a municao do seu inimigo acabou! Voce venceu\n";
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuVitoria;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsJogador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogador1ColocarNaviosManualOuRandom = false;
+
+
+
+                        }
+
+                        vezJogador1 = false;
+
+
+            
+                    } else {
+                    
+                    std::cout << std::endl;
+                    std::cout << "Tabuleiro de " << nome2 << std::endl;
+                    imprimirTabuleiros(MatrizFront2, 5, numeroBalas2);
+
+                    std::cout << std::endl;
+                    std::cout << "Tabuleiro de " << nome1 << std::endl;
+                    imprimirTabuleiros(MatrizFront1, 5, numeroBalas1);
+
+                
+                std::string coordenadaDigitada;
+
+                std::cout << std::endl;
+                std::cout << std::endl;
+                std::cout << nome2 << ", afunde todos os navios!!!\n";
+                std::cout << "Digite as coordenadas para atirar com seu canhao!\n";
+                std::cout << "Uma letra MAISCULA para o eixo X e uma letra para o eixo Y! Sem espaco\n";
+                std::cout << "Seu numero de balas: " << numeroBalas2 << std::endl;
+                std::cout << "Seu numero de navios restante: " << NaviosJogador2 << std::endl;
+                std::cout << "Numero de balas de " << nome1 << ": " << numeroBalas1 << std::endl;
+                std::cout << "Numero de navios de " << nome1 << ": " << NaviosJogador1 << std::endl;
+                std::cout << std::endl;
+                std::cout << "Posicao do tiro: ";
+                std::getline(std::cin, coordenadaDigitada);
+
+                char coordenadaLetra = coordenadaDigitada[0];
+
+                std::string coordenadaNum = coordenadaDigitada.substr(1);
+
+                int coordenadaNumero = std::stoi(coordenadaNum);
+
+                int coordenadaRealLetra = (char)coordenadaLetra - 65;
+                int coordenadaRealNumero = coordenadaNumero - 1;
+
+                        //o jogador DIGITA as coordenadas
+                        //os parametros sao a funcao do inimigo, afinal, ele esta atirando no inimigo.
+                        if(!processarTiro(MatrizBack2, MatrizFront2, 5, coordenadaRealLetra, coordenadaRealNumero, 
+                            numeroBalas1, NaviosJogador2, true)) {
+                            continue;
+                        }
+
+
+                        if(NaviosJogador2 == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Parabens," << nome1 << ", voce afundou todos os navios inimigos!\n";
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuVitoria;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsJogador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogador1ColocarNaviosManualOuRandom = false;
+
+                        }
+
+                        if(numeroBalas1 == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Que pena, " << nome1 << ", sua municao acabou! Game over\n";
+                            mostrarMapaAdversarioAposDerrota(MatrizBack2, 5, MatrizFront2);
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuDerrota;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsComputador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogadorColocarNaviosManualOuRandom = false;
+
+                        }
+
+            
+                        if(NaviosJogador1 == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Que pena, " << nome1 << ", o inimigo afundous seus navios! Game over\n";
+                            mostrarMapaAdversarioAposDerrota(MatrizBack2, 5, MatrizFront2);
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuDerrota;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsComputador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogadorColocarNaviosManualOuRandom = false;
+                            
+                        }
+
+                        if(numeroBalas2 == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Parabens," << nome1 << ", a municao do seu inimigo acabou! Voce venceu\n";
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuVitoria;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsJogador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogador1ColocarNaviosManualOuRandom = false;
+
+
+
+                        } 
+
+                        vezJogador1 = true;
+                    } 
+                } 
             }
         }
-
-
-
-
-
-
+    }
+}
 
 
         
@@ -1170,5 +1401,3 @@ int main () {
 
     return 0;
 }
-
-
