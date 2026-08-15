@@ -90,8 +90,16 @@ int main () {
 
                 int MatrizBack[5][5] = {0};
                 //matriz que a maquina ve
+                //aqui pode preencher tudo de uma vez pq eh int. Com char tem que ser manualmente ou com for
 
-                char MatrizFront[5][5] = {'~'};
+                char MatrizFront[5][5];
+
+                for (int i = 0; i < 5; i++) {
+                        for (int j = 0; j < 5; j++) {
+                            MatrizFront[i][j] = '~';
+                        }
+                    }
+                    
                 //matriz que o jogador ve
 
                 int numeroNavios = 0;
@@ -121,7 +129,12 @@ int main () {
             }
 
             int numeroBalas = 16;
-            std::string coordenada;
+
+            bool checagemJogadorColocouCoordenadaCerta = true;
+            while (checagemJogadorColocouCoordenadaCerta) {
+
+
+            std::string coordenadaDigitada;
 
                 std::cout << std::endl;
 
@@ -129,32 +142,47 @@ int main () {
                 std::cout << "Marinheiro(a)!Afunde todos os navios!!!\n";
                 std::cout << "Digite as coordenadas para atirar com seu canhao!\n";
                 std::cout << "Uma letra MAISCULA para o eixo X e uma letra para o eixo Y! Sem espaco\n";
+                std::cout << "Numero de balas: " << numeroBalas << std::endl;
+                std::cout << "Numero de navios restante: " << numeroNavios << std::endl;
                 std::cout << std::endl;
 
                 char caractere = 'A';
                 int valorASCII = (int)caractere;
                 //para representar o eixo X com letras provavelmente vou ter que usar ASCII, e ir somando para ir de A a E
 
+                std::cout << "  ";
+                for(int i = 0; i < 5; i ++) {
+                    std::cout << i + 1 << " ";
+                }
+
+                std::cout << std::endl;
 
                 for(int i = 0; i < 5; i++) {
+
+                    std::cout << (char)valorASCII << " "; //linha
+
+                    
                     for (int j = 0; j < 5; j++) {
-                    std::cout << (char)valorASCII << " " << MatrizFront[i][j] << " ";
-                    valorASCII++;
+                    std::cout << MatrizFront[i][j] << " ";
 
                 }
 
-                        std::cout << std::endl;
+
+                    std::cout << std::endl;
+                    valorASCII++;
+
                 }   
 
+                
+                std::cout << std::endl;
+                std::cout << "Posicao do tiro: ";
+                std::cin >> coordenadaDigitada;
+                std::getline(std::cin, coordenadaDigitada);
 
-                 std::cout << "Posicao do tiro: ";
-                std::cin >> coordenada;
-                std::getline(std::cin, coordenada);
-
-                char coordenadaLetra = coordenada[0];
+                char coordenadaLetra = coordenadaDigitada[0];
                 //coordenada[0] ou coordenada.front()
 
-                std::string coordenadaNum = coordenada.substr(1);
+                std::string coordenadaNum = coordenadaDigitada.substr(1);
 
                 //para pegar a segunda parte usaremos substr e stoi
                 //substr eh substring, ele pega so uma parte. No caso, ele pega a partir do caractere 1
@@ -163,6 +191,81 @@ int main () {
                 int coordenadaNumero = std::stoi(coordenadaNum);
 
 
+                //supondo que o jogador digitou B2
+                //olhando para o meu caderno, B equivale a linha 1, e 2 equivale a coluna 1
+                //ou seja, o numero que o jogador digita nao eh a coordenada exata
+                //precisamos converter, talvez coordenadaReal = coordenadaDigitada - 1;
+                //no caso de "B" converter para ASCII. B em ascii eh 66
+                //entao coordenadaReal = ascii de B - 65
+                //como ASCII esta em ordem crescente entao A B C D E = 65 66 67 68 69
+
+                int coordenadaRealLetra = (char)coordenadaLetra - 65;
+                int coordenadaRealNumero = coordenadaNumero - 1;
+
+                if (coordenadaRealLetra > 5 || coordenadaRealLetra < 0
+                    || coordenadaRealNumero > 5 || coordenadaRealNumero < 0) {
+
+                        std::cout << std::endl;
+                        std::cout << "Marinheiro(a)! Essa coordenada nao existe! Digite outra!\n";
+                        continue;
+
+                    }
+                    
+
+                    if(MatrizBack[coordenadaRealLetra][coordenadaRealNumero] == 2
+                    || MatrizBack[coordenadaRealLetra][coordenadaRealNumero] == 3) {
+                        
+                    }
+
+                    
+
+
+
+                //B2 foi traduzido para coordenadaRealLetra = 1 e coordenadaRealNumero = 1! Agora verificaremos se la tem navio
+
+                //colocaremos outros valores para a matriz que o jogador nao ve
+                //2 para o navio acertado e 3 para o nao acertado
+                //se o jogador tentar jogar de novo nesses lugares, ele sera impedido
+                //a verificacao de se o lugar eh valido tem que ser colocada logo apos a verificacao de fronteiras. 
+                //vamos colocar la em cima
+
+                    if(MatrizBack[coordenadaRealLetra][coordenadaRealNumero] == 1) {
+                        MatrizBack[coordenadaRealLetra][coordenadaRealNumero] = 2;
+                        numeroNavios--;
+                        numeroBalas--;
+                        MatrizFront[coordenadaRealLetra][coordenadaRealNumero] = 'X';
+                        
+                        std::cout << std::endl;
+                        std::cout << "Voce acertou o navio inimigo!\n";
+                        std::cout << std::endl;
+                        
+
+                    }
+
+                    else {
+
+
+                        MatrizBack[coordenadaRealLetra][coordenadaRealNumero] = 3;
+                        numeroBalas--;
+                        MatrizFront[coordenadaRealLetra][coordenadaRealNumero] = '0';
+
+                        std::cout << std::endl;
+                        std::cout << "Voce errou! Nao ha navio ai!\n";
+                        std::cout << std::endl;
+
+                    }
+
+                    if(numeroNavios == 0) {
+
+                    }
+
+                    if(numeroBalas == 0) {
+
+                    }
+
+
+
+            }
 
 
 
