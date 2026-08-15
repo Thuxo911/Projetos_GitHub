@@ -45,4 +45,105 @@ Front-end: o que você vai imprimir na tela com cout para o jogador ver
 O jogador NUNCA pode ver o tabuleiro real, apenas a "máscara" dele.
 
 
+EVOLUCAO DOS MODOS DE JOGOS (DO MAIS FACINHO PARA A MAIS DIFICL)
+
+1 - 1 jogador, 1 mapa
+O jogador joga sozinho. O computador esconde os navios aleatoriamente
+e o jogador tem, digamos, 15 tiros para encontrar tudo num mapa 5x5.
+
+2 - Jogador vs maquina
+Agora sim precisamos de dois mapas na tela.
+O MEU (onde eu posiciono meus navios e vejo os tiros que a máquina me dá) e o do INIMIGO (onde eu atiro).
+
+IDEIA PENULTIMA: MAIS COMPLEXA (criacao de IA)
+A ideia da maquina procurar nas células adjacentes (cima, baixo, esquerda, direita) 
+ao acertar um navio é a cereja do bolo da IA simples!!
+Deixemos isso para o final
+
+3 - PVP
+Se forem dois jogadores na vida real jogando, um deles terá que "tapar os olhos" quando o outro estiver
+posicionando os navios no mapa e vice-versa
+Eh necessario construir uma tela de transição que exija que o Jogador 2 aperte ENTER apenas quando 
+for a vez dele, com vários std::cout << "\n" para limpar a tela e esconder o mapa do Jogador 1.
+
+A IDEIA FINAL: TAMANHO DOS navios
+Na batalha naval real, os navios pode ter varios tamanhos: 1x1, 1x2, 1x3, 1x4, 2x4, 2x3, etc
+Se todos os navios forem 1x1, o jogo eh bem simples
+
+Mas, por exemplo, ao colocar um navio 1x3, precisamos programar verificacoes complexas na hora de coloca-laço
+
+1 - O usuário escolhe a posição inicial e pergunta se é Horizontal ou Vertical.
+2 - Tem que checar se a linha/coluna + 3 não ultrapassa as bordas do mapa.
+3 - Tem que checar se nenhum dos 3 quadrados por onde ele vai passar já tem outro navio.
+
+
+A MAQUINA VE A MATRIZ COM INTS 0 agua 1 navio
+O jogador ve a matriz com simbolos para ser intuitivo e bonito (char)
+
+
+salvar e carregar jogo?
+placar e estatisticas?
+
+std::cout << "[4] Modo Tempestade                                \n";
+std::cout << "A cada 3 rodadas, o mar fica agitado e todos os jogadores perdem 2 tiros. Teste sua sorte!\n";
+std::cout << std::endl;
+std::cout << "[5] Modo Relampago                                \n";
+std::cout << "Cada jogador so tem 5 segundos para atirar. Se demorar, perde a vez.\n";
+std::cout << std::endl;
+std::cout << "[6] Modo Submarino Fantasma                                \n";
+std::cout << "O computador move um navio aleatoriamente a cada 2 rodadas. Voce nunca sabe onde ele vai estar!\n";
+std::cout << std::endl;
+std::cout << "[7] Modo Guerra Total                                \n";
+std::cout << "Os dois jogadores atiram ao mesmo tempo. Pode haver empate!\n";
+std::cout << std::endl;
+std::cout << "[8] Modo Sobrevivencia                                \n";
+std::cout << "Voce comeca com poucos tiros, mas ganha 1 tiro extra a cada acerto.\n";
+std::cout << std::endl
+
+
+
+
+
+std::cout << "[1] Modo Naufragio Iminente                \n";
+std::cout << "O tabuleiro vai afundando aos poucos. A cada 3 rodadas, uma linha inteira vira agua e os navios ali afundam. Sobreviva ate o fim!\n";
+std::cout << std::endl;
+
+std::cout << "[2] Modo Capitao Ganancioso                \n";
+std::cout << "Voce pode escolher atirar 1 vez com precisao ou 3 vezes aleatoriamente. Se errar os 3, perde a vez.\n";
+std::cout << std::endl;
+
+std::cout << "[3] Modo Nevoeiro de Guerra                \n";
+std::cout << "So metade do tabuleiro inimigo fica visivel. A nevoa muda de lugar a cada rodada. Acerte no escuro!\n";
+std::cout << std::endl;
+
+std::cout << "[4] Modo Mina Flutuante                    \n";
+std::cout << "Minas ficam espalhadas pelo mar. Se atirar numa mina, ela explode e revela 4 casas ao redor, mas voce perde 2 tiros.\n";
+std::cout << std::endl;
+
+std::cout << "[5] Modo Espelho                          \n";
+std::cout << "Todo tiro que voce da, o inimigo tambem da na mesma coordenada do seu tabuleiro. Pense bem antes de atirar!\n";
+std::cout << std::endl;
+
+std::cout << "[6] Modo Tesouro do Pirata                \n";
+std::cout << "Alem dos navios, existe um bau de tesouro escondido. Quem acertar o bau ganha 5 tiros extras.\n";
+std::cout << std::endl;
+
+std::cout << "[7] Modo Kraken Furioso                   \n";
+std::cout << "A cada 5 rodadas, o Kraken ataca e destroi um navio aleatorio de cada jogador. Ninguem esta seguro!\n";
+std::cout << std::endl;
+
+std::cout << "[8] Modo Bussola Quebrada                 \n";
+std::cout << "As coordenadas que voce digita sao deslocadas uma casa para um lado aleatorio. O tiro pode sair para o lugar errado!\n";
+std::cout << std::endl;
+
+std::cout << "[9] Modo Navio Fantasma                   \n";
+std::cout << "Um navio inimigo fica invisivel e se move a cada rodada. So aparece quando e atingido pela primeira vez.\n";
+std::cout << std::endl;
+
+std::cout << "[10] Modo Tsunami                         \n";
+std::cout << "A cada 7 rodadas, um tsunami alaga metade do tabuleiro. Navios em areas alagadas ficam expostos e podem ser destruidos.\n";
+std::cout << std::endl;
+
+
+
 

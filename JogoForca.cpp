@@ -518,9 +518,6 @@ int main() {
 
         std::cout << std::endl;
 
-
-
-
             int numeroTentativas = 0;
             char letraJogador;
             char letrasUsadas[26];
