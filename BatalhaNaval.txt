@@ -1,0 +1,48 @@
+Desenho de tabuleiro no terminal usando matrizes (arrays bidimensionais)
+O objetivo é esconder navios e deixar o jogador atirar digitando coordenadas X e Y.
+É um treino formidável para lógica espacial e controle de índices. 
+
+Para desenhar um mapa no terminal, precisamos de um grid com linhas e colunas 
+(podemos comecar com 5x5 e para dificultar depois 10x10)
+
+Se um vetor simples precisa de um laço de repetição (for) para ser percorrido, 
+quantos laços sao necessarios para percorrer uma matriz de linhas e colunas?
+DOIS FOR 
+
+
+Uma celula do mapa pode estar em diferentes estados. Como representar esses estados? int/char?
+O que o computador sabe é diferente do que o jogador vê.
+
+Estado A: Água (não revelada pelo jogador).
+Estado B: Navio escondido (o programa/codigo sabe que está lá, mas o jogador só vê água).
+Estado C: Tiro na água (o jogador atirou e errou. Nao pode mais atirar aqui).
+Estado D: Navio atingido (o jogador atirou e acertou).
+
+A ESCONDEDURA
+Como o programa decide onde colocar os navios no início do jogo? 
+(De forma fixa/manual no código?).
+
+A LEITURA DO TIRO
+O jogador digita dois valores: Linha e Coluna (COORDENADAS X/Y).
+
+VALIDACAO DAS FRONTEIRAS
+O que o programa deve fazer se o tabuleiro for 5x4 e o jogador digitar a linha 8x8?
+
+ATUALIZACAO DE ESTADOS
+Se a coordenada digitada tinha um Navio, o que acontece com a célula da matriz?
+Se o jogador atirar em um lugar onde ele já tinha atirado antes, (seja agua ou navio) 
+como o programa avisa isso sem gastar a tentativa dele?
+
+CONDICAO DE VITORIA
+Como o programa calcula que o jogo acabou? (É necessario contar quantas partes de navio restam no mapa).
+
+
+DICA: 
+Existe a necessidade de separar o Back-end do Front-end
+Back-end: o que está na matriz real dentro da memória do computador
+Front-end: o que você vai imprimir na tela com cout para o jogador ver
+
+O jogador NUNCA pode ver o tabuleiro real, apenas a "máscara" dele.
+
+
+

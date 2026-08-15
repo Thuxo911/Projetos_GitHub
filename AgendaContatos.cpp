@@ -78,6 +78,8 @@ int main () {
     if (ArquivoContatoLeitura.is_open()) {
 
          Contato contatoTemp;
+         //criamos esse porque novoContato ainda nem existe... e melhor; usamos o contatoTemp
+         //apenas para desempacotar as coisa do .txt para coloca-las no vetor
 
          //o arquivo tenta ler o nome. se falhar, quer dizer que o nome acabou, e consequentemente, nao ha mais nada a ler
         while(std::getline(ArquivoContatoLeitura, contatoTemp.nome, ';')) {

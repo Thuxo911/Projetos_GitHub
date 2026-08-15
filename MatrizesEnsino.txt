@@ -1,0 +1,122 @@
+
+Matriz eh uma estrutura de dados BIDIMENSIONAL - tabela com linhas e colunas, tipo uma planilha/grade
+
+Colunas:  0    1    2    3
+Linha 0: [10] [20] [30] [40]
+Linha 1: [50] [60] [70] [80]
+Linha 2: [90] [15] [25] [35]
+
+Aqui temos uma linha 3x4; 3 linhas 4 colunas
+
+SEMPRE LINHA PRIMEIRO, DEPOIS COLUNA; LINHA/COLUNA
+
+
+
+
+
+DECLARANDO UMA MATRIZ - tipo de dado que ela vai guardar, o nome.
+
+tipo nomeDaMatriz[linhas][colunas];
+
+int matriz[3][4];                 // Matriz 3x4 de inteiros
+double notas[5][3];               // Matriz 5x3 de doubles
+std::string nomes[2][2];          // Matriz 2x2 de strings
+char tabuleiro[8][8];             // Matriz 8x8 de caracteres
+Aluno matriz[2][2]                //Matriz 2x2 de structs Aluno
+
+
+
+
+INICIALIZANDO UMA MATRIZ
+
+int matriz[2][3] = {
+    {1, 2, 3},    // Linha 0
+    {4, 5, 6}     // Linha 1
+};
+
+
+
+O RESTO TUDO VIRA ZERO
+int matriz[3][3] = {
+    {1, 2},       // {1, 2, 0}
+    {4},          // {4, 0, 0}
+    {7, 8, 9}     // {7, 8, 9}
+};
+
+
+TUDO VIRA ZERO
+int matriz[2][3] = {0};  // Toda a matriz recebe 0
+
+
+PREENCHER COM FOR
+int matriz[3][3];
+
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        matriz[i][j] = 0;
+    }
+}
+
+
+
+
+ACESSANDO ELEMENTOS - sempre se lembrar que o indice comeca do ZERO(0)
+
+int matriz[3][3]
+
+matriz[0][0] = 10;   // Linha 0, Coluna 0
+matriz[1][2] = 25;   // Linha 1, Coluna 2
+matriz[2][1] = 99;   // Linha 2, Coluna 1
+
+std::cout << matriz[0][0] << std::endl;  // 10
+std::cout << matriz[1][2] << std::endl;  // 25
+
+
+
+PERCORRER UMA MATRIZ
+int matriz[3][4];
+
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 4; j++) {
+            matriz[i][j] = i+j;
+
+        }
+
+    }
+
+
+    for(int i = 0; i < 3; i++) {
+        for (int j = 0; j < 4; j++) {
+            std::cout << matriz[i][j] << " ";
+
+        }
+
+    std::cout << std::endl; //quebra linha APOS cada linha da matriz
+    //o for de dentro(que tem o j) imprime 4 colunas, e ai quando volta pro for de fora pula para comecar outra linha
+
+    }
+
+SAIDA
+0 1 2 3
+1 2 3 4
+2 3 4 5
+
+
+FUNCAO - PARA PASSAR A FUNCAO PRECISA PASSAR O NUMERO DE COLUNAS (DA SEGUNDA DIMENSAO)
+
+    void imprimeMatriz(matriz[][3], linhas)
+
+
+
+    int matriz[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+
+    };
+
+
+    imprimeMatriz(matriz, 2)
+
+
+
+
