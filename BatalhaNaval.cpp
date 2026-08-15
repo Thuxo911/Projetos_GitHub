@@ -678,6 +678,8 @@ int main () {
                     }
                 }
 
+
+
                     int numeroBalasJogador = 15;
                     int numeroBalasPC  = 15;
 
@@ -815,12 +817,285 @@ int main () {
 
                 if(opcaoModoJogo == 3) {
 
+                    int MatrizBack1[5][5];
+                    char MatrizFront1[5][5];
 
+                    int MatrizBack2[5][5];
+                    char MatrizFront2[5][5];
 
+                    inicializarTabuleiros(MatrizBack1, MatrizFront1, 5);
+                    inicializarTabuleiros(MatrizBack2, MatrizFront2, 5);
 
+                    std::string nome1;
+                    std::string nome2;
 
+                    std::cout << std::endl;
+                    std::cout << "Jogador 1! Digite seu nome: ";
+                    std::getline(std::cin >> std::ws, nome1);
+                    std::cout << std::endl;
+                    std::cout << "Jogador 2! Digite seu nome: ";
+                    std::getline(std::cin >> std::ws, nome2);
+                    std::cout << std::endl;
 
+                    bool checagemJogador1ColocarNaviosManualOuRandom = true;
+                    bool checagemJogador2ColocarNaviosManualOuRandom = true;
+
+                    while (checagemJogador1ColocarNaviosManualOuRandom) {
+
+                    std::cout << std::endl;
+                    std::cout << nome1 << ", o seu inimigo mortal eh este computador!\n";
+                    std::cout << "Voce gostaria de posicionar seus navios manualmente ou deixar que o destino decida?\n";
+                    std::cout << "O jogador 2 nao pode ver voce colocando os navios!\n";
+                    std::cout << "[1] Quero colocar meus navios\n";
+                    std::cout << "[2] Deixar a escolha aleatoria\n";
+                    std::cout << std::endl;
+                    std::cout << "Digite: ";
+                    std::cin >> escolhaJogadorColocarNaviosManualOuRandom;
+
+                    int NaviosJogador1 = 10;
+                    int NaviosJogador2 = 10;
+
+                    //independente do que o jogador escolha, o computador sempre vai escolher os proprios navios aleatoriamente
                     
+                    if(escolhaJogadorColocarNaviosManualOuRandom != 1 &&
+                    escolhaJogadorColocarNaviosManualOuRandom != 2) {
+                        std::cout << std::endl;
+                        std::cout << "Opcao invalida\n";
+                        std::cout << std::endl;
+                        continue;
+                    }
+
+
+                    if(escolhaJogadorColocarNaviosManualOuRandom == 1) {
+
+                        posicionarNaviosAleatoriamente(MatrizBack1, 5, NaviosJogador1);
+
+
+                while (enquantoJogadorColocaNavios) {
+
+                std::string coordenadaDigitada;
+
+                std::cout << std::endl;
+                std::cout << std::endl;
+                std::cout << nome1 << ", coloque os seus navios!\n";
+                std::cout << "Digite as coordenadas para colocar os seus navios!\n";
+                std::cout << "Uma letra MAISCULA para o eixo X e uma letra para o eixo Y! Sem espaco\n";
+                std::cout << "Numero de navios a serem colocados: " << NaviosJogador1 << std::endl;
+                std::cout << std::endl;
+
+                char caractere = 'A';
+                int valorASCII = (int)caractere;
+
+                std::cout << "  ";
+                for(int i = 0; i < 5; i ++) {
+                    std::cout << i + 1 << " ";
+                }
+
+                std::cout << std::endl;
+
+                for(int i = 0; i < 5; i++) {
+
+                    std::cout << (char)valorASCII << " "; //linha
+
+                    for (int j = 0; j < 5; j++) {
+                    std::cout << MatrizFront1[i][j] << " ";
+
+                }
+
+                    std::cout << std::endl;
+                    valorASCII++;
+
+                }   
+                
+                std::cout << std::endl;
+                std::cout << "Posicao do navio: ";
+                std::getline(std::cin, coordenadaDigitada);
+
+                char coordenadaLetra = coordenadaDigitada[0];
+                std::string coordenadaNum = coordenadaDigitada.substr(1);
+
+                int coordenadaNumero = std::stoi(coordenadaNum);
+ 
+                int coordenadaRealLetra = (char)coordenadaLetra - 65;
+                int coordenadaRealNumero = coordenadaNumero - 1;
+
+                std::cout << coordenadaRealLetra << std::endl;
+                std::cout << coordenadaRealNumero << std::endl;
+
+                if (coordenadaRealLetra > 4 || coordenadaRealLetra < 0
+                    || coordenadaRealNumero > 4 || coordenadaRealNumero < 0) {
+                        std::cout << std::endl;
+                        std::cout << nome1 <<  ", essa coordenada nao existe! Digite outra!\n";
+                        continue;
+
+                    }
+
+
+                if(MatrizBack1[coordenadaRealLetra][coordenadaRealNumero] == 1) {
+                        std::cout << std::endl;
+                        std::cout << nome1 << ", essa coordenada ja tem um navio! Digite outra!\n";
+                        continue;
+                    }
+
+                MatrizBack1[coordenadaRealLetra][coordenadaRealNumero] = 1;
+                MatrizFront1[coordenadaRealLetra][coordenadaRealNumero] = 'N';
+                NaviosJogador1--;
+
+
+                if(NaviosJogador1 == 0) {
+                    std::cout << std::endl;
+                    std::cout << "Voce ja colocou todos os seus navios! Hora de jogar!\n";
+                    std::cout << std::endl;
+                    break;
+                }
+
+            }
+                    }
+
+
+
+                    if(escolhaJogadorColocarNaviosManualOuRandom == 2) {
+
+                        posicionarNaviosAleatoriamente(MatrizBack1, 5, NaviosJogador1);
+                        
+                    }
+                }
+
+
+
+
+
+                while (checagemJogador2ColocarNaviosManualOuRandom) {
+
+                    std::cout << std::endl;
+                    std::cout << nome2 << ", o seu inimigo mortal eh este computador!\n";
+                    std::cout << "Voce gostaria de posicionar seus navios manualmente ou deixar que o destino decida?\n";
+                    std::cout << "O jogador 2 nao pode ver voce colocando os navios!\n";
+                    std::cout << "[1] Quero colocar meus navios\n";
+                    std::cout << "[2] Deixar a escolha aleatoria\n";
+                    std::cout << std::endl;
+                    std::cout << "Digite: ";
+                    std::cin >> escolhaJogadorColocarNaviosManualOuRandom;
+
+                    int NaviosJogador1 = 10;
+                    int NaviosJogador2 = 10;
+
+                    //independente do que o jogador escolha, o computador sempre vai escolher os proprios navios aleatoriamente
+                    
+                    if(escolhaJogadorColocarNaviosManualOuRandom != 1 &&
+                    escolhaJogadorColocarNaviosManualOuRandom != 2) {
+                        std::cout << std::endl;
+                        std::cout << "Opcao invalida\n";
+                        std::cout << std::endl;
+                        continue;
+                    }
+
+
+                    if(escolhaJogadorColocarNaviosManualOuRandom == 1) {
+
+                        posicionarNaviosAleatoriamente(MatrizBack2, 5, NaviosJogador2);
+
+
+                while (enquantoJogadorColocaNavios) {
+
+                std::string coordenadaDigitada;
+
+                std::cout << std::endl;
+                std::cout << std::endl;
+                std::cout << nome1 << ", coloque os seus navios!\n";
+                std::cout << "Digite as coordenadas para colocar os seus navios!\n";
+                std::cout << "Uma letra MAISCULA para o eixo X e uma letra para o eixo Y! Sem espaco\n";
+                std::cout << "Numero de navios a serem colocados: " << NaviosJogador1 << std::endl;
+                std::cout << std::endl;
+
+                char caractere = 'A';
+                int valorASCII = (int)caractere;
+
+                std::cout << "  ";
+                for(int i = 0; i < 5; i ++) {
+                    std::cout << i + 1 << " ";
+                }
+
+                std::cout << std::endl;
+
+                for(int i = 0; i < 5; i++) {
+
+                    std::cout << (char)valorASCII << " "; //linha
+
+                    for (int j = 0; j < 5; j++) {
+                    std::cout << MatrizFront1[i][j] << " ";
+
+                }
+
+                    std::cout << std::endl;
+                    valorASCII++;
+
+                }   
+                
+                std::cout << std::endl;
+                std::cout << "Posicao do navio: ";
+                std::getline(std::cin, coordenadaDigitada);
+
+                char coordenadaLetra = coordenadaDigitada[0];
+                std::string coordenadaNum = coordenadaDigitada.substr(1);
+
+                int coordenadaNumero = std::stoi(coordenadaNum);
+ 
+                int coordenadaRealLetra = (char)coordenadaLetra - 65;
+                int coordenadaRealNumero = coordenadaNumero - 1;
+
+                std::cout << coordenadaRealLetra << std::endl;
+                std::cout << coordenadaRealNumero << std::endl;
+
+                if (coordenadaRealLetra > 4 || coordenadaRealLetra < 0
+                    || coordenadaRealNumero > 4 || coordenadaRealNumero < 0) {
+                        std::cout << std::endl;
+                        std::cout << nome1 <<  ", essa coordenada nao existe! Digite outra!\n";
+                        continue;
+
+                    }
+
+
+                if(MatrizBack2[coordenadaRealLetra][coordenadaRealNumero] == 1) {
+                        std::cout << std::endl;
+                        std::cout << nome2 << ", essa coordenada ja tem um navio! Digite outra!\n";
+                        continue;
+                    }
+
+                MatrizBack2[coordenadaRealLetra][coordenadaRealNumero] = 1;
+                MatrizFront2[coordenadaRealLetra][coordenadaRealNumero] = 'N';
+                NaviosJogador2--;
+
+
+                if(NaviosJogador2 == 0) {
+                    std::cout << std::endl;
+                    std::cout << "Voce ja colocou todos os seus navios! Hora de jogar!\n";
+                    std::cout << std::endl;
+                    break;
+                }
+
+            }
+                    }
+
+
+
+                    if(escolhaJogadorColocarNaviosManualOuRandom == 2) {
+
+                        posicionarNaviosAleatoriamente(MatrizBack2, 5, NaviosJogador2);
+                        
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
                 }
 
 
