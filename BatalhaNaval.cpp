@@ -95,23 +95,26 @@
     }
 
     bool processarTiro(int matrizBack[][5], char matrizFront[][5], int numero, int coordenadaLetra, int coordenadaNumero,
-    int &numeroBala, int &numeroNavio) {
+    int &numeroBala, int &numeroNavio, bool turnoJogador) {
 
 
           if (coordenadaLetra > 4 || coordenadaLetra < 0
                     || coordenadaNumero > 4 || coordenadaNumero < 0) {
 
+                        if(turnoJogador) {
                         std::cout << std::endl;
                         std::cout << "Marinheiro(a)! Essa coordenada nao existe! Digite outra!\n";
+                        }
                         return false;
                     }
                     
 
                     if(matrizBack[coordenadaLetra][coordenadaNumero] == 2
                     || matrizBack[coordenadaLetra][coordenadaNumero] == 3) {
-
+                        if(turnoJogador) {
                         std::cout << std::endl;
                         std::cout << "Marinheiro(a)! Voce ja atirou ai!\n";
+                        }
                         return false;
                     }
 
@@ -121,9 +124,18 @@
                         matrizBack[coordenadaLetra][coordenadaNumero] = 2;
                         matrizFront[coordenadaLetra][coordenadaNumero] = 'X';
                         
+                        if(turnoJogador) {
                         std::cout << std::endl;
                         std::cout << "Voce acertou o navio inimigo!\n";
                         std::cout << std::endl;
+                        }
+
+                        if(!turnoJogador) {
+                            std::cout << std::endl;
+                            std::cout << "Cuidado! O computador acertou um dos seus navios!\n";
+                            std::cout << std::endl;
+
+                        }
 
                         numeroBala--;
                         numeroNavio--;
@@ -135,9 +147,18 @@
 
                         matrizBack[coordenadaLetra][coordenadaNumero] = 3;
                         matrizFront[coordenadaLetra][coordenadaNumero] = '0';
-
+                        if(turnoJogador) {
                         std::cout << std::endl;
                         std::cout << "Voce errou! Nao ha navio ai!\n";
+                        }
+
+                         if(!turnoJogador) {
+                            std::cout << std::endl;
+                            std::cout << "Ufa! O computador atirou na água!\n";
+                            std::cout << std::endl;
+
+                        }
+
 
                         numeroBala--;
 
@@ -149,8 +170,47 @@
 
      }
 
+    
+     void mostrarMapaAdversarioAposDerrota(int matrizBack[][5], int numero, char matrizFront[][5]) {
+
+         std::cout << std::endl;
+                            std::cout << "Localizacao dos navios restantes: \n";
+                        std::cout << std::endl;
+
+                char caractere = 'A';
+                int valorASCII = (int)caractere;
+
+                std::cout << "  ";
+                for(int i = 0; i < 5; i ++) {
+                    std::cout << i + 1 << " ";
+                }
+
+                std::cout << std::endl;
+
+                for(int i = 0; i < 5; i++) {
+
+                    std::cout << (char)valorASCII << " "; //linha
+
+                    
+                    for (int j = 0; j < 5; j++) {
+
+                        if(matrizBack[i][j] == 0 ||
+                        matrizBack[i][j] == 2 || matrizBack[i][j] == 3) {
+                            std::cout << matrizFront[i][j] << " ";
+                        }
+
+                        else if (matrizBack[i][j] == 1)  {
+                            std::cout << "N ";
+                        }
+                }
 
 
+                    std::cout << std::endl;
+                    valorASCII++;
+
+                }   
+
+     }
 
 
 
@@ -661,23 +721,83 @@ int main () {
                         //o jogador DIGITA as coordenadas
                         //os parametros sao a funcao do inimigo, afinal, ele esta atirando no inimigo.
                         if(!processarTiro(MatrizBackPC, MatrizFrontPC, 5, coordenadaRealLetra, coordenadaRealNumero, 
-                            numeroBalasJogador, numeroNaviosPC)) {
+                            numeroBalasJogador, numeroNaviosPC, true)) {
                             continue;
                         }
 
+
+                        if(numeroNaviosPC == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Parabens, jogador! Voce afundou todos os navios inimigos!\n";
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuVitoria;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsComputador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogadorColocarNaviosManualOuRandom = false;
+
+                        }
+
+                        if(numeroBalasJogador == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Que pena, jogador! Sua municao acabou! Game over\n";
+                            mostrarMapaAdversarioAposDerrota(MatrizBackPC, 5, MatrizFrontJogador);
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuDerrota;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsComputador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogadorColocarNaviosManualOuRandom = false;
+
+                        }
+
                         //as coordenadas do pc tem que ser escolhidas aleatoriamente   
-                        
-                        
                         int coordenadaLetraPC = rand()% 5;
                         int coordenadaNumeroPC = rand()% 5;
 
                         while(!processarTiro(MatrizBackJogador, MatrizFrontJogador, 5, coordenadaLetraPC, coordenadaNumeroPC,
-                        numeroBalasPC, numeroNaviosJogador)) {
+                        numeroBalasPC, numeroNaviosJogador, false)) {
                                 coordenadaLetraPC = rand()% 5;
                                 coordenadaNumeroPC = rand()% 5;
                         }
 
-                    
+                        
+                        if(numeroNaviosJogador == 0) {
+
+                            std::cout << std::endl;
+                            std::cout << "Que pena, jogador! O computador afundou todos os seus navios!\n";
+                            mostrarMapaAdversarioAposDerrota(MatrizBackPC, 5, MatrizFrontJogador);
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuDerrota;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsComputador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogadorColocarNaviosManualOuRandom = false;
+                            
+                        }
+
+                        if(numeroBalasPC == 0) {
+                            std::cout << std::endl;
+                            std::cout << "Parabens, jogador! A municao do computador acabou! Voce venceu!\n";
+                            std::cout << std::endl;
+                            std::cout << "Aperte qualquer tecla para voltar para o menu: ";
+                            std::cin >> teclaVoltarMenuVitoria;
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            loopJogoJogadorVsComputador = false;
+                            enquantoJogadorColocaNavios = false; 
+                            checagemJogadorColocarNaviosManualOuRandom = false;
+
+
+
+                        }
 
 
 
@@ -691,6 +811,20 @@ int main () {
 
 
                 }
+
+
+                if(opcaoModoJogo == 3) {
+
+
+
+
+
+
+                    
+                }
+
+
+
 
 
             }
