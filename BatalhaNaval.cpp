@@ -2,8 +2,46 @@
 #include <limits>
 #include <string>
 #include <cstdlib>
+#include <ctime>
+
+//o modo 1 do jogo nao tem funcoes... eu fiz assim para ser didatico
+//agora, para o resto do jogo, eh preciso fazer funcoes, senao o codigo fica gigante
+
+    void inicializarTabuleiros(int matrizBack[][5], char matrizFront[][5], int numero) {
+
+
+
+
+
+    }
+
+    void posicionarNaviosAleatoriamente() {
+
+
+
+    }
+
+    void imprimirTabuleiros() {
+
+
+
+    }
+
+
+    bool processarTiro() {
+
+
+
+     }
+
+
+
+
+
 
 int main () {
+
+    srand(time(NULL));
 
     bool checagem = true;
     bool checagemModoJogo = true;
@@ -15,12 +53,7 @@ int main () {
     char teclaVoltarMenuVitoria;
     char teclaVoltarMenuDerrota;
 
-
-
-
     while (checagem) {
-        
-        
 
         std::cout << "=======================================================\n";
         std::cout << "                                                     \n";
@@ -132,17 +165,13 @@ int main () {
             }
 
             int numeroBalas = 16;
-
             bool checagemJogadorColocouCoordenadaCerta = true;
-
 
             while (checagemJogadorColocouCoordenadaCerta) {
 
-
-            std::string coordenadaDigitada;
+                std::string coordenadaDigitada;
 
                 std::cout << std::endl;
-
                 std::cout << std::endl;
                 std::cout << "Marinheiro(a)!Afunde todos os navios!!!\n";
                 std::cout << "Digite as coordenadas para atirar com seu canhao!\n";
@@ -166,12 +195,10 @@ int main () {
 
                     std::cout << (char)valorASCII << " "; //linha
 
-                    
                     for (int j = 0; j < 5; j++) {
                     std::cout << MatrizFront[i][j] << " ";
 
                 }
-
 
                     std::cout << std::endl;
                     valorASCII++;
@@ -194,12 +221,6 @@ int main () {
 
                 int coordenadaNumero = std::stoi(coordenadaNum);
 
-                std::cout << coordenadaLetra << std::endl;
-                std::cout << coordenadaNumero << std::endl;
-
-              
-
-
                 //supondo que o jogador digitou B2
                 //olhando para o meu caderno, B equivale a linha 1, e 2 equivale a coluna 1
                 //ou seja, o numero que o jogador digita nao eh a coordenada exata
@@ -211,9 +232,14 @@ int main () {
                 int coordenadaRealLetra = (char)coordenadaLetra - 65;
                 int coordenadaRealNumero = coordenadaNumero - 1;
 
+                std::cout << coordenadaRealLetra << std::endl;
+                std::cout << coordenadaRealNumero << std::endl;
+                //c6 acertou d1
 
-                if (coordenadaRealLetra > 5 || coordenadaRealLetra < 0
-                    || coordenadaRealNumero > 5 || coordenadaRealNumero < 0) {
+                //4 porque 4 = 5-1 (limite - 1)
+                //porque o eixo de cima eh 0 1 2 3 4, se for > 4 ja ta fora.
+                if (coordenadaRealLetra > 4 || coordenadaRealLetra < 0
+                    || coordenadaRealNumero > 4 || coordenadaRealNumero < 0) {
 
                         std::cout << std::endl;
                         std::cout << "Marinheiro(a)! Essa coordenada nao existe! Digite outra!\n";
@@ -230,10 +256,6 @@ int main () {
                         continue;
 
                     }
-
-                    
-
-
 
                 //B2 foi traduzido para coordenadaRealLetra = 1 e coordenadaRealNumero = 1! Agora verificaremos se la tem navio
 
@@ -265,7 +287,6 @@ int main () {
 
                         std::cout << std::endl;
                         std::cout << "Voce errou! Nao ha navio ai!\n";
-                        std::cout << std::endl;
 
                     }
 
@@ -281,6 +302,7 @@ int main () {
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         checagemJogadorColocouCoordenadaCerta = false;
                         checagemSeAQuantidadeNaviosEhSuficiente = false;
+                        checagemModoJogo = false;
 
                     }
 
@@ -331,41 +353,29 @@ int main () {
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         checagemJogadorColocouCoordenadaCerta = false;
                         checagemSeAQuantidadeNaviosEhSuficiente = false;
+                        checagemModoJogo = false;
                         
                     }
-
-
-                    
-
-
+            }
             }
 
+                if(opcaoModoJogo == 2) {
+                    
+                    int MatrizBackJogador[5][5];
+                    char MatrizFrontJogador[5][5];
+
+                    int MatrizBackPC[5][5];
+                    char MatrizFrontPC[5][5];
+
+                    inicializarTabuleiros(MatrizBackJogador, MatrizFrontJogador, 5);
+                    inicializarTabuleiros(MatrizBackPC, MatrizFrontJogador, 5);
 
 
-            /*
-            for(int i = 0; i < 5; i++) {
-                for (int j = 0; j < 5; j++) {
-                    std::cout << MatrizBack[i][j] << " ";
 
                 }
 
-                std::cout << std::endl;
-            }
-
-            */
-
-
-
-
 
             }
-
-
-
-        
-            }
-
-
         }
 
 
@@ -424,13 +434,6 @@ int main () {
 
 
     }
-
-
-
-
-
-
-
 
     return 0;
 }
