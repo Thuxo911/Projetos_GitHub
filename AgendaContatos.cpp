@@ -61,7 +61,6 @@ int main () {
     std::string nomeProcurado;
     int idProcurado;
     int resposta10;
-    int numeroFavoritos;
     char respostaFavorito;
     char respostaDesfavorito;
 
@@ -143,13 +142,13 @@ int main () {
         std::cout << "  [5] - Editar um contato\n";
         std::cout << "  [6] - Remover um contato\n";
         std::cout << "  [7] - Ordenar contatos\n";
-        std::cout << " [8] - Numero total de contatos\n";
-        std::cout << " [9] - Limpar toda a agenda\n";
-        std::cout << " [10] - Marcar/desmarcar favoritos\n";
-        std::cout << " [11] - Mostrar contatos favoritos\n";
+        std::cout << "  [8] - Numero total de contatos\n";
+        std::cout << "  [9] - Limpar toda a agenda\n";
+        std::cout << "  [10] - Marcar/desmarcar favoritos\n";
+        std::cout << "  [11] - Mostrar contatos favoritos\n";
         std::cout << "\n";
         std::cout << "  [12] - Creditos\n";
-        std::cout << "  [13] - Sair da agenda\n";
+        std::cout << "  [13] - Salvar e sair da agenda\n";
         std::cout << "\n";
         std::cout << "============================================\n";
         std::cout << "Escolha uma opcao: ";
@@ -173,28 +172,20 @@ int main () {
             std::cout << std::endl;
             std::cout << "Por favor, insira os dados dos seu contato\n";
             std::cout << "Nome: ";
-            std::cin >> novoContato.nome;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-
+            std::getline(std::cin >> std::ws, novoContato.nome);
+            //o cin normal para de capturar no primeiro espaco em branco. Ao inves de capturar Marco Thullyo, ele so captura marco
+            //o getline captura tudo
+            //std::ws limpa a sujeira do enter, porque toda vez que digitamos o enter eh como se ele ficasse "grudado" ali
+            //ai nao precisa mais de clear ou ignore
+   
             std::cout << "Telefone: ";
-            std::cin >> novoContato.telefone;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+            std::getline(std::cin >> std::ws, novoContato.telefone);
 
             std::cout << "E-mail: ";
-            std::cin >> novoContato.email;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+            std::getline(std::cin >> std::ws, novoContato.email);
 
             std::cout << "Cidade: ";
-            std::cin >> novoContato.cidade;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+            std::getline(std::cin >> std::ws, novoContato.cidade);
 
             std::cout << "ID: ";
             std::cin >> novoContato.id;
@@ -267,9 +258,7 @@ int main () {
 
             std::cout << std::endl;
             std::cout << "Digite o nome do contato: \n";
-            std::cin >> nomeProcurado;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::getline(std::cin >> std::ws, nomeProcurado);
             std::cout << std::endl;
 
             bool achou = false;
@@ -354,7 +343,7 @@ int main () {
 
             std::cout << std::endl;
             std::cout << "Informe qual contato voce quer editar digitando o nome OU id\n";
-            std::cin >> aSerEditado;
+            std::getline(std::cin >> std::ws, aSerEditado);
 
             for(int i = 0; i < listaContatos.size(); i++) {
                 
@@ -370,28 +359,16 @@ int main () {
                     std::cout << std::endl;
                     std::cout << "Contato: " << i + 1 << std::endl;
                     std::cout << "Nome: ";
-                    std::cin >> listaContatos[i].nome;
-                    std::cin.clear();
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-
+                    std::getline(std::cin >> std::ws, listaContatos[i].nome);
+    
                     std::cout << "Telefone: ";
-                    std::cin >> listaContatos[i].telefone;
-                    std::cin.clear();
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+                    std::getline(std::cin >> std::ws, listaContatos[i].telefone);
 
                     std::cout << "E-mail: ";
-                    std::cin >> listaContatos[i].email;
-                    std::cin.clear();
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+                    std::getline(std::cin >> std::ws, listaContatos[i].email);
 
                     std::cout << "Cidade: ";
-                    std::cin >> listaContatos[i].cidade;
-                    std::cin.clear();
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+                    std::getline(std::cin >> std::ws, listaContatos[i].cidade);
 
                     std::cout << "ID: ";
                     std::cin >> listaContatos[i].id;
@@ -416,9 +393,7 @@ int main () {
             
             std::cout << std::endl;
             std::cout << "Qual contato voce gostaria de apagar? Digite o nome ou o ID\n";
-            std::cin >> aSerApagado;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::getline(std::cin >> std::ws, aSerApagado);
             std::cout << std::endl;
 
             bool apagado = false;
@@ -458,9 +433,7 @@ int main () {
             std::cout << std::endl;
             std::cout << "Voce gostaria de ordenar os contatos seguindo qual criterio? Nome ou id?\n";
             std::cout << "Resposta: ";
-            std::cin >> respostaQualOrdenar;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::getline(std::cin >> std::ws, respostaQualOrdenar);
 
             if (respostaQualOrdenar == "nome" || respostaQualOrdenar == "Nome"
             || respostaQualOrdenar == "Nomes" || respostaQualOrdenar == "nomes") {
@@ -577,6 +550,7 @@ int main () {
 
             if(EstaVazio(listaContatos)) continue;
 
+
             std::cout << std::endl;
             std::cout << "Voce gostaria de marcar ou desmarcar favoritos?\n";
             std::cout << "[1] Marcar\n";
@@ -586,7 +560,7 @@ int main () {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << std::endl;
 
-            if(resposta10 != 1 || resposta10 != 2) {
+            if(resposta10 != 1 && resposta10 != 2) {
                 std::cout << std::endl;
                 std::cout << "Opcao errada\n";
                 std::cout << std::endl;
@@ -596,6 +570,8 @@ int main () {
             else if(resposta10 == 1) {
 
                 while(checagemFavorita) {
+
+                    int numeroFavoritos = 0;
 
                 for(int i = 0; i < listaContatos.size(); i++) {
 
@@ -610,22 +586,35 @@ int main () {
                         std::cout <<std::endl;
                         std::cout << "Todos os contatos ja estao favoritados\n";
                         std::cout << std::endl;
-                        continue;
+                        break;
                     }
 
-                    std::cout <<std::endl;
+                        std::cout <<std::endl;
                         std::cout << "Qual contato voce gostaria de favoritar? Escolha pelo nome ou id: \n";
-                        std::cin >> aSerFavoritado;
-                        std::cin.clear();
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::getline(std::cin >> std::ws, aSerFavoritado);
                         std::cout << std::endl;
+
+                        bool achouFavorito = false;
 
                         for(int i = 0; i < listaContatos.size(); i++) {
 
                             if(aSerFavoritado == listaContatos[i].nome ||
-                            aSerFavoritado == std::to_string(listaContatos[i].id)) 
+                            aSerFavoritado == std::to_string(listaContatos[i].id)) {
                                 listaContatos[i].favorito = true;
+                                achouFavorito = true;
+                            }
                         }
+
+                        if (!achouFavorito) {
+
+                            std::cout << std::endl;
+                            std::cout << "Nao encontramos o seu contato...\n";
+                            std::cout << std::endl;
+                            continue;
+                
+                        }
+
+
                         std::cout << std::endl;
                         std::cout << "Gostaria de favoritar mais contatos?? Y/N: \n";
                         std::cin >> respostaFavorito;
@@ -646,27 +635,51 @@ int main () {
 
                    while(checagemDesfavorita) {
 
+                    int numeroFavoritos = 0;
+
+                     for(int i = 0; i < listaContatos.size(); i++) {
+
+                        if(listaContatos[i].favorito) {
+                            numeroFavoritos++;
+                                 }  
+
+                            }
+
 
                  if(numeroFavoritos == 0) {
                         std::cout <<std::endl;
                         std::cout << "Nao ha nenhum contato favorito a ser desmarcado\n";
                         std::cout << std::endl;
-                        continue;
+                        break;
                     }
 
                         std::cout <<std::endl;
                         std::cout << "Qual contato voce gostaria de desmarcar? Escolha pelo nome ou id: \n";
-                        std::cin >> aSerDesfavoritado;
-                        std::cin.clear();
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::getline(std::cin >> std::ws, aSerDesfavoritado);
                         std::cout << std::endl;
+
+
+                         bool achouDesfavorito = false;
 
                         for(int i = 0; i < listaContatos.size(); i++) {
 
                             if(aSerDesfavoritado == listaContatos[i].nome ||
-                            aSerDesfavoritado == std::to_string(listaContatos[i].id)) 
+                            aSerDesfavoritado == std::to_string(listaContatos[i].id))  {
                                 listaContatos[i].favorito = false;
+                                achouDesfavorito = true;
+
+                            }   
                         }
+
+                        if (!achouDesfavorito) {
+
+                            std::cout << std::endl;
+                            std::cout << "Nao encontramos o seu contato...\n";
+                            std::cout << std::endl;
+                            continue;
+                
+                        }
+
                         std::cout << std::endl;
                         std::cout << "Gostaria de desfavoritar mais contatos?? Y/N: \n";
                         std::cin >> respostaDesfavorito;
@@ -674,7 +687,6 @@ int main () {
                         if (respostaDesfavorito == 'Y' || respostaDesfavorito == 'y') {
                             continue;
                         }
-
 
                         else break;
 
@@ -693,6 +705,13 @@ int main () {
 
             if(EstaVazio(listaContatos)) continue;
 
+            int numeroFavoritos = 0;
+
+            for(int i = 0; i < listaContatos.size(); i++) {
+                if(listaContatos[i].favorito) {
+                    numeroFavoritos++;
+                }  
+            }
 
             if(numeroFavoritos == 0) {
                         std::cout <<std::endl;
@@ -744,10 +763,29 @@ int main () {
         //telefone
         //...
 
+        //na hora de desempacotar, ele nao desempacota para escrever NO .txt, mas sim PARA SEPARAR CERTINHO
+        //para que os dados sejam colocados no vector novamente...
+
+        /*
+        Enquanto o programa esta rodando, todos os contatos vivem na memoria RAM (dentro do std::vector). 
+        Mas quando fecha a tela preta do terminal, a RAM eh limpa e tudo desaparece. 
+
+        O ofstream (empacotar na saida) pega todos os dados do vector antes do programa fechar
+        e os escreve na "pedra" (no disco rigido, dentro de um .txt)
+
+        O ifstream (desempacotar na entrada) eh a primeira coisa que acontece quando o programa eh aberto
+        Ele vai no arquivo .txt, le os dados separados por ponto e virgula e reconstroi o vector inteirinho na RAM
+        antes mesmo do menu ser exibido 
+
+
+
+        
+        */
+
         if (opcaoMenu == 13) {
 
 
-            std::ofstream ArquivoContatos("Lista_de_contatos.txt");
+            std::ofstream ArquivoContatos("contatos.txt");
 
             for(int i = 0; i < listaContatos.size(); i++) {
             ArquivoContatos << listaContatos[i].nome << ";" <<
@@ -764,7 +802,7 @@ int main () {
             ArquivoContatos.close();
 
             std::cout << std::endl;
-            std::cout << "Adeus! Sua lista foi salva!\n";
+            std::cout << "Adeus! Sua lista foi salva como 'contatos.txt'!\n";
             std::cout << std::endl;
             return 0;
 
@@ -773,3 +811,7 @@ int main () {
     return 0;
 
 }
+
+
+
+
