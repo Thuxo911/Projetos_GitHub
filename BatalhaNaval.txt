@@ -145,5 +145,7 @@ std::cout << "A cada 7 rodadas, um tsunami alaga metade do tabuleiro. Navios em 
 std::cout << std::endl;
 
 
-
+Ao inves de por exemplo o kraken e o bau do tesouro forem modos proprios, 
+eles nao poderiam ser opcoes de personalizacao antes de cada partida? 
+Tipo perguntar pro jogador se ele quer isso ou nao... ai seria facil colocar isso com bool?
 
