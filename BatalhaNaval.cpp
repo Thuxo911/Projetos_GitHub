@@ -120,7 +120,53 @@ int main () {
                 
             }
 
+            int numeroBalas = 16;
+            std::string coordenada;
 
+                std::cout << std::endl;
+
+                std::cout << std::endl;
+                std::cout << "Marinheiro(a)!Afunde todos os navios!!!\n";
+                std::cout << "Digite as coordenadas para atirar com seu canhao!\n";
+                std::cout << "Uma letra MAISCULA para o eixo X e uma letra para o eixo Y! Sem espaco\n";
+                std::cout << std::endl;
+
+                char caractere = 'A';
+                int valorASCII = (int)caractere;
+                //para representar o eixo X com letras provavelmente vou ter que usar ASCII, e ir somando para ir de A a E
+
+
+                for(int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 5; j++) {
+                    std::cout << (char)valorASCII << " " << MatrizFront[i][j] << " ";
+                    valorASCII++;
+
+                }
+
+                        std::cout << std::endl;
+                }   
+
+
+                 std::cout << "Posicao do tiro: ";
+                std::cin >> coordenada;
+                std::getline(std::cin, coordenada);
+
+                char coordenadaLetra = coordenada[0];
+                //coordenada[0] ou coordenada.front()
+
+                std::string coordenadaNum = coordenada.substr(1);
+
+                //para pegar a segunda parte usaremos substr e stoi
+                //substr eh substring, ele pega so uma parte. No caso, ele pega a partir do caractere 1
+                //stoi converte string para int
+
+                int coordenadaNumero = std::stoi(coordenadaNum);
+
+
+
+
+
+            /*
             for(int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
                     std::cout << MatrizBack[i][j] << " ";
@@ -129,6 +175,9 @@ int main () {
 
                 std::cout << std::endl;
             }
+
+            */
+
 
 
 
