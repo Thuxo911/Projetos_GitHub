@@ -1,18 +1,19 @@
 #include <iostream>
 #include <limits>
 #include <string>
-
-
-
-
+#include <cstdlib>
 
 int main () {
 
-    bool checagem;
+    bool checagem = true;
+    bool checagemModoJogo = true;
 
     int opcaoMenu;
     char opcaoComoJogar;
     int opcaoModoJogo;
+
+
+
 
     while (checagem) {
         
@@ -55,6 +56,7 @@ int main () {
 
         if (opcaoMenu == 1) {
 
+            while(checagemModoJogo) {
             std::cout << std::endl;
             std::cout << "============================================\n";
             std::cout << "              MODOS DE JOGO         \n";
@@ -75,8 +77,68 @@ int main () {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-            
+            if (opcaoModoJogo < 1 || opcaoModoJogo > 3) {
+                std::cout << std::endl;
+                std::cout << "Opcao errada! Tente novamente\n";
+                std::cout << std::endl;
+                continue;
+        
+            }
 
+            if (opcaoModoJogo == 1) {
+
+
+                int MatrizBack[5][5] = {0};
+                //matriz que a maquina ve
+
+                char MatrizFront[5][5] = {'~'};
+                //matriz que o jogador ve
+
+                int numeroNavios = 0;
+
+                bool checagemSeAQuantidadeNaviosEhSuficiente = true;
+       
+        //comecamos com apenas 10 navios      
+      while(checagemSeAQuantidadeNaviosEhSuficiente)   {        
+               for(int i = 0; i < 5; i++)  {
+                    for (int j = 0; j < 5; j++) {
+
+                        //0,1,2 (1/3 chance)
+                        if(rand()% 3 == 0) {
+                            MatrizBack[i][j] = {1};
+                            numeroNavios++;
+                        }
+
+                        if(numeroNavios == 10) {
+                            checagemSeAQuantidadeNaviosEhSuficiente = false;
+                            break;
+                        }
+
+
+                    }
+                }
+                
+            }
+
+
+            for(int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++) {
+                    std::cout << MatrizBack[i][j] << " ";
+
+                }
+
+                std::cout << std::endl;
+            }
+
+
+
+
+            }
+
+
+
+        
+            }
 
 
         }

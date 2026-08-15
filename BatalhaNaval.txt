@@ -79,6 +79,7 @@ Mas, por exemplo, ao colocar um navio 1x3, precisamos programar verificacoes com
 
 A MAQUINA VE A MATRIZ COM INTS 0 agua 1 navio
 O jogador ve a matriz com simbolos para ser intuitivo e bonito (char)
+Duas matrizes diferentes!!
 
 
 salvar e carregar jogo?
