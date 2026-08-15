@@ -9,13 +9,22 @@
 
     void inicializarTabuleiros(int matrizBack[][5], char matrizFront[][5], int numero) {
 
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 5; j++) {
+                matrizBack[i][j] = 0;
+            }
+        }
 
-
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 5; j++) {
+                matrizFront[i][j] = '~';
+            }
+        }
 
 
     }
 
-    void posicionarNaviosAleatoriamente() {
+    void posicionarNaviosAleatoriamente(int matrizBack[][5], int numero) {
 
 
 
@@ -45,10 +54,12 @@ int main () {
 
     bool checagem = true;
     bool checagemModoJogo = true;
+    bool checagemJogadorColocarNaviosManualOuRandom = true;
 
     int opcaoMenu;
     char opcaoComoJogar;
     int opcaoModoJogo;
+    int escolhaJogadorColocarNaviosManualOuRandom;
 
     char teclaVoltarMenuVitoria;
     char teclaVoltarMenuDerrota;
@@ -370,6 +381,51 @@ int main () {
                     inicializarTabuleiros(MatrizBackJogador, MatrizFrontJogador, 5);
                     inicializarTabuleiros(MatrizBackPC, MatrizFrontJogador, 5);
 
+                    while (checagemJogadorColocarNaviosManualOuRandom) {
+
+                    std::cout << std::endl;
+                    std::cout << "Marinheiro(a), o seu inimigo mortal eh este computador!\n";
+                    std::cout << "Voce gostaria de posicionar seus navios manualmente ou deixar que o destino decida?\n";
+                    std::cout << "[1] Quero colocar meus navios\n";
+                    std::cout << "[2] Deixar a escolha aleatoria\n";
+                    std::cout << std::endl;
+                    std::cout << "Digite: ";
+                    std::cin >> escolhaJogadorColocarNaviosManualOuRandom;
+
+                    //independente do que o jogador escolha, o computador sempre vai escolher os proprios navios aleatoriamente
+                    
+                    if(escolhaJogadorColocarNaviosManualOuRandom != 1 &&
+                    escolhaJogadorColocarNaviosManualOuRandom != 2) {
+                        std::cout << std::endl;
+                        std::cout << "Opcao invalida\n";
+                        std::cout << std::endl;
+                        continue;
+                    }
+
+
+                    if(escolhaJogadorColocarNaviosManualOuRandom == 1) {
+
+
+
+                    }
+
+
+
+                    if(escolhaJogadorColocarNaviosManualOuRandom == 2) {
+
+                        posicionarNaviosAleatoriamente(MatrizBackJogador, 5);
+                        posicionarNaviosAleatoriamente(MatrizBackPC, 5);
+
+                        
+                    }
+
+
+
+
+
+
+
+                }
 
 
                 }
